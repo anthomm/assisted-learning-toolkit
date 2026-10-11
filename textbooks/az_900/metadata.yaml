@@ -1,0 +1,47 @@
+title: AZ-900 Microsoft Azure Fundamentals
+subject: Microsoft Azure fundamentals
+exam_code: AZ-900
+source:
+  url: https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900
+  retrieved: 2026-10-11
+  as_of: 2026-07-20
+  language: en
+edition: pilot-1
+chapters:
+- id: cloud-concepts
+  title: Describe cloud concepts
+  weight: 25-30%
+  file: 01-cloud-concepts.md
+  topics:
+  - id: describe-cloud-computing
+    title: Describe cloud computing
+  - id: describe-the-benefits-of-using-cloud-services
+    title: Describe the benefits of using cloud services
+  - id: describe-cloud-service-types
+    title: Describe cloud service types
+- id: azure-architecture-services
+  title: Describe Azure architecture and services
+  weight: 35-40%
+  file: 02-azure-architecture-and-services.md
+  topics:
+  - id: describe-the-core-architectural-components-of-azure
+    title: Describe the core architectural components of Azure
+  - id: describe-azure-compute-and-networking-services
+    title: Describe Azure compute and networking services
+  - id: describe-azure-storage-services
+    title: Describe Azure storage services
+  - id: describe-azure-identity-access-and-security
+    title: Describe Azure identity, access, and security
+- id: management-governance
+  title: Describe Azure management and governance
+  weight: 30-35%
+  file: 03-azure-management-and-governance.md
+  topics:
+  - id: describe-cost-management-in-azure
+    title: Describe cost management in Azure
+  - id: describe-features-and-tools-in-azure-for-governance-and-compliance
+    title: Describe features and tools in Azure for governance and compliance
+  - id: describe-features-and-tools-for-managing-and-deploying-azure-resources
+    title: Describe features and tools for managing and deploying Azure resources
+  - id: describe-monitoring-tools-in-azure
+    title: Describe monitoring tools in Azure

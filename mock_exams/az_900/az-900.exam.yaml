@@ -16,38 +16,33 @@ domains:
     title: Describe the benefits of using cloud services
   - id: describe-cloud-service-types
     title: Describe cloud service types
-  - id: additional-cloud-concepts
-    title: 'Additional: Cloud concepts'
 - id: azure-architecture-services
   title: Describe Azure architecture and services
   weight: 35–40%
   topics:
-  - id: core-architectural-components
-    title: Core architectural components
-  - id: azure-compute-and-networking
-    title: Azure compute and networking
-  - id: azure-storage-services
-    title: Azure storage services
-  - id: azure-identity-access-and-security
-    title: Azure identity, access, and security
-  - id: additional-architecture-and-services
-    title: 'Additional: Architecture and services'
+  - id: describe-the-core-architectural-components-of-azure
+    title: Describe the core architectural components of Azure
+  - id: describe-azure-compute-and-networking-services
+    title: Describe Azure compute and networking services
+  - id: describe-azure-storage-services
+    title: Describe Azure storage services
+  - id: describe-azure-identity-access-and-security
+    title: Describe Azure identity, access, and security
 - id: management-governance
   title: Describe Azure management and governance
   weight: 30–35%
   topics:
-  - id: cost-management
-    title: Cost management
-  - id: governance-and-compliance
-    title: Governance and compliance
-  - id: managing-and-deploying-resources
-    title: Managing and deploying resources
-  - id: monitoring-tools
-    title: Monitoring tools
-  - id: additional-management-and-governance
-    title: 'Additional: Management and governance'
+  - id: describe-cost-management-in-azure
+    title: Describe cost management in Azure
+  - id: describe-features-and-tools-in-azure-for-governance-and-compliance
+    title: Describe features and tools in Azure for governance and compliance
+  - id: describe-features-and-tools-for-managing-and-deploying-azure-resources
+    title: Describe features and tools for managing and deploying Azure resources
+  - id: describe-monitoring-tools-in-azure
+    title: Describe monitoring tools in Azure
 questions:
 - id: 1
+  tags: ["objective:cc-define-cloud-computing"]
   domain: cloud-concepts
   topic: describe-cloud-computing
   text: Which statement best defines cloud computing?
@@ -70,6 +65,7 @@ questions:
     pricing lets customers pay for what they use instead of buying datacenter hardware upfront.
   type: single
 - id: 2
+  tags: ["objective:cc-shared-responsibility-model"]
   domain: cloud-concepts
   topic: describe-cloud-computing
   text: In the shared responsibility model, which item is ALWAYS the customer's responsibility regardless
@@ -93,6 +89,7 @@ questions:
     exact division of operating-system and application work changes with the service model.
   type: single
 - id: 3
+  tags: ["objective:cc-cloud-models", "objective:cc-cloud-model-use-cases"]
   domain: cloud-concepts
   topic: describe-cloud-computing
   text: A company must keep sensitive data on hardware it fully controls on-premises, but wants to burst
@@ -116,6 +113,7 @@ questions:
     temporary demand; private cloud alone would not provide that Azure burst capacity.
   type: single
 - id: 4
+  tags: ["objective:cc-cloud-model-use-cases"]
   domain: cloud-concepts
   topic: describe-cloud-computing
   text: Which scenario is the best use case for a PUBLIC cloud?
@@ -141,6 +139,7 @@ questions:
     third-party infrastructure, or remaining disconnected, which conflict with public-cloud use.
   type: single
 - id: 5
+  tags: ["objective:cc-consumption-based-model", "objective:cc-cloud-pricing-models"]
   domain: cloud-concepts
   topic: describe-cloud-computing
   text: Which statement describes the consumption-based pricing model?
@@ -163,6 +162,7 @@ questions:
     are alternative commitment models, not pay-as-you-go consumption.
   type: single
 - id: 6
+  tags: ["objective:cc-serverless"]
   domain: cloud-concepts
   topic: describe-cloud-computing
   text: Which statement about serverless computing is correct?
@@ -185,6 +185,7 @@ questions:
     commonly charged according to execution or consumption.
   type: single
 - id: 7
+  tags: ["objective:cc-benefits-high-availability-scalability"]
   domain: cloud-concepts
   topic: describe-the-benefits-of-using-cloud-services
   text: Which feature allows an app to automatically add or remove resources as demand changes, improving
@@ -208,6 +209,7 @@ questions:
     falls, avoiding unnecessary cost while maintaining performance.'
   type: single
 - id: 8
+  tags: ["objective:cc-benefits-high-availability-scalability"]
   domain: cloud-concepts
   topic: describe-the-benefits-of-using-cloud-services
   text: An organization wants its service to stay available even if a datacenter fails, and wants a contractual
@@ -231,6 +233,7 @@ questions:
     cost predictability, manageability, and governance address different concerns.
   type: single
 - id: 9
+  tags: ["objective:cc-benefits-reliability-predictability"]
   domain: cloud-concepts
   topic: describe-the-benefits-of-using-cloud-services
   text: Which cloud benefit is delivered by using the pricing calculator and cost analysis to forecast
@@ -254,6 +257,7 @@ questions:
     with expectations; neither describes scaling or authentication.
   type: single
 - id: 10
+  tags: ["objective:cc-benefits-manageability"]
   domain: cloud-concepts
   topic: describe-the-benefits-of-using-cloud-services
   text: Which is an example of "manageability" in the cloud?
@@ -279,6 +283,7 @@ questions:
     each server locally are manual infrastructure operations rather than cloud-management capabilities.
   type: single
 - id: 11
+  tags: ["objective:cc-iaas", "objective:cc-cloud-service-type-use-cases"]
   domain: cloud-concepts
   topic: describe-cloud-service-types
   text: Which service type gives you the most control over the operating system and runtime?
@@ -301,6 +306,7 @@ questions:
     and virtualization layer, while PaaS and SaaS shift progressively more management to the provider.'
   type: single
 - id: 12
+  tags: ["objective:cc-paas", "objective:cc-cloud-service-type-use-cases"]
   domain: cloud-concepts
   topic: describe-cloud-service-types
   text: A developer wants to deploy a web application without managing the OS or web server patching.
@@ -324,6 +330,7 @@ questions:
     guest OS; on-premises and colocation leave still more infrastructure work with the customer.
   type: single
 - id: 13
+  tags: ["objective:cc-saas", "objective:cc-cloud-service-type-use-cases"]
   domain: cloud-concepts
   topic: describe-cloud-service-types
   text: Microsoft 365 (for example, Exchange Online) is an example of which service type?
@@ -346,6 +353,7 @@ questions:
     models, and private cloud is a deployment model rather than a service type.'
   type: single
 - id: 14
+  tags: ["objective:cc-iaas", "objective:cc-cloud-service-type-use-cases"]
   domain: cloud-concepts
   topic: describe-cloud-service-types
   text: A company needs to lift and shift a legacy application that requires a custom operating system
@@ -370,8 +378,9 @@ questions:
     legacy application.
   type: single
 - id: 15
+  tags: ["objective:as-regions-region-pairs-sovereign-regions"]
   domain: azure-architecture-services
-  topic: core-architectural-components
+  topic: describe-the-core-architectural-components-of-azure
   text: What is a region pair in Azure?
   options:
   - id: A
@@ -392,8 +401,9 @@ questions:
     subscriptions, or availability zones.
   type: single
 - id: 16
+  tags: ["objective:as-availability-zones"]
   domain: azure-architecture-services
-  topic: core-architectural-components
+  topic: describe-the-core-architectural-components-of-azure
   text: Which statement about availability zones is correct?
   options:
   - id: A
@@ -415,8 +425,9 @@ questions:
     failure, unlike geographies or logical resource-management groupings.
   type: single
 - id: 17
+  tags: ["objective:as-regions-region-pairs-sovereign-regions"]
   domain: azure-architecture-services
-  topic: core-architectural-components
+  topic: describe-the-core-architectural-components-of-azure
   text: Which Azure option is designed to meet specific compliance and legal requirements for government
     customers, with physical and logical isolation from the public Azure regions?
   options:
@@ -439,8 +450,9 @@ questions:
     governance problems.
   type: single
 - id: 18
+  tags: ["objective:as-subscriptions", "objective:as-management-groups", "objective:as-resource-hierarchy"]
   domain: azure-architecture-services
-  topic: core-architectural-components
+  topic: describe-the-core-architectural-components-of-azure
   text: What is the correct hierarchy in Azure, from the highest level to the lowest?
   options:
   - id: A
@@ -464,8 +476,9 @@ questions:
     within a subscription, so reversing any adjacent levels gives the wrong scope relationship.
   type: single
 - id: 19
+  tags: ["objective:as-resources-resource-groups"]
   domain: azure-architecture-services
-  topic: core-architectural-components
+  topic: describe-the-core-architectural-components-of-azure
   text: Which statement about resource groups is correct?
   options:
   - id: A
@@ -487,8 +500,9 @@ questions:
     groups cannot contain nested resource groups.
   type: single
 - id: 20
+  tags: ["objective:as-compute-types"]
   domain: azure-architecture-services
-  topic: azure-compute-and-networking
+  topic: describe-azure-compute-and-networking-services
   text: You need to run a short, event-driven piece of code, such as responding to a queue message, without
     managing servers. Which service fits best?
   options:
@@ -510,8 +524,9 @@ questions:
     Virtual Desktop delivers remote user desktops, and VPN Gateway connects networks.
   type: single
 - id: 21
+  tags: ["objective:as-virtual-machine-options"]
   domain: azure-architecture-services
-  topic: azure-compute-and-networking
+  topic: describe-azure-compute-and-networking-services
   text: Which Azure feature automatically increases or decreases the number of identical VM instances
     based on demand?
   options:
@@ -533,8 +548,9 @@ questions:
     do not autoscale them; DNS and Storage Explorer serve unrelated purposes.
   type: single
 - id: 22
+  tags: ["objective:as-virtual-machine-options", "objective:as-application-hosting-options"]
   domain: azure-architecture-services
-  topic: azure-compute-and-networking
+  topic: describe-azure-compute-and-networking-services
   text: Which Azure service provides a cloud-hosted Windows desktop and apps that users can access remotely,
     and which hosting option runs a web app without managing the OS?
   options:
@@ -557,8 +573,9 @@ questions:
     services.
   type: single
 - id: 23
+  tags: ["objective:as-virtual-machine-options"]
   domain: azure-architecture-services
-  topic: azure-compute-and-networking
+  topic: describe-azure-compute-and-networking-services
   text: What does an availability set protect against?
   options:
   - id: A
@@ -580,8 +597,9 @@ questions:
     or planned maintenance event takes down every VM, but do not protect against regional outages or deletion.
   type: single
 - id: 24
+  tags: ["objective:as-virtual-networking"]
   domain: azure-architecture-services
-  topic: azure-compute-and-networking
+  topic: describe-azure-compute-and-networking-services
   text: Which Azure service gives you a private, dedicated connection from on-premises to Azure that does
     NOT travel over the public internet?
   options:
@@ -603,8 +621,9 @@ questions:
     encrypted tunnels over the internet; DNS resolves names and peering connects VNets.
   type: single
 - id: 25
+  tags: ["objective:as-public-private-endpoints"]
   domain: azure-architecture-services
-  topic: azure-compute-and-networking
+  topic: describe-azure-compute-and-networking-services
   text: What is the purpose of a private endpoint?
   options:
   - id: A
@@ -626,8 +645,9 @@ questions:
     address, perform encryption at rest, or provide public DNS hosting.
   type: single
 - id: 26
+  tags: ["objective:as-storage-services"]
   domain: azure-architecture-services
-  topic: azure-storage-services
+  topic: describe-azure-storage-services
   text: Which storage option provides fully managed file shares accessible via SMB and NFS?
   options:
   - id: A
@@ -648,8 +668,9 @@ questions:
     those services do not offer the same shared-file interface.
   type: single
 - id: 27
+  tags: ["objective:as-storage-redundancy"]
   domain: azure-architecture-services
-  topic: azure-storage-services
+  topic: describe-azure-storage-services
   text: Which redundancy option copies your data synchronously three times across availability zones in
     the primary region, and also asynchronously to a secondary region?
   options:
@@ -672,8 +693,9 @@ questions:
     keeps replicas within a single datacenter.
   type: single
 - id: 28
+  tags: ["objective:as-storage-tiers"]
   domain: azure-architecture-services
-  topic: azure-storage-services
+  topic: describe-azure-storage-services
   text: Which blob access tier is the most cost-effective for data that is rarely accessed and can tolerate
     hours of retrieval latency?
   options:
@@ -695,8 +717,9 @@ questions:
     faster access and higher storage costs; Hot is intended for frequent access.
   type: single
 - id: 29
+  tags: ["objective:as-migration-options"]
   domain: azure-architecture-services
-  topic: azure-storage-services
+  topic: describe-azure-storage-services
   text: You need to move 80 TB of data to Azure, but your network is slow. Which service is the best fit?
   options:
   - id: A
@@ -717,8 +740,9 @@ questions:
     still transfers over the network; Azure Migrate targets server and application migration scenarios.
   type: single
 - id: 30
+  tags: ["objective:as-directory-services", "objective:as-authentication-methods"]
   domain: azure-architecture-services
-  topic: azure-identity-access-and-security
+  topic: describe-azure-identity-access-and-security
   text: A user signs in with a fingerprint or FIDO2 key instead of typing a password. Which authentication
     method is this, and which service issues the identity?
   options:
@@ -741,8 +765,9 @@ questions:
     managed domain protocols rather than passwordless cloud authentication.
   type: single
 - id: 31
+  tags: ["objective:as-conditional-access"]
   domain: azure-architecture-services
-  topic: azure-identity-access-and-security
+  topic: describe-azure-identity-access-and-security
   text: A user is granted access only when they sign in from a compliant device and a trusted location.
     Which feature enforces this?
   options:
@@ -765,8 +790,9 @@ questions:
     decisions.
   type: single
 - id: 32
+  tags: ["objective:as-zero-trust"]
   domain: azure-architecture-services
-  topic: azure-identity-access-and-security
+  topic: describe-azure-identity-access-and-security
   text: Which statement describes Zero Trust?
   options:
   - id: A
@@ -789,8 +815,9 @@ questions:
     a known IP is perimeter-based thinking, and firewalls do not replace identity verification.'
   type: single
 - id: 33
+  tags: ["objective:as-defender-for-cloud"]
   domain: azure-architecture-services
-  topic: azure-identity-access-and-security
+  topic: describe-azure-identity-access-and-security
   text: Which Azure service provides a cloud security posture management (CSPM) and workload protection
     (CWP) solution that gives security recommendations and a secure score?
   options:
@@ -814,8 +841,9 @@ questions:
     resources.
   type: single
 - id: 34
+  tags: ["objective:mg-cost-factors"]
   domain: management-governance
-  topic: cost-management
+  topic: describe-cost-management-in-azure
   text: Which factor can affect the cost of an Azure virtual machine?
   options:
   - id: A
@@ -836,8 +864,9 @@ questions:
     and do not directly change the VM's price.
   type: single
 - id: 35
+  tags: ["objective:mg-pricing-calculator"]
   domain: management-governance
-  topic: cost-management
+  topic: describe-cost-management-in-azure
   text: Which tool estimates the cost of a planned Azure deployment before you build it?
   options:
   - id: A
@@ -858,8 +887,9 @@ questions:
     spending after resources are running; Monitor and Advisor serve telemetry and recommendation roles.
   type: single
 - id: 36
+  tags: ["objective:mg-cost-management-capabilities"]
   domain: management-governance
-  topic: cost-management
+  topic: describe-cost-management-in-azure
   text: Which tool analyzes your actual spending, lets you set budgets, and sends alerts when spending
     exceeds thresholds?
   options:
@@ -881,8 +911,9 @@ questions:
     while Monitor focuses on operational telemetry rather than billing analysis.
   type: single
 - id: 37
+  tags: ["objective:mg-tags"]
   domain: management-governance
-  topic: cost-management
+  topic: describe-cost-management-in-azure
   text: What is the primary purpose of tags in Azure?
   options:
   - id: A
@@ -903,8 +934,9 @@ questions:
     RBAC and locks address those controls.
   type: single
 - id: 38
+  tags: ["objective:cc-cloud-pricing-models"]
   domain: management-governance
-  topic: cost-management
+  topic: describe-cost-management-in-azure
   text: A VM will run continuously for the next three years. Which option lowers its cost the most compared
     with pay-as-you-go?
   options:
@@ -926,8 +958,9 @@ questions:
     the Pricing Calculator can help compare the estimated options before purchase.
   type: single
 - id: 39
+  tags: ["objective:mg-purview"]
   domain: management-governance
-  topic: governance-and-compliance
+  topic: describe-features-and-tools-in-azure-for-governance-and-compliance
   text: Which service provides a unified data governance solution, helping you discover, classify, and
     manage data across on-premises, multicloud, and SaaS?
   options:
@@ -949,8 +982,9 @@ questions:
     service (Policy) or the resource-deletion control provided by locks.
   type: single
 - id: 40
+  tags: ["objective:mg-azure-policy"]
   domain: management-governance
-  topic: governance-and-compliance
+  topic: describe-features-and-tools-in-azure-for-governance-and-compliance
   text: You need to ensure that all new resources are deployed only in West Europe and North Europe. What
     should you use?
   options:
@@ -972,8 +1006,9 @@ questions:
     recommends improvements, and alerts notify about conditions rather than preventing a deployment.
   type: single
 - id: 41
+  tags: ["objective:mg-resource-locks"]
   domain: management-governance
-  topic: governance-and-compliance
+  topic: describe-features-and-tools-in-azure-for-governance-and-compliance
   text: You want to prevent anyone, including owners, from accidentally deleting a production database.
     What should you use?
   options:
@@ -995,8 +1030,9 @@ questions:
     a read-only lock would also block modifications.
   type: single
 - id: 42
+  tags: ["objective:mg-resource-locks"]
   domain: management-governance
-  topic: governance-and-compliance
+  topic: describe-features-and-tools-in-azure-for-governance-and-compliance
   text: What is the difference between the ReadOnly and CanNotDelete lock levels?
   options:
   - id: A
@@ -1018,8 +1054,9 @@ questions:
     impact on day-to-day changes is different.
   type: single
 - id: 43
+  tags: ["objective:mg-cloud-shell-cli-powershell"]
   domain: management-governance
-  topic: managing-and-deploying-resources
+  topic: describe-features-and-tools-for-managing-and-deploying-azure-resources
   text: Which tool provides a browser-accessible shell authenticated to your Azure account, with Azure
     CLI and Azure PowerShell preinstalled?
   options:
@@ -1041,8 +1078,9 @@ questions:
     from the graphical Azure portal.
   type: single
 - id: 44
+  tags: ["objective:mg-azure-arc"]
   domain: management-governance
-  topic: managing-and-deploying-resources
+  topic: describe-features-and-tools-for-managing-and-deploying-azure-resources
   text: Which service lets you manage on-premises, multicloud, and edge servers and Kubernetes clusters
     from Azure by projecting them into Azure Resource Manager?
   options:
@@ -1064,8 +1102,9 @@ questions:
     datacenters; it extends Azure control-plane tools to hybrid and multicloud environments.
   type: single
 - id: 45
+  tags: ["objective:mg-iac"]
   domain: management-governance
-  topic: managing-and-deploying-resources
+  topic: describe-features-and-tools-for-managing-and-deploying-azure-resources
   text: What is infrastructure as code (IaC)?
   options:
   - id: A
@@ -1089,8 +1128,9 @@ questions:
     one-off manual configuration and supports automation and change tracking.
   type: single
 - id: 46
+  tags: ["objective:mg-arm-templates"]
   domain: management-governance
-  topic: managing-and-deploying-resources
+  topic: describe-features-and-tools-for-managing-and-deploying-azure-resources
   text: Which statement about Azure Resource Manager (ARM) and ARM templates is correct?
   options:
   - id: A
@@ -1112,8 +1152,9 @@ questions:
     deployment; it is not a billing tool or a line-by-line imperative script.
   type: single
 - id: 47
+  tags: ["objective:mg-advisor"]
   domain: management-governance
-  topic: monitoring-tools
+  topic: describe-monitoring-tools-in-azure
   text: Which service gives personalized recommendations to improve reliability, security, performance,
     operational excellence, and cost?
   options:
@@ -1135,8 +1176,9 @@ questions:
     enforcing configuration, monitoring service incidents, or managing hybrid-resource inventory.
   type: single
 - id: 48
+  tags: ["objective:mg-service-health"]
   domain: management-governance
-  topic: monitoring-tools
+  topic: describe-monitoring-tools-in-azure
   text: You want to be notified about Azure service outages, planned maintenance, and health advisories
     that affect YOUR resources. Which service should you use?
   options:
@@ -1158,8 +1200,9 @@ questions:
     status is a broad service view, while Resource Health focuses on the health of a particular resource.
   type: single
 - id: 49
+  tags: ["objective:mg-azure-monitor-tools"]
   domain: management-governance
-  topic: monitoring-tools
+  topic: describe-monitoring-tools-in-azure
   text: Which Azure Monitor capability lets you write queries to analyze log data collected from Azure
     resources?
   options:
@@ -1184,8 +1227,9 @@ questions:
     consume telemetry rather than serving as the primary log-query language interface.
   type: single
 - id: 50
+  tags: ["objective:mg-azure-monitor-tools"]
   domain: management-governance
-  topic: monitoring-tools
+  topic: describe-monitoring-tools-in-azure
   text: You want to monitor a web application's performance, detect failures and slow response times,
     and trace dependencies. Which Azure Monitor feature should you use?
   options:
@@ -1207,8 +1251,9 @@ questions:
     resource recommendations, service incidents, and general log queries are handled by other Azure capabilities.
   type: single
 - id: 51
+  tags: ["objective:cc-consumption-based-model", "objective:cc-cloud-pricing-models"]
   domain: cloud-concepts
-  topic: additional-cloud-concepts
+  topic: describe-cloud-computing
   text: A company is moving from buying servers every few years to renting cloud resources monthly. How
     does this change its spending?
   options:
@@ -1230,8 +1275,9 @@ questions:
     expenditure (OpEx), although reservations and other commitments can still affect the billing pattern.
   type: single
 - id: 52
+  tags: ["objective:cc-cloud-pricing-models"]
   domain: cloud-concepts
-  topic: additional-cloud-concepts
+  topic: describe-cloud-computing
   text: Which Azure pricing model offers deep discounts for workloads that can be interrupted when Azure
     needs the capacity back?
   options:
@@ -1253,8 +1299,9 @@ questions:
     not applications that require uninterrupted availability.
   type: single
 - id: 53
+  tags: ["objective:cc-benefits-reliability-predictability"]
   domain: cloud-concepts
-  topic: additional-cloud-concepts
+  topic: describe-the-benefits-of-using-cloud-services
   text: Which cloud benefit describes a system's ability to recover from failures and continue to function?
   options:
   - id: A
@@ -1275,8 +1322,9 @@ questions:
     is a closely related goal focused on minimizing service downtime.
   type: single
 - id: 54
+  tags: ["objective:cc-benefits-security-governance"]
   domain: cloud-concepts
-  topic: additional-cloud-concepts
+  topic: describe-the-benefits-of-using-cloud-services
   text: Which is a security and governance benefit of using the cloud?
   options:
   - id: A
@@ -1300,8 +1348,9 @@ questions:
     transfer all responsibility: customers still manage their data, identities, configuration, and obligations.'
   type: single
 - id: 55
+  tags: ["objective:cc-benefits-high-availability-scalability"]
   domain: cloud-concepts
-  topic: additional-cloud-concepts
+  topic: describe-the-benefits-of-using-cloud-services
   text: During peak demand you add more VM instances to share the load, rather than making a single VM
     larger. What is this called?
   options:
@@ -1323,8 +1372,9 @@ questions:
     so it describes scale-out.
   type: single
 - id: 56
+  tags: ["objective:cc-shared-responsibility-model"]
   domain: cloud-concepts
-  topic: additional-cloud-concepts
+  topic: describe-cloud-computing
   text: Under the shared responsibility model, in a PaaS deployment (for example, Azure App Service),
     what remains the customer's responsibility?
   options:
@@ -1347,8 +1397,9 @@ questions:
     for data and access.
   type: single
 - id: 57
+  tags: ["objective:as-azure-datacenters"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-the-core-architectural-components-of-azure
   text: What is an Azure datacenter?
   options:
   - id: A
@@ -1369,8 +1420,9 @@ questions:
     is not itself a region or a logical Azure scope.
   type: single
 - id: 58
+  tags: ["objective:as-subscriptions", "objective:as-management-groups", "objective:as-resource-hierarchy"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-the-core-architectural-components-of-azure
   text: Which statement about subscriptions and management groups is correct?
   options:
   - id: A
@@ -1392,8 +1444,9 @@ questions:
     subscriptions.
   type: single
 - id: 59
+  tags: ["objective:as-vm-resources"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-azure-compute-and-networking-services
   text: Which of these resources are typically required (in addition to the VM itself) to create a virtual
     machine in Azure?
   options:
@@ -1415,8 +1468,9 @@ questions:
     group are common additions, but are not always mandatory.'
   type: single
 - id: 60
+  tags: ["objective:as-compute-types", "objective:as-application-hosting-options"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-azure-compute-and-networking-services
   text: A team wants a lightweight, portable way to package an application and its dependencies and start
     it quickly, while sharing the host OS kernel. Which compute type fits?
   options:
@@ -1438,8 +1492,9 @@ questions:
     guest OS and provides stronger operating-system isolation at the cost of additional overhead.
   type: single
 - id: 61
+  tags: ["objective:as-virtual-networking"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-azure-compute-and-networking-services
   text: Which feature connects two Azure virtual networks so resources can communicate using private IP
     addresses over the Microsoft backbone?
   options:
@@ -1461,8 +1516,9 @@ questions:
     ExpressRoute connects on-premises networks privately, and DNS resolves names.
   type: single
 - id: 62
+  tags: ["objective:as-public-private-endpoints"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-azure-compute-and-networking-services
   text: What is a public endpoint for an Azure service?
   options:
   - id: A
@@ -1483,8 +1539,9 @@ questions:
     a VNet; public reachability does not mean the service is automatically unauthenticated.
   type: single
 - id: 63
+  tags: ["objective:as-storage-services", "objective:as-storage-account-options-types"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-azure-storage-services
   text: Which storage account option offers the broadest feature set and is the recommended type for most
     scenarios (blobs, files, queues, tables)?
   options:
@@ -1506,8 +1563,9 @@ questions:
     performance needs and do not provide the same broad set of capabilities.
   type: single
 - id: 64
+  tags: ["objective:as-file-movement"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-azure-storage-services
   text: A user wants a graphical tool to upload and manage blobs, files, and queues from their desktop.
     Another admin needs to synchronize an on-premises Windows file server with Azure Files. Which tools
     match?
@@ -1530,8 +1588,9 @@ questions:
     command-line transfer tooling, and Azure Migrate assesses and moves servers and applications.
   type: single
 - id: 65
+  tags: ["objective:as-rbac"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-azure-identity-access-and-security
   text: What does Azure role-based access control (RBAC) let you do?
   options:
   - id: A
@@ -1552,8 +1611,9 @@ questions:
     Policy instead evaluates whether resource configurations comply with rules.
   type: single
 - id: 66
+  tags: ["objective:as-defense-in-depth"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-azure-identity-access-and-security
   text: What is the defense-in-depth model?
   options:
   - id: A
@@ -1575,8 +1635,9 @@ questions:
     access or reduce impact; relying on a single perimeter leaves a single point of failure.
   type: single
 - id: 67
+  tags: ["objective:as-directory-services", "objective:as-external-identities"]
   domain: azure-architecture-services
-  topic: additional-architecture-and-services
+  topic: describe-azure-identity-access-and-security
   text: An organization wants to run legacy apps that need domain join, LDAP, and Kerberos without managing
     domain controllers, and also lets partners sign in with their own accounts. Which pair of capabilities
     fits?
@@ -1599,8 +1660,9 @@ questions:
     or customers authenticate with their own accounts; the two features solve separate identity needs.
   type: single
 - id: 68
+  tags: ["objective:mg-azure-portal"]
   domain: management-governance
-  topic: additional-management-and-governance
+  topic: describe-features-and-tools-for-managing-and-deploying-azure-resources
   text: What is the Azure portal?
   options:
   - id: A
@@ -1621,8 +1683,9 @@ questions:
     tools, rather than the Azure control plane itself.
   type: single
 - id: 69
+  tags: ["objective:mg-cloud-shell-cli-powershell"]
   domain: management-governance
-  topic: additional-management-and-governance
+  topic: describe-features-and-tools-for-managing-and-deploying-azure-resources
   text: Which statement about Azure CLI and Azure PowerShell is correct?
   options:
   - id: A
@@ -1644,8 +1707,9 @@ questions:
     such as `Get-AzVM`.
   type: single
 - id: 70
+  tags: ["objective:as-rbac", "objective:mg-azure-policy"]
   domain: management-governance
-  topic: additional-management-and-governance
+  topic: describe-features-and-tools-in-azure-for-governance-and-compliance
   text: What is the key difference between Azure Policy and Azure RBAC?
   options:
   - id: A
@@ -1667,8 +1731,9 @@ questions:
     a scope; it answers who can do what.
   type: single
 - id: 71
+  tags: ["objective:mg-azure-monitor-tools"]
   domain: management-governance
-  topic: additional-management-and-governance
+  topic: describe-monitoring-tools-in-azure
   text: You want to be emailed when the CPU of a VM exceeds 90% for 10 minutes. Which feature should you
     configure?
   options:
@@ -1690,8 +1755,9 @@ questions:
     an email; the alert rule itself defines the threshold and evaluation.
   type: single
 - id: 72
+  tags: ["objective:mg-cost-factors"]
   domain: management-governance
-  topic: additional-management-and-governance
+  topic: describe-cost-management-in-azure
   text: Which of the following can increase your Azure bill?
   options:
   - id: A
@@ -1712,8 +1778,9 @@ questions:
     themselves add resource charges.
   type: single
 - id: 73
+  tags: ["objective:mg-iac", "objective:mg-arm-templates"]
   domain: management-governance
-  topic: additional-management-and-governance
+  topic: describe-features-and-tools-for-managing-and-deploying-azure-resources
   text: What is the main benefit of deploying with ARM templates (infrastructure as code)?
   options:
   - id: A
@@ -1735,8 +1802,9 @@ questions:
     and supports idempotent redeployment rather than one-off manual steps.
   type: single
 - id: 74
+  tags: ["objective:mg-service-health"]
   domain: management-governance
-  topic: additional-management-and-governance
+  topic: describe-monitoring-tools-in-azure
   text: Which Azure Service Health component shows issues with an individual resource such as a single
     VM?
   options:
@@ -1758,8 +1826,9 @@ questions:
     covers global services; Service Health focuses on issues relevant to a subscription or region.
   type: single
 - id: 75
+  tags: ["objective:mg-resource-locks"]
   domain: management-governance
-  topic: additional-management-and-governance
+  topic: describe-features-and-tools-in-azure-for-governance-and-compliance
   text: You apply a CanNotDelete lock to a resource group. What happens to the resources inside it?
   options:
   - id: A
