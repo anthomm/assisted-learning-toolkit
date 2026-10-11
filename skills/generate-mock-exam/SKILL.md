@@ -20,7 +20,7 @@ python3 skills/generate-mock-exam/resources/validate.py --coverage textbooks/<su
 
 Read the textbook's `metadata.yaml` for domains, topics, and source-stated weights. Questions should carry `references` once verified; unreviewed questions should say so in `source_note`.
 
-Then open `apps/quiz_app/index.html` and load the file.
+Then run `python3 apps/quiz_app/serve.py` and open http://localhost:8000/ to pick any exam under `mock_exams/` (or open `apps/quiz_app/index.html` directly and load a file).
 
 ## Workflow
 

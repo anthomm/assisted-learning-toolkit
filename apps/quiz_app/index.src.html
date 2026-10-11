@@ -107,8 +107,17 @@ function showHome(error) {
   const drop = h("div", { class: "drop", ondragover: e => { e.preventDefault(); drop.classList.add("over"); }, ondragleave: () => drop.classList.remove("over"),
     ondrop: e => { e.preventDefault(); drop.classList.remove("over"); e.dataTransfer.files[0] && loadFile(e.dataTransfer.files[0]); } },
     h("p", {}, "Drop an exam file here (.yaml / .json)"), h("button", { class: "primary", onclick: () => input.click() }, "Choose file"), input);
+  const list = h("div", { id: "exam-list" });
   render(h("h1", {}, "Mock Exam Quiz"), h("p", { class: "muted" }, "Load any exam that follows exam.schema.json. Everything stays in your browser."),
-    h("div", { class: "card" }, drop, error && h("p", { class: "err" }, error)));
+    h("div", { class: "card" }, list, drop, error && h("p", { class: "err" }, error)));
+  fetch("/api/exams").then(r => r.ok ? r.json() : []).then(exams => {
+    if (!exams.length) return;
+    const bySubject = {};
+    exams.forEach(e => (bySubject[e.subject] = bySubject[e.subject] || []).push(e));
+    list.append(h("h3", {}, "Available mock exams"), ...Object.entries(bySubject).map(([s, es]) => h("div", {},
+      h("p", { class: "muted" }, s), es.map(e => h("button", { class: "primary", style: "margin:0 8px 8px 0",
+        onclick: () => fetch(e.path).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); }).then(t => loadText(t, e.name)).catch(x => showHome("Could not fetch " + e.name + ": " + x.message)) }, e.name.replace(/\.exam\.(ya?ml|json)$/, ""))))));
+  }).catch(() => {});
 }
 
 /* ---------- setup ---------- */
