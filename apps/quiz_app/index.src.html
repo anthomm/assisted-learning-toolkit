@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock Exam Quiz</title>
+<style>
+:root { --bg:#f5f6f8; --card:#fff; --fg:#1d2430; --muted:#667085; --line:#d9dde4; --accent:#2563eb; --ok:#15803d; --okbg:#dcfce7; --bad:#b91c1c; --badbg:#fee2e2; }
+@media (prefers-color-scheme: dark) { :root { --bg:#12151b; --card:#1b2029; --fg:#e6e9ef; --muted:#9aa4b5; --line:#2f3745; --accent:#6ea0ff; --ok:#4ade80; --okbg:#12361f; --bad:#f87171; --badbg:#3b1717; } }
+* { box-sizing:border-box; }
+body { margin:0; font:16px/1.5 system-ui,sans-serif; background:var(--bg); color:var(--fg); }
+main { max-width:820px; margin:0 auto; padding:24px 16px 64px; }
+h1 { font-size:1.5rem; margin:0 0 4px; } h2 { font-size:1.15rem; margin:0 0 12px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:20px; margin:16px 0; }
+.muted { color:var(--muted); font-size:.9rem; }
+button { font:inherit; padding:8px 16px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+button.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+button:disabled { opacity:.5; cursor:default; }
+.row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.spread { justify-content:space-between; }
+.drop { border:2px dashed var(--line); text-align:center; padding:40px 16px; border-radius:10px; }
+.drop.over { border-color:var(--accent); }
+.opt { display:flex; gap:10px; width:100%; text-align:left; margin:8px 0; padding:12px; align-items:flex-start; }
+.opt .letter { font-weight:700; min-width:1.5em; }
+.opt.sel { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
+.opt.right { background:var(--okbg); border-color:var(--ok); }
+.opt.wrong { background:var(--badbg); border-color:var(--bad); }
+.why { font-size:.9rem; color:var(--muted); margin-top:4px; }
+.answer { margin-top:16px; padding:16px 18px; border-radius:10px; border:1px solid var(--line); border-left:6px solid var(--accent); background:var(--bg); font-size:1rem; line-height:1.6; }
+.answer.ok { border-left-color:var(--ok); } .answer.bad { border-left-color:var(--bad); }
+.answer .head { font-weight:700; font-size:1.05rem; margin-bottom:4px; }
+.answer.ok .head { color:var(--ok); } .answer.bad .head { color:var(--bad); }
+.qtext { white-space:pre-wrap; font-weight:600; margin:8px 0 12px; }
+.bar { height:10px; background:var(--line); border-radius:5px; overflow:hidden; }
+.bar > i { display:block; height:100%; background:var(--accent); }
+.progress { height:6px; }
+label.chk { display:flex; gap:8px; align-items:center; margin:4px 0; }
+details.dom { margin:4px 0; } details.dom summary { cursor:pointer; }
+.topics { margin-left:24px; }
+table { width:100%; border-collapse:collapse; } td,th { padding:6px 8px; border-bottom:1px solid var(--line); text-align:left; }
+.pill { padding:2px 8px; border-radius:99px; font-size:.8rem; }
+.pill.ok { background:var(--okbg); color:var(--ok); } .pill.bad { background:var(--badbg); color:var(--bad); }
+.err { color:var(--bad); white-space:pre-wrap; }
+input[type=number] { width:80px; font:inherit; padding:6px; }
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>/*JSYAML*/</script>
+<script>
+"use strict";
+const $app = document.getElementById("app");
+const LS = "mockquiz:";
+let exam = null, cfg = null, run = null, timer = null;
+
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (k === "class") el.className = v;
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else if (v === true) el.setAttribute(k, "");
+    else if (v !== false && v != null) el.setAttribute(k, v);
+  }
+  for (const k of kids.flat()) if (k != null && k !== false) el.append(k.nodeType ? k : document.createTextNode(String(k)));
+  return el;
+}
+function render(...nodes) { $app.replaceChildren(...nodes.flat().filter(n => n && n.nodeType)); window.scrollTo(0, 0); }
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pct = (n, d) => d ? Math.round(100 * n / d) : 0;
+const sameSet = (a, b) => a.length === b.length && a.every(x => b.includes(x));
+
+/* ---------- loading & validation ---------- */
+function validate(d) {
+  const errs = [];
+  if (!d || typeof d !== "object") return ["File is not a YAML/JSON object."];
+  for (const k of ["schema_version", "id", "title", "domains", "questions"]) if (!(k in d)) errs.push("Missing field: " + k);
+  if (errs.length) return errs;
+  if (d.schema_version !== 1) errs.push("Unsupported schema_version: " + d.schema_version);
+  const doms = {};
+  (d.domains || []).forEach(x => { doms[x.id] = new Set((x.topics || []).map(t => t.id)); });
+  const seen = new Set();
+  (d.questions || []).forEach((q, i) => {
+    const n = "Question #" + (q.id ?? i + 1);
+    if (seen.has(q.id)) errs.push(n + ": duplicate id"); seen.add(q.id);
+    if (!q.text) errs.push(n + ": missing text");
+    if (!(q.domain in doms)) errs.push(n + ": unknown domain " + q.domain);
+    else if (q.topic && !doms[q.domain].has(q.topic)) errs.push(n + ": unknown topic " + q.topic);
+    const ids = (q.options || []).map(o => o.id);
+    if (ids.length < 2) errs.push(n + ": needs at least 2 options");
+    if (!Array.isArray(q.correct) || !q.correct.length || !q.correct.every(c => ids.includes(c))) errs.push(n + ": invalid correct list");
+  });
+  return errs;
+}
+function loadText(text, name) {
+  let d;
+  try { d = jsyaml.load(text); } catch (e) { return showHome("Could not parse " + name + ":\n" + e.message); }
+  const errs = validate(d);
+  if (errs.length) return showHome("Invalid exam file " + name + ":\n- " + errs.slice(0, 15).join("\n- ") + (errs.length > 15 ? "\n…and " + (errs.length - 15) + " more" : ""));
+  exam = d; showSetup();
+}
+function loadFile(f) { f.text().then(t => loadText(t, f.name)); }
+
+/* ---------- home ---------- */
+function showHome(error) {
+  clearInterval(timer);
+  const input = h("input", { type: "file", accept: ".yaml,.yml,.json", hidden: true, onchange: e => e.target.files[0] && loadFile(e.target.files[0]) });
+  const drop = h("div", { class: "drop", ondragover: e => { e.preventDefault(); drop.classList.add("over"); }, ondragleave: () => drop.classList.remove("over"),
+    ondrop: e => { e.preventDefault(); drop.classList.remove("over"); e.dataTransfer.files[0] && loadFile(e.dataTransfer.files[0]); } },
+    h("p", {}, "Drop an exam file here (.yaml / .json)"), h("button", { class: "primary", onclick: () => input.click() }, "Choose file"), input);
+  render(h("h1", {}, "Mock Exam Quiz"), h("p", { class: "muted" }, "Load any exam that follows exam.schema.json. Everything stays in your browser."),
+    h("div", { class: "card" }, drop, error && h("p", { class: "err" }, error)));
+}
+
+/* ---------- setup ---------- */
+function history() { try { return JSON.parse(localStorage.getItem(LS + exam.id)) || []; } catch { return []; } }
+function showSetup() {
+  clearInterval(timer);
+  const counts = {};
+  exam.questions.forEach(q => { const k = q.domain + "/" + (q.topic || ""); counts[k] = (counts[k] || 0) + 1; });
+  const boxes = [];
+  const domEls = exam.domains.map(d => {
+    const dom = h("input", { type: "checkbox", checked: true });
+    const tops = (d.topics || []).map(t => { const c = h("input", { type: "checkbox", checked: true, "data-d": d.id, "data-t": t.id }); boxes.push(c); return h("label", { class: "chk" }, c, `${t.title} (${counts[d.id + "/" + t.id] || 0})`); });
+    const noTopic = counts[d.id + "/"] ? [h("p", { class: "muted" }, `${counts[d.id + "/"]} question(s) without topic always included with domain`)] : [];
+    dom.addEventListener("change", () => boxes.filter(b => b.dataset.d === d.id).forEach(b => b.checked = dom.checked));
+    const total = exam.questions.filter(q => q.domain === d.id).length;
+    return h("details", { class: "dom", open: true }, h("summary", {}, h("label", { class: "chk", style: "display:inline-flex" }, dom, `${d.title}${d.weight ? " — " + d.weight : ""} (${total})`)), h("div", { class: "topics" }, tops, noTopic));
+  });
+  const mode = h("select", {}, h("option", { value: "practice" }, "Practice (instant feedback)"), h("option", { value: "exam" }, "Exam (answers at the end)"));
+  const count = h("input", { type: "number", min: 1, max: exam.questions.length, value: exam.questions.length });
+  const shQ = h("input", { type: "checkbox", checked: true }), shO = h("input", { type: "checkbox", checked: true });
+  const hist = history();
+  const start = () => {
+    const sel = new Set(boxes.filter(b => b.checked).map(b => b.dataset.d + "/" + b.dataset.t));
+    const domsOn = new Set(exam.domains.filter((d, i) => !(d.topics || []).length || (d.topics || []).some(t => sel.has(d.id + "/" + t.id))).map(d => d.id));
+    let pool = exam.questions.filter(q => q.topic ? sel.has(q.domain + "/" + q.topic) : domsOn.has(q.domain));
+    if (!pool.length) return alert("No questions selected.");
+    if (shQ.checked) pool = shuffle(pool);
+    pool = pool.slice(0, Math.max(1, Math.min(+count.value || pool.length, pool.length)));
+    cfg = { mode: mode.value, shuffleOptions: shO.checked };
+    startRun(pool);
+  };
+  render(h("h1", {}, exam.title), exam.description && h("p", {}, exam.description), exam.source_note && h("p", { class: "muted" }, exam.source_note),
+    h("div", { class: "card" }, h("h2", {}, "Scope"), domEls),
+    h("div", { class: "card" }, h("h2", {}, "Options"),
+      h("div", { class: "row" }, h("label", {}, "Mode: ", mode), h("label", {}, "Questions: ", count)),
+      h("label", { class: "chk" }, shQ, "Shuffle questions"), h("label", { class: "chk" }, shO, "Shuffle answer options"),
+      exam.time_limit_minutes && h("p", { class: "muted" }, `Exam mode is timed: ${exam.time_limit_minutes} min (scaled to the question count).`)),
+    hist.length ? h("div", { class: "card" }, h("h2", {}, "Past attempts"), h("table", {}, hist.slice(-8).reverse().map(a =>
+      h("tr", {}, h("td", {}, new Date(a.date).toLocaleString()), h("td", {}, a.mode), h("td", {}, `${a.correct}/${a.total}`), h("td", {}, a.percent + "%"))))) : null,
+    h("div", { class: "row" }, h("button", { class: "primary", onclick: start }, "Start"), h("button", { onclick: showHome }, "Load another exam")));
+}
+
+/* ---------- quiz ---------- */
+function startRun(pool) {
+  const secs = cfg.mode === "exam" && exam.time_limit_minutes ? Math.round(exam.time_limit_minutes * 60 * pool.length / exam.questions.length) : 0;
+  run = { qs: pool.map(q => ({ q, opts: cfg.shuffleOptions ? shuffle(q.options) : q.options.slice() })), idx: 0, answers: {}, checked: {}, left: secs, started: Date.now() };
+  clearInterval(timer);
+  if (secs) timer = setInterval(() => { run.left--; const el = document.getElementById("timer"); if (el) el.textContent = fmt(run.left); if (run.left <= 0) finish(); }, 1000);
+  showQ();
+}
+const fmt = s => `${Math.floor(Math.max(s, 0) / 60)}:${String(Math.max(s, 0) % 60).padStart(2, "0")}`;
+const isMulti = q => (q.type || "single") === "multiple";
+
+function showQ() {
+  const { q, opts } = run.qs[run.idx];
+  const total = run.qs.length, locked = !!run.checked[q.id];
+  const cur = run.answers[q.id] || [];
+  const practice = cfg.mode === "practice";
+  const toggle = id => {
+    if (locked) return;
+    run.answers[q.id] = isMulti(q) ? (cur.includes(id) ? cur.filter(x => x !== id) : [...cur, id]) : [id];
+    if (practice && !isMulti(q)) run.checked[q.id] = true;
+    showQ();
+  };
+  const move = delta => {
+    if (practice && isMulti(q) && cur.length && !locked) {
+      run.checked[q.id] = true;
+      showQ();
+      return;
+    }
+    if (delta < 0) {
+      run.idx--;
+      showQ();
+    } else if (run.idx < total - 1) {
+      run.idx++;
+      showQ();
+    } else {
+      confirmFinish();
+    }
+  };
+  const optEls = opts.map((o, i) => {
+    const sel = cur.includes(o.id), right = q.correct.includes(o.id);
+    const cls = "opt" + (locked ? (right ? " right" : sel ? " wrong" : "") : sel ? " sel" : "");
+    return h("button", { class: cls, onclick: () => toggle(o.id) }, h("span", { class: "letter" }, String.fromCharCode(65 + i) + "."),
+      h("span", {}, o.text, locked && (o.explanation || right) && h("div", { class: "why" }, (right ? "✔ Correct. " : "") + (o.explanation || ""))));
+  });
+  const ok = sameSet(cur, q.correct);
+  const nav = h("div", { class: "row spread" },
+    h("button", { disabled: run.idx === 0, onclick: () => move(-1) }, "← Previous"),
+    h("div", { class: "row" },
+      h("button", { class: "primary", onclick: () => move(1) },
+        practice && isMulti(q) && !locked && cur.length ? "Check answer" : run.idx < total - 1 ? "Next →" : "Finish")));
+  const dom = exam.domains.find(d => d.id === q.domain), top = dom && (dom.topics || []).find(t => t.id === q.topic);
+  render(h("div", { class: "row spread" }, h("span", { class: "muted" }, `Question ${run.idx + 1} of ${total}`), run.left ? h("strong", { id: "timer" }, fmt(run.left)) : null,
+      h("button", { onclick: () => confirm("Quit this quiz?") && showSetup() }, "Quit")),
+    h("div", { class: "bar progress" }, h("i", { style: `width:${pct(run.idx + 1, total)}%` })),
+    h("div", { class: "card" }, h("div", { class: "muted" }, [dom && dom.title, top && top.title].filter(Boolean).join(" › ")),
+      h("div", { class: "qtext" }, q.text), isMulti(q) && h("div", { class: "muted" }, "Select all that apply."), optEls,
+      locked && h("div", { class: "answer " + (ok ? "ok" : "bad") }, h("div", { class: "head" }, ok ? "✔ Correct" : "✘ Incorrect"), h("div", {}, q.explanation || ""))),
+    nav);
+}
+function confirmFinish() {
+  const un = run.qs.filter(x => !(run.answers[x.q.id] || []).length).length;
+  if (!un || confirm(`${un} unanswered question(s). Finish anyway?`)) finish();
+}
+
+/* ---------- results ---------- */
+function finish() {
+  clearInterval(timer);
+  const results = run.qs.map(({ q }) => ({ q, ok: sameSet(run.answers[q.id] || [], q.correct) }));
+  const correct = results.filter(r => r.ok).length, total = results.length, percent = pct(correct, total);
+  const hist = history(); hist.push({ date: Date.now(), mode: cfg.mode, correct, total, percent });
+  try { localStorage.setItem(LS + exam.id, JSON.stringify(hist.slice(-50))); } catch {}
+  const group = (key) => { const m = new Map(); results.forEach(r => { const k = key(r.q); const g = m.get(k) || { c: 0, t: 0 }; g.t++; g.c += r.ok; m.set(k, g); }); return m; };
+  const dRow = (title, g) => h("div", { style: "margin:10px 0" }, h("div", { class: "row spread" }, h("span", {}, title), h("span", { class: "muted" }, `${g.c}/${g.t} (${pct(g.c, g.t)}%)`)), h("div", { class: "bar" }, h("i", { style: `width:${pct(g.c, g.t)}%` })));
+  const byD = group(q => q.domain), byT = group(q => q.domain + "/" + (q.topic || ""));
+  const topicTitle = k => { const [d, t] = k.split("/"); const dom = exam.domains.find(x => x.id === d); const top = dom && (dom.topics || []).find(x => x.id === t); return top ? top.title : (dom ? dom.title : k); };
+  const passed = exam.pass_score_percent != null ? percent >= exam.pass_score_percent : null;
+  const missed = results.filter(r => !r.ok).map(r => r.q);
+  render(h("h1", {}, "Results"),
+    h("div", { class: "card" }, h("h2", {}, `${correct} / ${total} — ${percent}%`),
+      passed != null && h("span", { class: "pill " + (passed ? "ok" : "bad") }, passed ? `Passed (≥ ${exam.pass_score_percent}%)` : `Below pass mark (${exam.pass_score_percent}%)`),
+      h("p", { class: "muted" }, `Time: ${fmt(Math.round((Date.now() - run.started) / 1000))}`)),
+    h("div", { class: "card" }, h("h2", {}, "By domain"), exam.domains.filter(d => byD.has(d.id)).map(d => dRow(d.title, byD.get(d.id)))),
+    h("div", { class: "card" }, h("h2", {}, "By topic"), [...byT.entries()].sort((a, b) => a[1].c / a[1].t - b[1].c / b[1].t).map(([k, g]) => dRow(topicTitle(k), g))),
+    h("div", { class: "row" },
+      missed.length ? h("button", { class: "primary", onclick: () => { run.qs = null; startRun(shuffle(missed)); } }, `Retry ${missed.length} missed`) : null,
+      h("button", { onclick: showSetup }, "Back to setup")),
+    h("h2", { style: "margin-top:24px" }, "Review"),
+    run.qs.map(({ q, opts }, i) => {
+      const mine = run.answers[q.id] || [];
+      return h("details", { class: "card" }, h("summary", {}, h("span", { class: "pill " + (results[i].ok ? "ok" : "bad") }, results[i].ok ? "✔" : "✘"), ` Q${i + 1}. ${q.text.split("\n")[0]}`),
+        h("div", { class: "qtext" }, q.text),
+        opts.map((o, j) => h("div", { class: "opt " + (q.correct.includes(o.id) ? "right" : mine.includes(o.id) ? "wrong" : ""), style: "cursor:default" }, h("span", { class: "letter" }, String.fromCharCode(65 + j) + "."),
+          h("span", {}, o.text, mine.includes(o.id) && h("em", {}, " (your answer)"), o.explanation && h("div", { class: "why" }, o.explanation)))),
+        q.explanation && h("div", { class: "answer " + (results[i].ok ? "ok" : "bad") }, h("div", { class: "head" }, "Explanation"), h("div", {}, q.explanation)));
+    }));
+}
+
+/* ---------- boot ---------- */
+const qp = new URLSearchParams(location.search).get("exam");
+if (qp) fetch(qp).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); }).then(t => loadText(t, qp)).catch(e => showHome("Could not fetch " + qp + ": " + e.message));
+else showHome();
+</script>
+</body>
+</html>

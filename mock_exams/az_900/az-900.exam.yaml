@@ -1,0 +1,1781 @@
+schema_version: 1
+id: az-900
+title: 'AZ-900 Mock Exam: Microsoft Azure Fundamentals'
+description: 75 multiple-choice questions across the three AZ-900 skill domains.
+source_note: Based on the skills measured as of July 20, 2026.
+language: en
+pass_score_percent: 70
+domains:
+- id: cloud-concepts
+  title: Describe cloud concepts
+  weight: 25–30%
+  topics:
+  - id: describe-cloud-computing
+    title: Describe cloud computing
+  - id: describe-the-benefits-of-using-cloud-services
+    title: Describe the benefits of using cloud services
+  - id: describe-cloud-service-types
+    title: Describe cloud service types
+  - id: additional-cloud-concepts
+    title: 'Additional: Cloud concepts'
+- id: azure-architecture-services
+  title: Describe Azure architecture and services
+  weight: 35–40%
+  topics:
+  - id: core-architectural-components
+    title: Core architectural components
+  - id: azure-compute-and-networking
+    title: Azure compute and networking
+  - id: azure-storage-services
+    title: Azure storage services
+  - id: azure-identity-access-and-security
+    title: Azure identity, access, and security
+  - id: additional-architecture-and-services
+    title: 'Additional: Architecture and services'
+- id: management-governance
+  title: Describe Azure management and governance
+  weight: 30–35%
+  topics:
+  - id: cost-management
+    title: Cost management
+  - id: governance-and-compliance
+    title: Governance and compliance
+  - id: managing-and-deploying-resources
+    title: Managing and deploying resources
+  - id: monitoring-tools
+    title: Monitoring tools
+  - id: additional-management-and-governance
+    title: 'Additional: Management and governance'
+questions:
+- id: 1
+  domain: cloud-concepts
+  topic: describe-cloud-computing
+  text: Which statement best defines cloud computing?
+  options:
+  - id: A
+    text: Buying and owning physical servers in your own datacenter
+    explanation: that is traditional on-premises IT.
+  - id: B
+    text: Delivering computing services over the internet on demand, with pay-as-you-go pricing
+  - id: C
+    text: A private network that connects branch offices
+    explanation: that describes a WAN or VPN, not cloud computing.
+  - id: D
+    text: Installing software on a single local workstation
+    explanation: that is local software, not cloud.
+  correct:
+  - B
+  explanation: Cloud computing makes services such as compute, storage, databases, and networking available
+    over the internet when needed. The provider operates the underlying infrastructure, while consumption-based
+    pricing lets customers pay for what they use instead of buying datacenter hardware upfront.
+  type: single
+- id: 2
+  domain: cloud-concepts
+  topic: describe-cloud-computing
+  text: In the shared responsibility model, which item is ALWAYS the customer's responsibility regardless
+    of service type (IaaS, PaaS, SaaS)?
+  options:
+  - id: A
+    text: Physical datacenter security
+    explanation: physical security is always the provider's.
+  - id: B
+    text: Physical network hardware
+    explanation: physical network hardware is the provider's.
+  - id: C
+    text: Information and data, and the accounts, identities, and devices they use
+  - id: D
+    text: The host hypervisor
+    explanation: the hypervisor on the host is managed by the provider.
+  correct:
+  - C
+  explanation: Customers remain accountable for their data, identities, accounts, and endpoint devices
+    in IaaS, PaaS, and SaaS. The provider takes responsibility for physical facilities and hosts; the
+    exact division of operating-system and application work changes with the service model.
+  type: single
+- id: 3
+  domain: cloud-concepts
+  topic: describe-cloud-computing
+  text: A company must keep sensitive data on hardware it fully controls on-premises, but wants to burst
+    to Azure for peak workloads. Which cloud model fits?
+  options:
+  - id: A
+    text: Public cloud
+    explanation: public alone doesn't keep data on your own hardware.
+  - id: B
+    text: Private cloud only
+    explanation: private only doesn't give you burst capacity from Azure.
+  - id: C
+    text: Hybrid cloud
+  - id: D
+    text: Community cloud
+    explanation: '"Community cloud" is not one of the exam''s cloud models (public, private, hybrid).'
+  correct:
+  - C
+  explanation: A hybrid cloud combines private or on-premises infrastructure with public-cloud services.
+    It lets the company retain control of sensitive workloads locally while using Azure's capacity for
+    temporary demand; private cloud alone would not provide that Azure burst capacity.
+  type: single
+- id: 4
+  domain: cloud-concepts
+  topic: describe-cloud-computing
+  text: Which scenario is the best use case for a PUBLIC cloud?
+  options:
+  - id: A
+    text: A startup needs to launch quickly with no upfront hardware investment
+  - id: B
+    text: An organization must own and operate all hardware in its own facility
+    explanation: Owning and operating hardware in the organization's own facility describes an on-premises
+      or private-cloud requirement, not the rapid, no-capital-investment public-cloud scenario.
+  - id: C
+    text: A regulation prohibits any use of third-party infrastructure
+    explanation: A prohibition on third-party infrastructure rules out public cloud rather than recommending
+      it; the organization would need an allowed private or on-premises environment.
+  - id: D
+    text: An air-gapped system with no internet connectivity
+    explanation: An air-gapped system has no internet connectivity, so it cannot use public-cloud services
+      as described in the question.
+  correct:
+  - A
+  explanation: Public cloud is a strong fit when an organization wants to start quickly, avoid purchasing
+    hardware, and scale on demand. The other scenarios explicitly require owning the hardware, avoiding
+    third-party infrastructure, or remaining disconnected, which conflict with public-cloud use.
+  type: single
+- id: 5
+  domain: cloud-concepts
+  topic: describe-cloud-computing
+  text: Which statement describes the consumption-based pricing model?
+  options:
+  - id: A
+    text: You pay a fixed annual fee regardless of usage
+    explanation: a fixed fee is not consumption-based.
+  - id: B
+    text: You buy hardware upfront and depreciate it over several years
+    explanation: this is CapEx on-premises purchasing.
+  - id: C
+    text: You pay only for the resources you use, with no upfront commitment
+  - id: D
+    text: You must reserve capacity for three years
+    explanation: reserved capacity is a separate pricing option (reservations), not consumption-based.
+  correct:
+  - C
+  explanation: Consumption-based pricing charges for the resources actually consumed, without requiring
+    the customer to buy hardware or reserve capacity years in advance. Fixed annual fees and reservations
+    are alternative commitment models, not pay-as-you-go consumption.
+  type: single
+- id: 6
+  domain: cloud-concepts
+  topic: describe-cloud-computing
+  text: Which statement about serverless computing is correct?
+  options:
+  - id: A
+    text: You must provision and patch the virtual machines that run your code
+    explanation: that is IaaS.
+  - id: B
+    text: The cloud provider manages the infrastructure, and you are billed based on execution and consumption
+  - id: C
+    text: It means no servers exist anywhere in the architecture
+    explanation: servers still exist, you just don't manage them.
+  - id: D
+    text: It is only available in a private cloud
+    explanation: serverless is a public cloud capability.
+  correct:
+  - B
+  explanation: Serverless means the provider provisions and operates the servers and platform on the customer's
+    behalf; it does not mean servers cease to exist. The customer focuses on code or functions and is
+    commonly charged according to execution or consumption.
+  type: single
+- id: 7
+  domain: cloud-concepts
+  topic: describe-the-benefits-of-using-cloud-services
+  text: Which feature allows an app to automatically add or remove resources as demand changes, improving
+    both cost efficiency and performance?
+  options:
+  - id: A
+    text: Geo-redundancy
+    explanation: geo-redundancy copies data to another region and doesn't scale compute.
+  - id: B
+    text: Elasticity (scalability)
+  - id: C
+    text: Data sovereignty
+    explanation: data sovereignty is about where data lives legally.
+  - id: D
+    text: Role-based access control
+    explanation: RBAC controls access, not capacity.
+  correct:
+  - B
+  explanation: 'Elasticity is the ability to add or remove capacity automatically as workload demand changes.
+    It is more specific than simply being able to scale: the resources can contract again when demand
+    falls, avoiding unnecessary cost while maintaining performance.'
+  type: single
+- id: 8
+  domain: cloud-concepts
+  topic: describe-the-benefits-of-using-cloud-services
+  text: An organization wants its service to stay available even if a datacenter fails, and wants a contractual
+    uptime guarantee. Which cloud benefit is this?
+  options:
+  - id: A
+    text: High availability
+  - id: B
+    text: Cost predictability
+    explanation: predictability is about forecasting cost and performance.
+  - id: C
+    text: Manageability
+    explanation: manageability is about operating resources.
+  - id: D
+    text: Governance
+    explanation: governance is about policy and compliance.
+  correct:
+  - A
+  explanation: High availability is about keeping a service accessible despite component or datacenter
+    failures, commonly through redundancy and failover. An SLA states the provider's availability commitment;
+    cost predictability, manageability, and governance address different concerns.
+  type: single
+- id: 9
+  domain: cloud-concepts
+  topic: describe-the-benefits-of-using-cloud-services
+  text: Which cloud benefit is delivered by using the pricing calculator and cost analysis to forecast
+    spending accurately?
+  options:
+  - id: A
+    text: Predictability
+  - id: B
+    text: Fault isolation
+    explanation: fault isolation is not the benefit being described.
+  - id: C
+    text: Elasticity
+    explanation: elasticity is about scaling.
+  - id: D
+    text: Passwordless sign-in
+    explanation: passwordless sign-in is an authentication method.
+  correct:
+  - A
+  explanation: Predictability is the cloud benefit of estimating and monitoring expected costs and performance.
+    The Pricing Calculator supports cost forecasts, while cost analysis helps compare actual spending
+    with expectations; neither describes scaling or authentication.
+  type: single
+- id: 10
+  domain: cloud-concepts
+  topic: describe-the-benefits-of-using-cloud-services
+  text: Which is an example of "manageability" in the cloud?
+  options:
+  - id: A
+    text: Using a REST API, ARM template, or portal to manage resources and automate deployments at scale
+  - id: B
+    text: Replacing physical disks in a datacenter
+    explanation: Replacing physical disks is datacenter hardware maintenance, which the cloud provider
+      performs for its infrastructure; it is not an example of using cloud tools to manage resources.
+  - id: C
+    text: Negotiating a hardware support contract
+    explanation: A hardware support contract concerns procurement and physical infrastructure operations,
+      not the API- and automation-based management of cloud resources.
+  - id: D
+    text: Hand-configuring each server through its local console
+    explanation: Configuring every server individually is manual and difficult to scale; cloud manageability
+      emphasizes centralized tools and repeatable automation instead.
+  correct:
+  - A
+  explanation: Cloud manageability includes controlling resources through a portal, command-line tools,
+    APIs, and declarative templates, which makes repeatable automation possible. Replacing disks or configuring
+    each server locally are manual infrastructure operations rather than cloud-management capabilities.
+  type: single
+- id: 11
+  domain: cloud-concepts
+  topic: describe-cloud-service-types
+  text: Which service type gives you the most control over the operating system and runtime?
+  options:
+  - id: A
+    text: SaaS
+    explanation: SaaS gives you the least control.
+  - id: B
+    text: PaaS
+    explanation: PaaS has the provider manage the OS and runtime.
+  - id: C
+    text: IaaS
+  - id: D
+    text: Serverless
+    explanation: serverless abstracts the infrastructure even further.
+  correct:
+  - C
+  explanation: 'IaaS gives customers the most control of these service types: they manage the guest operating
+    system, middleware, and applications. The provider still operates the physical datacenter, networking,
+    and virtualization layer, while PaaS and SaaS shift progressively more management to the provider.'
+  type: single
+- id: 12
+  domain: cloud-concepts
+  topic: describe-cloud-service-types
+  text: A developer wants to deploy a web application without managing the OS or web server patching.
+    Which service type fits?
+  options:
+  - id: A
+    text: IaaS
+    explanation: IaaS requires you to patch the OS.
+  - id: B
+    text: PaaS
+  - id: C
+    text: On-premises
+    explanation: you would manage hardware yourself.
+  - id: D
+    text: Colocation
+    explanation: you would manage hardware yourself.
+  correct:
+  - B
+  explanation: PaaS lets a developer deploy an application while the provider maintains the operating
+    system and platform components, as Azure App Service does. With IaaS the customer would patch the
+    guest OS; on-premises and colocation leave still more infrastructure work with the customer.
+  type: single
+- id: 13
+  domain: cloud-concepts
+  topic: describe-cloud-service-types
+  text: Microsoft 365 (for example, Exchange Online) is an example of which service type?
+  options:
+  - id: A
+    text: IaaS
+    explanation: you don't manage infrastructure or a platform for it.
+  - id: B
+    text: PaaS
+    explanation: you don't manage infrastructure or a platform for it.
+  - id: C
+    text: SaaS
+  - id: D
+    text: Private cloud
+    explanation: private cloud is a deployment model, not a service type.
+  correct:
+  - C
+  explanation: 'Microsoft 365 is SaaS: users consume a complete hosted application, while Microsoft operates
+    the application platform and infrastructure. IaaS and PaaS are infrastructure and application-hosting
+    models, and private cloud is a deployment model rather than a service type.'
+  type: single
+- id: 14
+  domain: cloud-concepts
+  topic: describe-cloud-service-types
+  text: A company needs to lift and shift a legacy application that requires a custom operating system
+    configuration. Which service type is the best fit?
+  options:
+  - id: A
+    text: SaaS
+    explanation: SaaS is a finished product.
+  - id: B
+    text: PaaS
+    explanation: both restrict OS-level customization.
+  - id: C
+    text: Serverless functions
+    explanation: both restrict OS-level customization.
+  - id: D
+    text: IaaS
+  correct:
+  - D
+  explanation: IaaS virtual machines allow the customer to configure the guest operating system and preserve
+    requirements of a legacy application, making them suitable for lift-and-shift. PaaS and serverless
+    abstract away operating-system control, while SaaS does not provide a platform for hosting a custom
+    legacy application.
+  type: single
+- id: 15
+  domain: azure-architecture-services
+  topic: core-architectural-components
+  text: What is a region pair in Azure?
+  options:
+  - id: A
+    text: Two datacenters in the same building
+    explanation: that describes a datacenter.
+  - id: B
+    text: Two Azure regions within the same geography, paired for disaster recovery and platform updates
+  - id: C
+    text: Two subscriptions linked by billing
+    explanation: that is unrelated to billing.
+  - id: D
+    text: Two availability zones in a single region
+    explanation: zones exist inside a single region.
+  correct:
+  - B
+  explanation: A region pair links two Azure regions in the same geography. The pairing supports disaster-recovery
+    considerations and coordinated platform updates; it is not a pair of datacenters in one building,
+    subscriptions, or availability zones.
+  type: single
+- id: 16
+  domain: azure-architecture-services
+  topic: core-architectural-components
+  text: Which statement about availability zones is correct?
+  options:
+  - id: A
+    text: They are physically separate locations within an Azure region, each with independent power,
+      cooling, and networking
+  - id: B
+    text: They are separate Azure geographies
+    explanation: geographies are much larger.
+  - id: C
+    text: They only exist for sovereign regions
+    explanation: zones are not limited to sovereign regions.
+  - id: D
+    text: They are logical groupings of resource groups
+    explanation: they are physical, not logical groupings.
+  correct:
+  - A
+  explanation: Availability zones are distinct physical locations within a region, each with independent
+    power, cooling, and networking. This separation helps protect zonal deployments from a datacenter-level
+    failure, unlike geographies or logical resource-management groupings.
+  type: single
+- id: 17
+  domain: azure-architecture-services
+  topic: core-architectural-components
+  text: Which Azure option is designed to meet specific compliance and legal requirements for government
+    customers, with physical and logical isolation from the public Azure regions?
+  options:
+  - id: A
+    text: Region pairs
+    explanation: pairs are for resiliency.
+  - id: B
+    text: Sovereign regions such as Azure Government
+  - id: C
+    text: Availability sets
+    explanation: availability sets are a VM-level feature.
+  - id: D
+    text: Management groups
+    explanation: management groups organize subscriptions.
+  correct:
+  - B
+  explanation: Sovereign regions, such as Azure Government, are designed to satisfy specific jurisdictional,
+    regulatory, and operational requirements and are isolated from public Azure regions. Region pairs
+    support resiliency, while availability sets and management groups solve different infrastructure and
+    governance problems.
+  type: single
+- id: 18
+  domain: azure-architecture-services
+  topic: core-architectural-components
+  text: What is the correct hierarchy in Azure, from the highest level to the lowest?
+  options:
+  - id: A
+    text: Subscription → Management group → Resource group → Resource
+    explanation: 'This places subscriptions above management groups, reversing the scope hierarchy: management
+      groups contain subscriptions, not the other way around.'
+  - id: B
+    text: Resource group → Subscription → Management group → Resource
+    explanation: This starts at a resource group, which is below both management groups and subscriptions
+      in Azure's hierarchy.
+  - id: C
+    text: Management group → Subscription → Resource group → Resource
+  - id: D
+    text: Management group → Resource group → Subscription → Resource
+    explanation: Resource groups are contained within subscriptions; they do not sit above subscriptions
+      in the Azure hierarchy.
+  correct:
+  - C
+  explanation: The Azure scope hierarchy is management group → subscription → resource group → resource.
+    Management groups organize subscriptions for governance; resource groups organize deployed resources
+    within a subscription, so reversing any adjacent levels gives the wrong scope relationship.
+  type: single
+- id: 19
+  domain: azure-architecture-services
+  topic: core-architectural-components
+  text: Which statement about resource groups is correct?
+  options:
+  - id: A
+    text: A resource can belong to multiple resource groups at once
+    explanation: a resource can't be in two groups.
+  - id: B
+    text: Resource groups are logical containers for resources, and each resource belongs to exactly one
+      resource group
+  - id: C
+    text: Deleting a resource group leaves its resources intact
+    explanation: deleting a group deletes everything in it.
+  - id: D
+    text: Resource groups can contain other resource groups
+    explanation: resource groups can't be nested.
+  correct:
+  - B
+  explanation: A resource group is a logical container for resources, and each resource belongs to one
+    resource group at a time. Deleting the group normally deletes its contained resources, and resource
+    groups cannot contain nested resource groups.
+  type: single
+- id: 20
+  domain: azure-architecture-services
+  topic: azure-compute-and-networking
+  text: You need to run a short, event-driven piece of code, such as responding to a queue message, without
+    managing servers. Which service fits best?
+  options:
+  - id: A
+    text: Azure Virtual Machines
+    explanation: VMs need management.
+  - id: B
+    text: Azure Functions
+  - id: C
+    text: Azure Virtual Desktop
+    explanation: AVD provides remote desktops.
+  - id: D
+    text: Azure VPN Gateway
+    explanation: VPN Gateway is networking.
+  correct:
+  - B
+  explanation: Azure Functions is designed for event-driven code that runs without the customer managing
+    servers, such as a function triggered by a queue message. VMs require operating-system management,
+    Virtual Desktop delivers remote user desktops, and VPN Gateway connects networks.
+  type: single
+- id: 21
+  domain: azure-architecture-services
+  topic: azure-compute-and-networking
+  text: Which Azure feature automatically increases or decreases the number of identical VM instances
+    based on demand?
+  options:
+  - id: A
+    text: Availability set
+    explanation: availability sets don't scale.
+  - id: B
+    text: Azure Virtual Machine Scale Sets
+  - id: C
+    text: Azure DNS
+    explanation: DNS resolves names.
+  - id: D
+    text: Azure Storage Explorer
+    explanation: Storage Explorer is a file-management tool.
+  correct:
+  - B
+  explanation: Virtual Machine Scale Sets manage a group of similar VM instances and can automatically
+    adjust the instance count in response to demand. Availability sets distribute VMs for resilience but
+    do not autoscale them; DNS and Storage Explorer serve unrelated purposes.
+  type: single
+- id: 22
+  domain: azure-architecture-services
+  topic: azure-compute-and-networking
+  text: Which Azure service provides a cloud-hosted Windows desktop and apps that users can access remotely,
+    and which hosting option runs a web app without managing the OS?
+  options:
+  - id: A
+    text: Azure Virtual Desktop for remote desktops, and Azure App Service for web apps
+  - id: B
+    text: Azure App Service for remote desktops, and Azure Virtual Desktop for web apps
+    explanation: the services are swapped.
+  - id: C
+    text: Azure Container Instances for remote desktops, and Azure Arc for web apps
+    explanation: ACI runs containers, and Arc manages hybrid resources.
+  - id: D
+    text: Azure Arc for remote desktops, and Azure VPN Gateway for web apps
+    explanation: Arc and VPN Gateway don't host desktops or web apps.
+  correct:
+  - A
+  explanation: Azure Virtual Desktop delivers hosted Windows desktops and applications, while Azure App
+    Service hosts web applications as a managed platform without customer-managed operating systems. The
+    distractor that reverses the names swaps their roles; containers and Arc are not substitutes for both
+    services.
+  type: single
+- id: 23
+  domain: azure-architecture-services
+  topic: azure-compute-and-networking
+  text: What does an availability set protect against?
+  options:
+  - id: A
+    text: Region-wide outages
+    explanation: region-wide outages need region pairs or multi-region designs.
+  - id: B
+    text: Hardware failures and planned maintenance within a datacenter by spreading VMs across fault
+      domains and update domains
+  - id: C
+    text: Accidental deletion of a VM
+    explanation: unrelated.
+  - id: D
+    text: Subscription billing errors
+    explanation: unrelated.
+  correct:
+  - B
+  explanation: Availability sets distribute VMs across fault domains (separate hardware) and update domains
+    (separate maintenance groups) within a datacenter. They reduce the chance that one hardware failure
+    or planned maintenance event takes down every VM, but do not protect against regional outages or deletion.
+  type: single
+- id: 24
+  domain: azure-architecture-services
+  topic: azure-compute-and-networking
+  text: Which Azure service gives you a private, dedicated connection from on-premises to Azure that does
+    NOT travel over the public internet?
+  options:
+  - id: A
+    text: Azure VPN Gateway
+    explanation: VPN Gateway uses encrypted tunnels over the public internet.
+  - id: B
+    text: Azure DNS
+    explanation: DNS is name resolution.
+  - id: C
+    text: Azure ExpressRoute
+  - id: D
+    text: Virtual network peering
+    explanation: peering connects virtual networks to each other.
+  correct:
+  - C
+  explanation: ExpressRoute provides a private, dedicated connection between an on-premises network and
+    Microsoft cloud services that does not traverse the public internet. VPN Gateway instead establishes
+    encrypted tunnels over the internet; DNS resolves names and peering connects VNets.
+  type: single
+- id: 25
+  domain: azure-architecture-services
+  topic: azure-compute-and-networking
+  text: What is the purpose of a private endpoint?
+  options:
+  - id: A
+    text: It assigns a public IP address to a PaaS service
+    explanation: that is the opposite.
+  - id: B
+    text: It gives an Azure PaaS service a private IP address from your virtual network, so traffic stays
+      on the Microsoft backbone
+  - id: C
+    text: It encrypts the storage account at rest
+    explanation: encryption is a separate feature.
+  - id: D
+    text: It lets you resolve domain names publicly
+    explanation: that describes Azure DNS.
+  correct:
+  - B
+  explanation: A private endpoint assigns a private IP address from a virtual network to a supported Azure
+    service, allowing clients to reach it privately over Microsoft's network. It does not assign a public
+    address, perform encryption at rest, or provide public DNS hosting.
+  type: single
+- id: 26
+  domain: azure-architecture-services
+  topic: azure-storage-services
+  text: Which storage option provides fully managed file shares accessible via SMB and NFS?
+  options:
+  - id: A
+    text: Azure Blob Storage
+    explanation: Blob is object storage.
+  - id: B
+    text: Azure Files
+  - id: C
+    text: Azure Queue Storage
+    explanation: Queue is messaging.
+  - id: D
+    text: Azure Table Storage
+    explanation: Table is NoSQL key-value data.
+  correct:
+  - B
+  explanation: Azure Files provides managed file shares that clients can access using SMB or NFS. Blob
+    Storage stores objects, Queue Storage holds messages, and Table Storage provides NoSQL key/value data;
+    those services do not offer the same shared-file interface.
+  type: single
+- id: 27
+  domain: azure-architecture-services
+  topic: azure-storage-services
+  text: Which redundancy option copies your data synchronously three times across availability zones in
+    the primary region, and also asynchronously to a secondary region?
+  options:
+  - id: A
+    text: LRS
+    explanation: LRS keeps three copies in a single datacenter.
+  - id: B
+    text: ZRS
+    explanation: ZRS has no secondary region.
+  - id: C
+    text: GRS
+    explanation: GRS uses LRS in the primary and replicates to a secondary region, with no zone redundancy
+      in the primary.
+  - id: D
+    text: GZRS
+  correct:
+  - D
+  explanation: GZRS combines zone-redundant storage in the primary region with asynchronous replication
+    to a secondary region. ZRS lacks the secondary-region copy, GRS copies from an LRS primary, and LRS
+    keeps replicas within a single datacenter.
+  type: single
+- id: 28
+  domain: azure-architecture-services
+  topic: azure-storage-services
+  text: Which blob access tier is the most cost-effective for data that is rarely accessed and can tolerate
+    hours of retrieval latency?
+  options:
+  - id: A
+    text: Hot
+    explanation: Hot is for frequent access.
+  - id: B
+    text: Cool
+    explanation: Cool is for infrequent access (30+ days) with online access.
+  - id: C
+    text: Cold
+    explanation: Cold is for rarely accessed data (90+ days) with online access and no rehydration delay.
+  - id: D
+    text: Archive
+  correct:
+  - D
+  explanation: The Archive tier minimizes storage cost for rarely accessed blob data, but it is offline
+    and must be rehydrated before reading, which can take hours. Cold and Cool remain online tiers with
+    faster access and higher storage costs; Hot is intended for frequent access.
+  type: single
+- id: 29
+  domain: azure-architecture-services
+  topic: azure-storage-services
+  text: You need to move 80 TB of data to Azure, but your network is slow. Which service is the best fit?
+  options:
+  - id: A
+    text: Azure Data Box
+  - id: B
+    text: Azure Storage Explorer
+    explanation: it is a GUI tool, still limited by bandwidth.
+  - id: C
+    text: Azure Migrate
+    explanation: Azure Migrate assesses and migrates servers and apps.
+  - id: D
+    text: AzCopy over the existing link
+    explanation: AzCopy would take far too long over a slow link.
+  correct:
+  - A
+  explanation: Azure Data Box moves large datasets using a shipped physical appliance, avoiding the time
+    and bandwidth constraints of a slow network link. Storage Explorer is a client interface and AzCopy
+    still transfers over the network; Azure Migrate targets server and application migration scenarios.
+  type: single
+- id: 30
+  domain: azure-architecture-services
+  topic: azure-identity-access-and-security
+  text: A user signs in with a fingerprint or FIDO2 key instead of typing a password. Which authentication
+    method is this, and which service issues the identity?
+  options:
+  - id: A
+    text: Passwordless authentication, with Microsoft Entra ID
+  - id: B
+    text: Single sign-on only, with Azure Policy
+    explanation: SSO is a different capability, and Policy enforces resource standards, not identities.
+  - id: C
+    text: Passwordless authentication, with Azure Monitor
+    explanation: Monitor collects telemetry.
+  - id: D
+    text: Basic authentication, with Microsoft Purview
+    explanation: Purview is for data governance, and basic authentication is not passwordless.
+  correct:
+  - A
+  explanation: A fingerprint or FIDO2 security key is a passwordless authentication method, and Microsoft
+    Entra ID provides the cloud identity service that can issue and validate those sign-ins. SSO lets
+    one sign-in reach multiple apps, MFA adds verification factors, and Entra Domain Services provides
+    managed domain protocols rather than passwordless cloud authentication.
+  type: single
+- id: 31
+  domain: azure-architecture-services
+  topic: azure-identity-access-and-security
+  text: A user is granted access only when they sign in from a compliant device and a trusted location.
+    Which feature enforces this?
+  options:
+  - id: A
+    text: Azure Policy
+    explanation: Policy governs resource configuration.
+  - id: B
+    text: Resource locks
+    explanation: locks prevent deletion or modification of resources.
+  - id: C
+    text: Microsoft Entra Conditional Access
+  - id: D
+    text: Azure Advisor
+    explanation: Advisor gives recommendations.
+  correct:
+  - C
+  explanation: Conditional Access evaluates sign-in signals such as device compliance, location, and risk,
+    then applies access requirements or blocks the sign-in. Azure Policy governs resource configuration,
+    locks constrain resource operations, and Advisor provides recommendations rather than identity-time
+    decisions.
+  type: single
+- id: 32
+  domain: azure-architecture-services
+  topic: azure-identity-access-and-security
+  text: Which statement describes Zero Trust?
+  options:
+  - id: A
+    text: Trust everything inside the corporate network
+    explanation: Trusting everything inside the corporate network is the implicit-trust perimeter model
+      that Zero Trust is designed to replace.
+  - id: B
+    text: 'Never trust, always verify: assume breach and verify explicitly, using least-privilege access'
+  - id: C
+    text: Trust any request that comes from a known IP address
+    explanation: A known IP address alone is not sufficient proof of trust; Zero Trust evaluates identity
+      and context for each access request.
+  - id: D
+    text: Replace all authentication with firewalls
+    explanation: firewalls alone are not Zero Trust.
+  correct:
+  - B
+  explanation: 'Zero Trust rejects implicit trust based only on network location: verify each access request
+    explicitly, grant least privilege, and assume a breach may occur. Trusting an internal network or
+    a known IP is perimeter-based thinking, and firewalls do not replace identity verification.'
+  type: single
+- id: 33
+  domain: azure-architecture-services
+  topic: azure-identity-access-and-security
+  text: Which Azure service provides a cloud security posture management (CSPM) and workload protection
+    (CWP) solution that gives security recommendations and a secure score?
+  options:
+  - id: A
+    text: Azure Advisor
+    explanation: Advisor covers cost, reliability, performance, and operational excellence recommendations
+      (with some security).
+  - id: B
+    text: Microsoft Defender for Cloud
+  - id: C
+    text: Azure Service Health
+    explanation: Service Health reports Azure service issues.
+  - id: D
+    text: Azure Arc
+    explanation: Arc manages hybrid resources.
+  correct:
+  - B
+  explanation: Microsoft Defender for Cloud provides cloud security posture management, including secure
+    score and recommendations, as well as workload-protection capabilities. Advisor offers broader operational
+    recommendations, Service Health reports Azure service issues, and Arc extends management to hybrid
+    resources.
+  type: single
+- id: 34
+  domain: management-governance
+  topic: cost-management
+  text: Which factor can affect the cost of an Azure virtual machine?
+  options:
+  - id: A
+    text: The color theme of the portal
+    explanation: portal theme has no cost effect.
+  - id: B
+    text: Region, VM size, and operating system licensing
+  - id: C
+    text: The number of tags applied
+    explanation: tags are free metadata.
+  - id: D
+    text: The number of resource locks
+    explanation: locks are free.
+  correct:
+  - B
+  explanation: VM cost varies with factors such as region, size, operating-system licensing, runtime,
+    and data transfer. Portal appearance, tags, and resource locks are metadata or management settings
+    and do not directly change the VM's price.
+  type: single
+- id: 35
+  domain: management-governance
+  topic: cost-management
+  text: Which tool estimates the cost of a planned Azure deployment before you build it?
+  options:
+  - id: A
+    text: Azure Cost Management
+    explanation: Cost Management analyzes costs that have been incurred.
+  - id: B
+    text: Azure Pricing Calculator
+  - id: C
+    text: Azure Monitor
+    explanation: Monitor is for telemetry.
+  - id: D
+    text: Azure Advisor
+    explanation: Advisor gives recommendations.
+  correct:
+  - B
+  explanation: The Azure Pricing Calculator estimates the cost of a planned design before deployment,
+    using choices such as region, service, and configuration. Cost Management analyzes actual usage and
+    spending after resources are running; Monitor and Advisor serve telemetry and recommendation roles.
+  type: single
+- id: 36
+  domain: management-governance
+  topic: cost-management
+  text: Which tool analyzes your actual spending, lets you set budgets, and sends alerts when spending
+    exceeds thresholds?
+  options:
+  - id: A
+    text: Azure Pricing Calculator
+    explanation: the calculator only estimates.
+  - id: B
+    text: Azure Policy
+    explanation: Policy enforces rules.
+  - id: C
+    text: Microsoft Cost Management
+  - id: D
+    text: Azure Service Health
+    explanation: Service Health is for service incidents.
+  correct:
+  - C
+  explanation: Microsoft Cost Management works with actual Azure spending to analyze costs, create budgets,
+    and trigger alerts against defined thresholds. The Pricing Calculator estimates a proposed deployment,
+    while Monitor focuses on operational telemetry rather than billing analysis.
+  type: single
+- id: 37
+  domain: management-governance
+  topic: cost-management
+  text: What is the primary purpose of tags in Azure?
+  options:
+  - id: A
+    text: To encrypt resources
+    explanation: tags don't encrypt.
+  - id: B
+    text: To apply metadata (name/value pairs) to resources for organization and cost reporting
+  - id: C
+    text: To prevent a resource from being deleted
+    explanation: that is a resource lock.
+  - id: D
+    text: To assign access permissions
+    explanation: that is RBAC.
+  correct:
+  - B
+  explanation: Tags are name/value metadata attached to Azure resources, commonly used to classify ownership,
+    environment, or department and to group costs in reports. Tags do not grant permissions or block actions;
+    RBAC and locks address those controls.
+  type: single
+- id: 38
+  domain: management-governance
+  topic: cost-management
+  text: A VM will run continuously for the next three years. Which option lowers its cost the most compared
+    with pay-as-you-go?
+  options:
+  - id: A
+    text: Deleting its tags
+    explanation: tags are free metadata and don't change price.
+  - id: B
+    text: Azure Monitor alerts
+    explanation: alerts don't affect price.
+  - id: C
+    text: An Azure Reservation (reserved instance) with a 1- or 3-year commitment
+  - id: D
+    text: Moving it to a different resource group
+    explanation: resource groups don't affect price.
+  correct:
+  - C
+  explanation: A reservation commits eligible usage for one or three years in exchange for a discount
+    compared with pay-as-you-go pricing. The commitment is most useful for steady, predictable workloads;
+    the Pricing Calculator can help compare the estimated options before purchase.
+  type: single
+- id: 39
+  domain: management-governance
+  topic: governance-and-compliance
+  text: Which service provides a unified data governance solution, helping you discover, classify, and
+    manage data across on-premises, multicloud, and SaaS?
+  options:
+  - id: A
+    text: Microsoft Purview
+  - id: B
+    text: Azure Policy
+    explanation: Policy governs Azure resource configuration.
+  - id: C
+    text: Azure Arc
+    explanation: Arc extends management to non-Azure resources.
+  - id: D
+    text: Microsoft Defender for Cloud
+    explanation: Defender for Cloud is security posture and threat protection.
+  correct:
+  - A
+  explanation: Microsoft Purview helps discover, catalog, classify, and govern data across diverse environments,
+    supporting data governance and compliance workflows. It is not the Azure resource-configuration enforcement
+    service (Policy) or the resource-deletion control provided by locks.
+  type: single
+- id: 40
+  domain: management-governance
+  topic: governance-and-compliance
+  text: You need to ensure that all new resources are deployed only in West Europe and North Europe. What
+    should you use?
+  options:
+  - id: A
+    text: Resource locks
+    explanation: locks don't restrict location.
+  - id: B
+    text: Azure Policy
+  - id: C
+    text: Azure Advisor
+    explanation: Advisor only recommends.
+  - id: D
+    text: Azure Monitor alerts
+    explanation: alerts only notify.
+  correct:
+  - B
+  explanation: Azure Policy can audit or deny deployments that violate allowed-location rules, so it can
+    enforce the West Europe and North Europe constraint. A lock prevents deletion or modification, Advisor
+    recommends improvements, and alerts notify about conditions rather than preventing a deployment.
+  type: single
+- id: 41
+  domain: management-governance
+  topic: governance-and-compliance
+  text: You want to prevent anyone, including owners, from accidentally deleting a production database.
+    What should you use?
+  options:
+  - id: A
+    text: Azure Policy with the Audit effect
+    explanation: Audit only reports, it doesn't block.
+  - id: B
+    text: A tag
+    explanation: tags don't protect.
+  - id: C
+    text: A resource lock (Delete)
+  - id: D
+    text: A budget
+    explanation: budgets track spend.
+  correct:
+  - C
+  explanation: A CanNotDelete lock allows authorized users to read and modify the resource but blocks
+    deletion until the lock is removed. It applies even to owners, so it protects against accidental deletion;
+    a read-only lock would also block modifications.
+  type: single
+- id: 42
+  domain: management-governance
+  topic: governance-and-compliance
+  text: What is the difference between the ReadOnly and CanNotDelete lock levels?
+  options:
+  - id: A
+    text: ReadOnly allows modification and deletion, and CanNotDelete blocks all changes
+    explanation: it is backwards.
+  - id: B
+    text: CanNotDelete allows authorized users to read and modify but not delete, and ReadOnly allows
+      read only, with no modification or deletion
+  - id: C
+    text: They are identical
+    explanation: they differ.
+  - id: D
+    text: ReadOnly applies only to subscriptions
+    explanation: locks can apply to subscriptions, resource groups, or resources.
+  correct:
+  - B
+  explanation: CanNotDelete preserves normal read and write operations but denies deletion, while ReadOnly
+    allows reads and blocks writes as well as deletion. Both are Azure Resource Manager locks, but their
+    impact on day-to-day changes is different.
+  type: single
+- id: 43
+  domain: management-governance
+  topic: managing-and-deploying-resources
+  text: Which tool provides a browser-accessible shell authenticated to your Azure account, with Azure
+    CLI and Azure PowerShell preinstalled?
+  options:
+  - id: A
+    text: Azure Cloud Shell
+  - id: B
+    text: Azure Storage Explorer
+    explanation: Storage Explorer is a file tool.
+  - id: C
+    text: Azure Advisor
+    explanation: Advisor gives recommendations.
+  - id: D
+    text: Azure Data Box
+    explanation: Data Box is a physical transfer device.
+  correct:
+  - A
+  explanation: Cloud Shell is a browser-accessible, authenticated shell for working with Azure, with Azure
+    CLI and Azure PowerShell available. It is distinct from the local CLI or PowerShell installation and
+    from the graphical Azure portal.
+  type: single
+- id: 44
+  domain: management-governance
+  topic: managing-and-deploying-resources
+  text: Which service lets you manage on-premises, multicloud, and edge servers and Kubernetes clusters
+    from Azure by projecting them into Azure Resource Manager?
+  options:
+  - id: A
+    text: Azure Arc
+  - id: B
+    text: Azure Migrate
+    explanation: Migrate is for migrations.
+  - id: C
+    text: Azure DNS
+    explanation: DNS is for name resolution.
+  - id: D
+    text: Azure Traffic Manager
+    explanation: Traffic Manager is for DNS-based traffic routing.
+  correct:
+  - A
+  explanation: Azure Arc projects supported servers, Kubernetes clusters, and other resources outside
+    Azure into Azure management and governance experiences. It does not move those resources into Azure
+    datacenters; it extends Azure control-plane tools to hybrid and multicloud environments.
+  type: single
+- id: 45
+  domain: management-governance
+  topic: managing-and-deploying-resources
+  text: What is infrastructure as code (IaC)?
+  options:
+  - id: A
+    text: Managing infrastructure by manually clicking through the portal
+    explanation: that is manual configuration.
+  - id: B
+    text: Managing and provisioning infrastructure through machine-readable definition files, enabling
+      repeatable, consistent deployments
+  - id: C
+    text: Writing applications in a low-code tool
+    explanation: Low-code tools help build applications, but they do not describe and provision the underlying
+      infrastructure as versionable deployment definitions.
+  - id: D
+    text: Backing up virtual machines
+    explanation: Backing up a VM protects an existing workload; IaC instead describes how infrastructure
+      should be created and configured.
+  correct:
+  - B
+  explanation: Infrastructure as code describes the desired infrastructure in machine-readable files that
+    can be versioned, reviewed, and deployed repeatedly. This makes environments more consistent than
+    one-off manual configuration and supports automation and change tracking.
+  type: single
+- id: 46
+  domain: management-governance
+  topic: managing-and-deploying-resources
+  text: Which statement about Azure Resource Manager (ARM) and ARM templates is correct?
+  options:
+  - id: A
+    text: ARM is the deployment and management layer for Azure, and ARM templates are declarative JSON
+      files that define resources to deploy
+  - id: B
+    text: ARM templates can only deploy a single VM
+    explanation: templates can deploy many resources.
+  - id: C
+    text: ARM is a billing tool
+    explanation: ARM is not a billing tool.
+  - id: D
+    text: ARM templates are imperative scripts that must be run line by line
+    explanation: templates are declarative, not imperative.
+  correct:
+  - A
+  explanation: Azure Resource Manager is Azure's deployment and management layer, and ARM templates describe
+    the desired resources declaratively in JSON. The template can define many related resources in one
+    deployment; it is not a billing tool or a line-by-line imperative script.
+  type: single
+- id: 47
+  domain: management-governance
+  topic: monitoring-tools
+  text: Which service gives personalized recommendations to improve reliability, security, performance,
+    operational excellence, and cost?
+  options:
+  - id: A
+    text: Azure Advisor
+  - id: B
+    text: Azure Service Health
+    explanation: Service Health reports incidents.
+  - id: C
+    text: Azure Policy
+    explanation: Policy enforces rules.
+  - id: D
+    text: Microsoft Purview
+    explanation: Purview is data governance.
+  correct:
+  - A
+  explanation: Azure Advisor analyzes resource configuration and usage to recommend improvements across
+    reliability, security, performance, operational excellence, and cost. It advises rather than directly
+    enforcing configuration, monitoring service incidents, or managing hybrid-resource inventory.
+  type: single
+- id: 48
+  domain: management-governance
+  topic: monitoring-tools
+  text: You want to be notified about Azure service outages, planned maintenance, and health advisories
+    that affect YOUR resources. Which service should you use?
+  options:
+  - id: A
+    text: Azure Advisor
+    explanation: Advisor recommends improvements.
+  - id: B
+    text: Azure Service Health
+  - id: C
+    text: Azure Log Analytics only
+    explanation: Log Analytics queries logs.
+  - id: D
+    text: Azure Pricing Calculator
+    explanation: the calculator estimates costs.
+  correct:
+  - B
+  explanation: Azure Service Health provides personalized information and alerts about Azure incidents,
+    planned maintenance, and health advisories relevant to a customer's subscriptions and regions. Azure
+    status is a broad service view, while Resource Health focuses on the health of a particular resource.
+  type: single
+- id: 49
+  domain: management-governance
+  topic: monitoring-tools
+  text: Which Azure Monitor capability lets you write queries to analyze log data collected from Azure
+    resources?
+  options:
+  - id: A
+    text: Log Analytics
+  - id: B
+    text: Azure Cloud Shell
+    explanation: Cloud Shell is a browser-based command-line environment for running Azure tools; it is
+      not the workspace used to query collected logs with KQL.
+  - id: C
+    text: Azure Arc
+    explanation: Azure Arc extends management to hybrid resources, but it does not provide the Log Analytics
+      query experience for Azure Monitor logs.
+  - id: D
+    text: Azure Storage Explorer
+    explanation: Storage Explorer is a graphical client for storage services; it does not analyze Azure
+      Monitor log records or provide KQL queries.
+  correct:
+  - A
+  explanation: Log Analytics is the Azure Monitor workspace experience for querying collected log data
+    with Kusto Query Language (KQL). Metrics are numeric time-series measurements, and dashboards or alerts
+    consume telemetry rather than serving as the primary log-query language interface.
+  type: single
+- id: 50
+  domain: management-governance
+  topic: monitoring-tools
+  text: You want to monitor a web application's performance, detect failures and slow response times,
+    and trace dependencies. Which Azure Monitor feature should you use?
+  options:
+  - id: A
+    text: Azure Monitor alerts only
+    explanation: alerts only notify based on conditions.
+  - id: B
+    text: Application Insights
+  - id: C
+    text: Azure Service Health
+    explanation: Service Health covers Azure platform issues.
+  - id: D
+    text: Azure Advisor
+    explanation: Advisor gives recommendations.
+  correct:
+  - B
+  explanation: Application Insights is Azure Monitor's application-performance-monitoring feature for
+    tracking requests, failures, response times, and dependency calls. It helps diagnose application behavior;
+    resource recommendations, service incidents, and general log queries are handled by other Azure capabilities.
+  type: single
+- id: 51
+  domain: cloud-concepts
+  topic: additional-cloud-concepts
+  text: A company is moving from buying servers every few years to renting cloud resources monthly. How
+    does this change its spending?
+  options:
+  - id: A
+    text: From operational expenditure (OpEx) to capital expenditure (CapEx)
+    explanation: it is the reverse.
+  - id: B
+    text: It eliminates all costs
+    explanation: you still pay for what you use.
+  - id: C
+    text: From capital expenditure (CapEx) to operational expenditure (OpEx)
+  - id: D
+    text: From variable costs to fixed costs
+    explanation: the cloud typically makes costs more variable, not more fixed.
+  correct:
+  - C
+  explanation: Buying servers requires capital expenditure (CapEx) up front, with the organization owning
+    the hardware and its lifecycle. Cloud consumption typically shifts spending toward ongoing operating
+    expenditure (OpEx), although reservations and other commitments can still affect the billing pattern.
+  type: single
+- id: 52
+  domain: cloud-concepts
+  topic: additional-cloud-concepts
+  text: Which Azure pricing model offers deep discounts for workloads that can be interrupted when Azure
+    needs the capacity back?
+  options:
+  - id: A
+    text: Pay-as-you-go
+    explanation: pay-as-you-go is full price per use with no discount.
+  - id: B
+    text: Azure Spot pricing
+  - id: C
+    text: Reserved instances
+    explanation: reservations give discounts for a 1- or 3-year commitment, with no interruptions.
+  - id: D
+    text: Free tier
+    explanation: the free tier gives limited free usage and isn't a deep-discount model.
+  correct:
+  - B
+  explanation: Spot pricing uses Azure's unused capacity at a discount, but the capacity may be reclaimed
+    and the VM evicted. It is therefore suited to interruptible, retryable workloads such as batch jobs,
+    not applications that require uninterrupted availability.
+  type: single
+- id: 53
+  domain: cloud-concepts
+  topic: additional-cloud-concepts
+  text: Which cloud benefit describes a system's ability to recover from failures and continue to function?
+  options:
+  - id: A
+    text: Elasticity
+    explanation: elasticity is scaling with demand.
+  - id: B
+    text: Manageability
+    explanation: manageability is about operating resources.
+  - id: C
+    text: Governance
+    explanation: governance is about policies and compliance.
+  - id: D
+    text: Reliability
+  correct:
+  - D
+  explanation: Reliability describes whether a system can continue operating and recover when failures
+    occur. Redundancy, resilient design, and recovery mechanisms contribute to reliability; high availability
+    is a closely related goal focused on minimizing service downtime.
+  type: single
+- id: 54
+  domain: cloud-concepts
+  topic: additional-cloud-concepts
+  text: Which is a security and governance benefit of using the cloud?
+  options:
+  - id: A
+    text: Built-in compliance certifications, policy enforcement, and security tooling that you can apply
+      consistently across resources
+  - id: B
+    text: No need to protect your data or identities
+    explanation: Customers still own and protect their data, identities, and access decisions; cloud certifications
+      and tools support compliance but do not remove those duties.
+  - id: C
+    text: The provider takes over all of your legal obligations
+    explanation: Cloud certifications do not transfer every legal or regulatory obligation to the provider;
+      customers remain accountable for their own compliance and use of the service.
+  - id: D
+    text: Governance is no longer needed once you migrate
+    explanation: governance becomes more important, not less.
+  correct:
+  - A
+  explanation: 'Cloud providers offer compliance certifications and services that help customers implement
+    consistent security and governance controls. These capabilities support compliance, but they do not
+    transfer all responsibility: customers still manage their data, identities, configuration, and obligations.'
+  type: single
+- id: 55
+  domain: cloud-concepts
+  topic: additional-cloud-concepts
+  text: During peak demand you add more VM instances to share the load, rather than making a single VM
+    larger. What is this called?
+  options:
+  - id: A
+    text: Scaling up (vertical scaling)
+    explanation: that is vertical scaling and is the opposite approach.
+  - id: B
+    text: Scaling down
+    explanation: scaling down reduces capacity.
+  - id: C
+    text: Scaling out (horizontal scaling)
+  - id: D
+    text: Failover
+    explanation: failover switches to a standby when something fails.
+  correct:
+  - C
+  explanation: Scaling out (horizontal scaling) adds instances so multiple VMs share the workload. Scaling
+    up (vertical scaling) increases the capacity of an individual VM; the scenario explicitly adds instances,
+    so it describes scale-out.
+  type: single
+- id: 56
+  domain: cloud-concepts
+  topic: additional-cloud-concepts
+  text: Under the shared responsibility model, in a PaaS deployment (for example, Azure App Service),
+    what remains the customer's responsibility?
+  options:
+  - id: A
+    text: The physical hosts
+    explanation: always the provider's.
+  - id: B
+    text: The operating system patching
+    explanation: the provider patches the OS in PaaS.
+  - id: C
+    text: The physical network
+    explanation: always the provider's.
+  - id: D
+    text: The application and its data
+  correct:
+  - D
+  explanation: In PaaS, Azure manages the underlying infrastructure, operating system, and runtime, but
+    the customer remains responsible for the application, its data, identities, and access decisions.
+    The shared-responsibility boundary moves with the service model; it never eliminates customer responsibility
+    for data and access.
+  type: single
+- id: 57
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: What is an Azure datacenter?
+  options:
+  - id: A
+    text: A logical grouping of subscriptions
+    explanation: these are logical constructs, not physical facilities.
+  - id: B
+    text: A physical facility with servers, networking, power, and cooling, grouped into regions
+  - id: C
+    text: A type of storage account
+    explanation: these are logical constructs, not physical facilities.
+  - id: D
+    text: A virtual network in a subscription
+    explanation: these are logical constructs, not physical facilities.
+  correct:
+  - B
+  explanation: An Azure datacenter is a physical facility containing compute, storage, and networking
+    equipment. Multiple datacenters can form availability zones, and zones belong to a region; a datacenter
+    is not itself a region or a logical Azure scope.
+  type: single
+- id: 58
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: Which statement about subscriptions and management groups is correct?
+  options:
+  - id: A
+    text: A subscription is a unit of management, billing, and scale, and management groups organize multiple
+      subscriptions so policies and access can be applied across them
+  - id: B
+    text: Management groups hold resources directly, and subscriptions hold management groups
+    explanation: it is the reverse.
+  - id: C
+    text: A subscription can only ever contain one resource group
+    explanation: a subscription can hold many resource groups.
+  - id: D
+    text: Management groups are used to deploy virtual machines
+    explanation: management groups don't deploy resources.
+  correct:
+  - A
+  explanation: A subscription is a key boundary for Azure billing, access management, and service limits.
+    Management groups sit above subscriptions, allowing policy and governance to be organized across multiple
+    subscriptions.
+  type: single
+- id: 59
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: Which of these resources are typically required (in addition to the VM itself) to create a virtual
+    machine in Azure?
+  options:
+  - id: A
+    text: A Cosmos DB account and a key vault
+    explanation: these are unrelated to VM creation.
+  - id: B
+    text: A virtual network with a network interface, an OS disk, and a resource group
+  - id: C
+    text: A management group and a budget
+    explanation: these are unrelated to VM creation.
+  - id: D
+    text: An Azure Policy and an ExpressRoute circuit
+    explanation: these are unrelated to VM creation.
+  correct:
+  - B
+  explanation: 'An Azure VM deployment depends on more than the VM resource: it typically needs a resource
+    group, virtual network and subnet, network interface, and OS disk. A public IP and network security
+    group are common additions, but are not always mandatory.'
+  type: single
+- id: 60
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: A team wants a lightweight, portable way to package an application and its dependencies and start
+    it quickly, while sharing the host OS kernel. Which compute type fits?
+  options:
+  - id: A
+    text: Containers
+  - id: B
+    text: Virtual machines with a full guest OS per instance
+    explanation: heavier and slower.
+  - id: C
+    text: Azure Functions only
+    explanation: Functions are event-driven code, not a packaging format.
+  - id: D
+    text: Azure Virtual Desktop
+    explanation: AVD delivers desktops.
+  correct:
+  - A
+  explanation: Containers package an application and its dependencies while sharing the host operating-system
+    kernel, which makes them lighter and quicker to start than virtual machines. A VM includes its own
+    guest OS and provides stronger operating-system isolation at the cost of additional overhead.
+  type: single
+- id: 61
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: Which feature connects two Azure virtual networks so resources can communicate using private IP
+    addresses over the Microsoft backbone?
+  options:
+  - id: A
+    text: Subnet delegation
+    explanation: subnet delegation grants a service permission in a subnet.
+  - id: B
+    text: Azure DNS
+    explanation: DNS resolves names.
+  - id: C
+    text: Virtual network peering
+  - id: D
+    text: Azure Traffic Manager
+    explanation: Traffic Manager routes traffic by DNS.
+  correct:
+  - C
+  explanation: VNet peering connects two Azure virtual networks so their resources can communicate using
+    private IP addresses over Microsoft's backbone. VPN Gateway establishes encrypted network tunnels,
+    ExpressRoute connects on-premises networks privately, and DNS resolves names.
+  type: single
+- id: 62
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: What is a public endpoint for an Azure service?
+  options:
+  - id: A
+    text: An address reachable over the internet, for example the public URL of a storage account
+  - id: B
+    text: A private IP address inside your virtual network
+    explanation: that is a private endpoint.
+  - id: C
+    text: A connection that never leaves your datacenter
+    explanation: not what a public endpoint is.
+  - id: D
+    text: A subnet in a peered virtual network
+    explanation: not what a public endpoint is.
+  correct:
+  - A
+  explanation: A public endpoint exposes an Azure service through a publicly reachable address, subject
+    to the service's access controls and configuration. A private endpoint instead uses a private IP in
+    a VNet; public reachability does not mean the service is automatically unauthenticated.
+  type: single
+- id: 63
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: Which storage account option offers the broadest feature set and is the recommended type for most
+    scenarios (blobs, files, queues, tables)?
+  options:
+  - id: A
+    text: Standard general-purpose v2
+  - id: B
+    text: Premium page blobs only
+    explanation: premium page blobs are specialized and narrow.
+  - id: C
+    text: Azure Disk snapshots
+    explanation: snapshots aren't an account type.
+  - id: D
+    text: A SQL managed instance
+    explanation: SQL managed instance is a database service.
+  correct:
+  - A
+  explanation: General-purpose v2 storage accounts support the broad set of standard services, including
+    blobs, files, queues, and tables, making them the common default. Premium accounts target specialized
+    performance needs and do not provide the same broad set of capabilities.
+  type: single
+- id: 64
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: A user wants a graphical tool to upload and manage blobs, files, and queues from their desktop.
+    Another admin needs to synchronize an on-premises Windows file server with Azure Files. Which tools
+    match?
+  options:
+  - id: A
+    text: Azure Storage Explorer, and Azure File Sync
+  - id: B
+    text: AzCopy, and Azure Migrate
+    explanation: AzCopy is not graphical, and Migrate isn't a sync tool.
+  - id: C
+    text: Azure Data Box, and Azure Storage Explorer
+    explanation: Data Box is a physical transfer device.
+  - id: D
+    text: Azure Migrate, and Azure Advisor
+    explanation: Migrate and Advisor don't match.
+  correct:
+  - A
+  explanation: Azure Storage Explorer is a desktop graphical client for working with blobs, files, and
+    queues, while Azure File Sync synchronizes Windows Server file shares with Azure Files. AzCopy is
+    command-line transfer tooling, and Azure Migrate assesses and moves servers and applications.
+  type: single
+- id: 65
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: What does Azure role-based access control (RBAC) let you do?
+  options:
+  - id: A
+    text: Block deletions with a lock
+    explanation: that is locks.
+  - id: B
+    text: Enforce resource naming standards
+    explanation: that is Azure Policy.
+  - id: C
+    text: Estimate costs
+    explanation: that is the Pricing Calculator or Cost Management.
+  - id: D
+    text: Grant users, groups, and apps specific permissions at a given scope, following least privilege
+  correct:
+  - D
+  explanation: Azure RBAC grants permissions by assigning a role to a user, group, service principal,
+    or managed identity at a scope. The role and scope together determine what that principal can do;
+    Policy instead evaluates whether resource configurations comply with rules.
+  type: single
+- id: 66
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: What is the defense-in-depth model?
+  options:
+  - id: A
+    text: Using a single strong firewall at the network edge
+    explanation: a single layer is the opposite of the concept.
+  - id: B
+    text: 'Using a layered approach to security: physical, identity and access, perimeter, network, compute,
+      application, and data'
+  - id: C
+    text: Encrypting only the data layer
+    explanation: a single layer is the opposite of the concept.
+  - id: D
+    text: Relying on the provider alone for security
+    explanation: security is a shared responsibility.
+  correct:
+  - B
+  explanation: Defense in depth applies multiple independent security controls across layers, such as
+    identity, network, host, and data protections. If one control fails, other layers can still limit
+    access or reduce impact; relying on a single perimeter leaves a single point of failure.
+  type: single
+- id: 67
+  domain: azure-architecture-services
+  topic: additional-architecture-and-services
+  text: An organization wants to run legacy apps that need domain join, LDAP, and Kerberos without managing
+    domain controllers, and also lets partners sign in with their own accounts. Which pair of capabilities
+    fits?
+  options:
+  - id: A
+    text: Azure Policy and resource locks
+    explanation: neither provides domain services or external sign-in.
+  - id: B
+    text: Microsoft Entra Domain Services and Microsoft Entra External ID (external identities)
+  - id: C
+    text: Azure Arc and Azure Migrate
+    explanation: Arc and Migrate cover hybrid management and migration.
+  - id: D
+    text: Azure Monitor and Azure Advisor
+    explanation: Monitor and Advisor provide telemetry and recommendations.
+  correct:
+  - B
+  explanation: Microsoft Entra Domain Services supplies managed domain-join, LDAP, and Kerberos/NTLM capabilities
+    without requiring the organization to operate domain controllers. External identities let partners
+    or customers authenticate with their own accounts; the two features solve separate identity needs.
+  type: single
+- id: 68
+  domain: management-governance
+  topic: additional-management-and-governance
+  text: What is the Azure portal?
+  options:
+  - id: A
+    text: A command-line tool only
+    explanation: that's the CLI or PowerShell.
+  - id: B
+    text: A web-based unified console for building, managing, and monitoring Azure resources
+  - id: C
+    text: A billing-only website
+    explanation: it isn't billing-only.
+  - id: D
+    text: An on-premises hardware appliance
+    explanation: it's not hardware.
+  correct:
+  - B
+  explanation: The Azure portal is a web-based graphical console for creating, configuring, and monitoring
+    Azure resources. It is one management interface alongside CLI, PowerShell, APIs, and infrastructure-as-code
+    tools, rather than the Azure control plane itself.
+  type: single
+- id: 69
+  domain: management-governance
+  topic: additional-management-and-governance
+  text: Which statement about Azure CLI and Azure PowerShell is correct?
+  options:
+  - id: A
+    text: Both can manage Azure resources from the command line and in scripts, and CLI uses az commands
+      while PowerShell uses cmdlets
+  - id: B
+    text: Azure CLI works only on Windows
+    explanation: the CLI is cross-platform.
+  - id: C
+    text: PowerShell cannot be used to automate Azure
+    explanation: PowerShell is a standard automation tool for Azure.
+  - id: D
+    text: They can't be used in Cloud Shell
+    explanation: both are preinstalled in Cloud Shell.
+  correct:
+  - A
+  explanation: Azure CLI and Azure PowerShell are both cross-platform, scriptable tools for managing Azure
+    and are available in Cloud Shell. CLI commands use the `az` command family; PowerShell exposes cmdlets
+    such as `Get-AzVM`.
+  type: single
+- id: 70
+  domain: management-governance
+  topic: additional-management-and-governance
+  text: What is the key difference between Azure Policy and Azure RBAC?
+  options:
+  - id: A
+    text: Policy controls who can access resources, and RBAC controls resource properties
+    explanation: it's reversed.
+  - id: B
+    text: They are the same feature
+    explanation: they differ.
+  - id: C
+    text: Policy controls what resource configurations are allowed, and RBAC controls what actions users
+      can perform
+  - id: D
+    text: RBAC applies only to storage
+    explanation: RBAC applies across resource types.
+  correct:
+  - C
+  explanation: Azure Policy evaluates resource configuration and can audit or deny noncompliant states;
+    it answers what configurations are allowed. RBAC controls which identities may perform actions at
+    a scope; it answers who can do what.
+  type: single
+- id: 71
+  domain: management-governance
+  topic: additional-management-and-governance
+  text: You want to be emailed when the CPU of a VM exceeds 90% for 10 minutes. Which feature should you
+    configure?
+  options:
+  - id: A
+    text: Azure Monitor alerts with an action group
+  - id: B
+    text: Azure Policy
+    explanation: none sends notifications on metrics.
+  - id: C
+    text: A resource lock
+    explanation: none sends notifications on metrics.
+  - id: D
+    text: A tag
+    explanation: none sends notifications on metrics.
+  correct:
+  - A
+  explanation: Azure Monitor metric alerts evaluate measurements such as VM CPU over a time window and
+    fire when the configured condition is met. An action group determines the response, such as sending
+    an email; the alert rule itself defines the threshold and evaluation.
+  type: single
+- id: 72
+  domain: management-governance
+  topic: additional-management-and-governance
+  text: Which of the following can increase your Azure bill?
+  options:
+  - id: A
+    text: Using resource groups
+    explanation: resource groups, tags, and the portal are free.
+  - id: B
+    text: Outbound data transfer (egress), larger VM sizes, and premium storage tiers
+  - id: C
+    text: Adding tags
+    explanation: resource groups, tags, and the portal are free.
+  - id: D
+    text: Using the Azure portal
+    explanation: resource groups, tags, and the portal are free.
+  correct:
+  - B
+  explanation: Azure charges can change with data egress, VM size, storage tier, and region because these
+    affect resource consumption and Azure's delivery costs. Tags and other descriptive metadata do not
+    themselves add resource charges.
+  type: single
+- id: 73
+  domain: management-governance
+  topic: additional-management-and-governance
+  text: What is the main benefit of deploying with ARM templates (infrastructure as code)?
+  options:
+  - id: A
+    text: Manual configuration of each resource
+    explanation: that's what IaC avoids.
+  - id: B
+    text: Templates only work on one subscription
+    explanation: templates can target multiple subscriptions and resource groups.
+  - id: C
+    text: Resources can't be changed after deployment
+    explanation: resources can be updated by redeploying.
+  - id: D
+    text: Repeatable, consistent deployments with idempotent behavior, where the same template yields
+      the same result
+  correct:
+  - D
+  explanation: ARM templates describe a desired resource configuration declaratively, allowing Azure to
+    determine how to reach that state. Reusing the same template makes deployments repeatable and consistent,
+    and supports idempotent redeployment rather than one-off manual steps.
+  type: single
+- id: 74
+  domain: management-governance
+  topic: additional-management-and-governance
+  text: Which Azure Service Health component shows issues with an individual resource such as a single
+    VM?
+  options:
+  - id: A
+    text: Azure status
+    explanation: global status, not per resource.
+  - id: B
+    text: Resource Health
+  - id: C
+    text: Azure Advisor
+    explanation: Advisor gives recommendations.
+  - id: D
+    text: Cost Management
+    explanation: Cost Management is about spend.
+  correct:
+  - B
+  explanation: Resource Health reports the status of an individual resource, such as a particular VM,
+    and can help distinguish a resource-specific problem from a broader platform incident. Azure status
+    covers global services; Service Health focuses on issues relevant to a subscription or region.
+  type: single
+- id: 75
+  domain: management-governance
+  topic: additional-management-and-governance
+  text: You apply a CanNotDelete lock to a resource group. What happens to the resources inside it?
+  options:
+  - id: A
+    text: They inherit the lock, so they can't be deleted
+  - id: B
+    text: They are unaffected
+    explanation: inheritance applies.
+  - id: C
+    text: They are deleted
+    explanation: a lock doesn't delete anything.
+  - id: D
+    text: They become read-only automatically
+    explanation: that is the ReadOnly lock level.
+  correct:
+  - A
+  explanation: 'A CanNotDelete lock applied to a resource group is inherited by its child resources, preventing
+    deletion while the lock remains. The lock does not replace access control: authorized users can still
+    read and modify the resources unless a separate ReadOnly lock is used.'
+  type: single
