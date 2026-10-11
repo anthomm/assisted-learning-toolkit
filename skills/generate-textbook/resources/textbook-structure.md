@@ -22,8 +22,7 @@ textbooks/<book>/
   01-<chapter>.md ... # chapters with topics
   coverage.md         # traceability map (see below)
   CHANGELOG.md        # one entry per edition
-  style.css, Makefile # only when a PDF build is wanted; book-local until a second book needs them
-  build/              # generated, never hand-edited
+  build/              # generated PDF/HTML from apps/textbook_pdf, gitignored, never hand-edited
 ```
 
 ## `metadata.yaml`
