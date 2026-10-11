@@ -1,6 +1,6 @@
 ---
 name: mock-exam-authoring
-description: Create and validate mock exam YAMLs that conform to the Study/mock_exams exam schema. Use when authoring, reviewing, or converting mock exams.
+description: Create and validate mock exam YAMLs that conform to the Study/mock_exams exam schema. Use when authoring or reviewing mock exams.
 ---
 
 # Authoring mock exams
@@ -59,6 +59,3 @@ questions:
 > Generate a mock exam on **{TOPIC}** targeting **{AUDIENCE/LEVEL}** with **{N}** questions, as a single YAML document conforming to `skills/mock-exam-authoring/resources/exam.schema.json`. Use these domains and approximate weights: {DOMAINS}. Each question must have 4 options (A-D), a `correct` list, a per-option `explanation` (why right or wrong), and a general `explanation`. Include `topic` ids declared under each domain. Distribute correct answers evenly across A-D. Output only the YAML.
 
 Always run `python3 skills/mock-exam-authoring/resources/validate.py <exam-file>` on generated output before use.
-
-## Converting existing Markdown
-`resources/legacy/legacy_md_to_yaml.py` converted `resources/legacy/AZ-900-mock-exam.md`; it is specific to that file's layout and kept only as a historical reference.
