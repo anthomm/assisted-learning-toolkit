@@ -1,0 +1,65 @@
+title: AZ-104 Microsoft Azure Administrator
+subject: Implementing, managing, and monitoring Microsoft Azure environments
+exam_code: AZ-104
+source:
+  url: https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104
+  retrieved: 2026-10-12
+  as_of: 2026-04-17
+  language: en
+edition: 1
+chapters:
+- id: identities-governance
+  title: Identities and governance
+  weight: 20-25%
+  file: 01-identities-and-governance.md
+  topics:
+  - id: entra-identities
+    title: Microsoft Entra users and groups
+  - id: azure-rbac
+    title: Access to Azure resources with RBAC
+  - id: governance-subscriptions
+    title: Subscriptions, governance, and cost control
+- id: storage
+  title: Storage
+  weight: 15-20%
+  file: 02-storage.md
+  topics:
+  - id: storage-access
+    title: Storage access and network controls
+  - id: storage-accounts
+    title: Storage accounts and data operations
+  - id: files-blobs
+    title: Azure Files and Blob Storage
+- id: compute
+  title: Compute
+  weight: 20-25%
+  file: 03-compute.md
+  topics:
+  - id: arm-bicep
+    title: Resource deployment with ARM and Bicep
+  - id: virtual-machines
+    title: Virtual machines and scale sets
+  - id: containers
+    title: Azure container services
+  - id: app-service
+    title: Azure App Service
+- id: virtual-networking
+  title: Virtual networking
+  weight: 15-20%
+  file: 04-virtual-networking.md
+  topics:
+  - id: virtual-networks
+    title: Virtual networks, subnets, and routing
+  - id: network-security
+    title: Secure access and private connectivity
+  - id: dns-load-balancing
+    title: Name resolution and load balancing
+- id: monitoring-recovery
+  title: Monitoring and recovery
+  weight: 10-15%
+  file: 05-monitoring-and-recovery.md
+  topics:
+  - id: azure-monitor
+    title: Azure Monitor and Network Watcher
+  - id: backup-recovery
+    title: Backup and disaster recovery
