@@ -1,0 +1,1505 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>AZ-900 Microsoft Azure Fundamentals</title><style>@page { size: A4; margin: 22mm 18mm 22mm 18mm;
+  @bottom-right { content: counter(page); font: 9pt "Helvetica Neue", Arial, sans-serif; color: #666; }
+  @bottom-left { font: 9pt "Helvetica Neue", Arial, sans-serif; color: #666; } }
+@page :first { margin: 0; @bottom-right { content: none; } @bottom-left { content: none; } }
+
+html, body { margin: 0; }
+html { font: 10.5pt/1.5 Georgia, "Times New Roman", serif; color: #1c1c1c; }
+body { counter-reset: chapter; }
+h1, h2, h3, h4 { font-family: "Helvetica Neue", Arial, sans-serif; color: #0b3d6e; line-height: 1.25; break-after: avoid; }
+h1 { font-size: 24pt; margin: 0 0 8mm; border-bottom: 2px solid #0b3d6e; padding-bottom: 3mm; }
+h2 { font-size: 16pt; margin: 9mm 0 3mm; counter-increment: topic; }
+h3 { font-size: 12pt; margin: 6mm 0 2mm; color: #1d5a96; }
+h4 { font-size: 10.5pt; margin: 4mm 0 1mm; }
+
+section.chapter, section.front, section.toc { break-before: page; }
+section.chapter { counter-increment: chapter; counter-reset: topic; }
+section.chapter h1::before { content: "Chapter " counter(chapter); display: block; font-size: 11pt; letter-spacing: .08em; text-transform: uppercase; color: #6b7c8f; margin-bottom: 2mm; }
+section.chapter h2::before { content: counter(chapter) "." counter(topic) "  "; color: #6b7c8f; }
+
+section.cover { width: 210mm; height: 297mm; padding: 70mm 25mm 0; background: #0b3d6e; color: #fff; box-sizing: border-box; }
+section.cover .code { font: 600 14pt "Helvetica Neue", Arial, sans-serif; letter-spacing: .15em; color: #9fc5ea; margin: 0; }
+section.cover h1.cover-title { color: #fff; border: 0; font-size: 34pt; margin: 6mm 0; padding: 0; }
+section.cover .facts { font: 12pt "Helvetica Neue", Arial, sans-serif; color: #dbe9f6; }
+section.cover .small { font: 8.5pt "Helvetica Neue", Arial, sans-serif; color: #9fc5ea; margin: 2mm 0; word-break: break-all; }
+
+section.toc ul { list-style: none; padding: 0; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10pt; }
+section.toc li { margin: 1.2mm 0; }
+section.toc li.l1 { font-weight: 600; margin-top: 4mm; font-size: 11pt; }
+section.toc li.l2 { margin-left: 8mm; }
+section.toc a { color: inherit; text-decoration: none; }
+section.toc a::after { content: leader(".") target-counter(attr(href), page); color: #555; font-weight: 400; }
+
+p { margin: 0 0 3mm; orphans: 3; widows: 3; }
+a { color: #1d5a96; }
+ul, ol { padding-left: 6mm; margin: 0 0 3mm; }
+li { margin-bottom: 1.2mm; }
+
+table { border-collapse: collapse; width: 100%; margin: 3mm 0 5mm; font: 9pt/1.35 "Helvetica Neue", Arial, sans-serif; break-inside: avoid; }
+th, td { border: 1px solid #c3ccd6; padding: 1.6mm 2.2mm; vertical-align: top; text-align: left; }
+th { background: #e8f0f8; color: #0b3d6e; }
+tr:nth-child(even) td { background: #f8fafc; }
+
+code { font: 8.6pt Menlo, "Courier New", monospace; background: #eef1f4; padding: .2mm .5mm; border-radius: 1mm; overflow-wrap: anywhere; }
+pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.hl { margin: 3mm 0 5mm; padding: 3mm; background: #f4f6f8; border: 1px solid #d9e0e7; border-left: 3px solid #1d5a96; border-radius: 1mm; break-inside: avoid; }
+pre code, .hl code { background: none; padding: 0; }
+
+blockquote { margin: 3mm 0 5mm; padding: 2.5mm 4mm; background: #fff6e0; border-left: 3px solid #e0a100; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.5pt; break-inside: avoid; }
+blockquote p:last-child { margin-bottom: 0; }
+hr { border: 0; border-top: 1px solid #d0d7de; margin: 6mm 0; }
+pre { line-height: 125%; }
+td.linenos .normal { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.hl .hll { background-color: #ffffcc }
+.hl { background: #f0f0f0; }
+.hl .c { color: #60A0B0; font-style: italic } /* Comment */
+.hl .err { border: 1px solid #F00 } /* Error */
+.hl .k { color: #007020; font-weight: bold } /* Keyword */
+.hl .o { color: #666 } /* Operator */
+.hl .ch { color: #60A0B0; font-style: italic } /* Comment.Hashbang */
+.hl .cm { color: #60A0B0; font-style: italic } /* Comment.Multiline */
+.hl .cp { color: #007020 } /* Comment.Preproc */
+.hl .cpf { color: #60A0B0; font-style: italic } /* Comment.PreprocFile */
+.hl .c1 { color: #60A0B0; font-style: italic } /* Comment.Single */
+.hl .cs { color: #60A0B0; background-color: #FFF0F0 } /* Comment.Special */
+.hl .gd { color: #A00000 } /* Generic.Deleted */
+.hl .ge { font-style: italic } /* Generic.Emph */
+.hl .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.hl .gr { color: #F00 } /* Generic.Error */
+.hl .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.hl .gi { color: #00A000 } /* Generic.Inserted */
+.hl .go { color: #888 } /* Generic.Output */
+.hl .gp { color: #C65D09; font-weight: bold } /* Generic.Prompt */
+.hl .gs { font-weight: bold } /* Generic.Strong */
+.hl .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.hl .gt { color: #04D } /* Generic.Traceback */
+.hl .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.hl .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.hl .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.hl .kp { color: #007020 } /* Keyword.Pseudo */
+.hl .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.hl .kt { color: #902000 } /* Keyword.Type */
+.hl .m { color: #40A070 } /* Literal.Number */
+.hl .s { color: #4070A0 } /* Literal.String */
+.hl .na { color: #4070A0 } /* Name.Attribute */
+.hl .nb { color: #007020 } /* Name.Builtin */
+.hl .nc { color: #0E84B5; font-weight: bold } /* Name.Class */
+.hl .no { color: #60ADD5 } /* Name.Constant */
+.hl .nd { color: #555; font-weight: bold } /* Name.Decorator */
+.hl .ni { color: #D55537; font-weight: bold } /* Name.Entity */
+.hl .ne { color: #007020 } /* Name.Exception */
+.hl .nf { color: #06287E } /* Name.Function */
+.hl .nl { color: #002070; font-weight: bold } /* Name.Label */
+.hl .nn { color: #0E84B5; font-weight: bold } /* Name.Namespace */
+.hl .nt { color: #062873; font-weight: bold } /* Name.Tag */
+.hl .nv { color: #BB60D5 } /* Name.Variable */
+.hl .ow { color: #007020; font-weight: bold } /* Operator.Word */
+.hl .w { color: #BBB } /* Text.Whitespace */
+.hl .mb { color: #40A070 } /* Literal.Number.Bin */
+.hl .mf { color: #40A070 } /* Literal.Number.Float */
+.hl .mh { color: #40A070 } /* Literal.Number.Hex */
+.hl .mi { color: #40A070 } /* Literal.Number.Integer */
+.hl .mo { color: #40A070 } /* Literal.Number.Oct */
+.hl .sa { color: #4070A0 } /* Literal.String.Affix */
+.hl .sb { color: #4070A0 } /* Literal.String.Backtick */
+.hl .sc { color: #4070A0 } /* Literal.String.Char */
+.hl .dl { color: #4070A0 } /* Literal.String.Delimiter */
+.hl .sd { color: #4070A0; font-style: italic } /* Literal.String.Doc */
+.hl .s2 { color: #4070A0 } /* Literal.String.Double */
+.hl .se { color: #4070A0; font-weight: bold } /* Literal.String.Escape */
+.hl .sh { color: #4070A0 } /* Literal.String.Heredoc */
+.hl .si { color: #70A0D0; font-style: italic } /* Literal.String.Interpol */
+.hl .sx { color: #C65D09 } /* Literal.String.Other */
+.hl .sr { color: #235388 } /* Literal.String.Regex */
+.hl .s1 { color: #4070A0 } /* Literal.String.Single */
+.hl .ss { color: #517918 } /* Literal.String.Symbol */
+.hl .bp { color: #007020 } /* Name.Builtin.Pseudo */
+.hl .fm { color: #06287E } /* Name.Function.Magic */
+.hl .vc { color: #BB60D5 } /* Name.Variable.Class */
+.hl .vg { color: #BB60D5 } /* Name.Variable.Global */
+.hl .vi { color: #BB60D5 } /* Name.Variable.Instance */
+.hl .vm { color: #BB60D5 } /* Name.Variable.Magic */
+.hl .il { color: #40A070 } /* Literal.Number.Integer.Long */
+@page { @bottom-left { content: "AZ-900 Microsoft Azure Fundamentals"; } }</style></head><body><section class="cover"><p class="code">AZ-900</p><h1 class="cover-title">AZ-900 Microsoft Azure Fundamentals</h1><p class="facts">Edition 2 · Skills measured as of 2026-07-20</p><p class="small">Source: https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900</p><p class="small">Built 2026-10-13. An independent study aid, not Microsoft material.</p></section><section class="toc"><h1 class="plain">Contents</h1><ul><li class="l1"><a href="#s1">AZ-900: Microsoft Azure Fundamentals</a></li><li class="l2"><a href="#s2">Scope and weights</a></li><li class="l2"><a href="#s3">How to use this book</a></li><li class="l2"><a href="#s4">Edition</a></li><li class="l1"><a href="#s5">1. Cloud concepts (25-30%)</a></li><li class="l2"><a href="#s6">1.1 What cloud computing is</a></li><li class="l2"><a href="#s7">1.2 Why organizations use the cloud</a></li><li class="l2"><a href="#s8">1.3 Cloud service types: IaaS, PaaS, SaaS</a></li><li class="l1"><a href="#s9">2. Azure architecture and services (35-40%)</a></li><li class="l2"><a href="#s10">2.1 Azure&#x27;s physical and organizational structure</a></li><li class="l2"><a href="#s11">2.2 Compute and networking</a></li><li class="l2"><a href="#s12">2.3 Storage and data movement</a></li><li class="l2"><a href="#s13">2.4 Identity, access, and security</a></li><li class="l1"><a href="#s14">3. Azure management and governance (30-35%)</a></li><li class="l2"><a href="#s15">3.1 Costs in Azure</a></li><li class="l2"><a href="#s16">3.2 Governance and compliance</a></li><li class="l2"><a href="#s17">3.3 Managing and deploying resources</a></li><li class="l2"><a href="#s18">3.4 Monitoring and advice</a></li></ul></section><section class="front"><h1 id="s1">AZ-900: Microsoft Azure Fundamentals</h1>
+<p>An original study book for the AZ-900 exam. Content is written in the author's own words from official Microsoft Learn documentation and organized around the intent of the <a href="https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900">Microsoft AZ-900 study guide</a> (skills measured as of July 20, 2026). It is an independent study aid, not Microsoft material.</p>
+<h2 id="s2">Scope and weights</h2>
+<table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th style="text-align:right">Exam weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Cloud concepts</td>
+<td style="text-align:right">25–30%</td>
+</tr>
+<tr>
+<td>2. Azure architecture and services</td>
+<td style="text-align:right">35–40%</td>
+</tr>
+<tr>
+<td>3. Azure management and governance</td>
+<td style="text-align:right">30–35%</td>
+</tr>
+</tbody>
+</table>
+<p>Source record and extraction notes: <a href="CURRICULUM.md">CURRICULUM.md</a>. Outcome-to-section-to-question map: <a href="coverage.md">coverage.md</a>. The map supports review; it is not a guarantee of exhaustive coverage.</p>
+<h2 id="s3">How to use this book</h2>
+<p>Read each topic in order or jump to a gap via the coverage map. Every topic follows the same pattern: learning intent, core concepts, distinctions and limits, a worked scenario, hands-on steps where relevant, exam application, and self-check questions. Then take the matching 100-question mock exam (<code>mock_exams/az_900/</code>) and revisit weak topics, using the <code>objective:</code> tags to find them.</p>
+<p>Azure changes often. Items marked <strong>Verify</strong> are version-sensitive; check the linked Microsoft documentation before relying on them. The guide scopes the exam; it is not a complete course, and enrichment beyond it is noted in the text.</p>
+<h2 id="s4">Edition</h2>
+<p>Edition 2 (2026-10-11), written against the July 20, 2026 skills outline. Content is drafted and not yet human-reviewed.</p>
+</section><section class="chapter"><h1 id="s5">Cloud concepts (25-30%)</h1>
+<p>This chapter introduces cloud computing as a way to access technology capabilities over the internet without owning and operating every part of the underlying infrastructure. It explains how deployment and service models change control, responsibility, and cost, then connects those choices to availability, adaptability, security, and day-to-day operations. The goal is to recognize what the cloud can provide—and what an organization must still design, configure, and manage.</p>
+<h2 id="s6">What cloud computing is</h2>
+<h3>Learning intent</h3>
+<p>Be able to explain cloud computing in plain language, distinguish public, private, and hybrid deployment models, and select a model for a stated need. Understand the shared responsibility model, consumption-based billing, common pricing approaches, and serverless computing as a cloud execution approach.</p>
+<h3>Core concepts</h3>
+<p><strong>Cloud computing (<code>cc-define-cloud</code>).</strong> Cloud computing delivers services such as compute, storage, databases, and networking over the internet. Instead of first buying and installing physical infrastructure, an organization can provision resources from a cloud provider. The defining idea is access to computing capability, not whether an application has a web interface.</p>
+<p><strong>Shared responsibility (<code>cc-shared-responsibility</code>).</strong> A cloud provider and customer divide operational and security duties. The provider operates the physical datacenter and supporting infrastructure; the customer remains accountable for its data, identities, and the parts of the service it controls. The division varies by service type: a virtual machine leaves the customer more to manage than a hosted application.</p>
+<p>The table is a broad orientation, not a substitute for a service's terms or detailed control guidance. “Shared” indicates that both parties have related responsibilities; it does not mean every task is split evenly.</p>
+<table>
+<thead>
+<tr>
+<th>Responsibility area</th>
+<th>On-premises</th>
+<th>IaaS</th>
+<th>PaaS</th>
+<th>SaaS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Customer data, configurations, identities and users</td>
+<td>Customer</td>
+<td>Customer</td>
+<td>Customer</td>
+<td>Customer</td>
+</tr>
+<tr>
+<td>Client devices</td>
+<td>Customer</td>
+<td>Customer</td>
+<td>Customer</td>
+<td>Shared</td>
+</tr>
+<tr>
+<td>Applications</td>
+<td>Customer</td>
+<td>Customer</td>
+<td>Shared</td>
+<td>Shared</td>
+</tr>
+<tr>
+<td>Network controls</td>
+<td>Customer</td>
+<td>Customer</td>
+<td>Shared</td>
+<td>Provider</td>
+</tr>
+<tr>
+<td>Operating system</td>
+<td>Customer</td>
+<td>Customer</td>
+<td>Provider</td>
+<td>Provider</td>
+</tr>
+<tr>
+<td>Physical hosts, physical network, datacenter</td>
+<td>Customer</td>
+<td>Provider</td>
+<td>Provider</td>
+<td>Provider</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cloud models (<code>cc-cloud-models</code>).</strong> A <em>deployment model</em> describes how cloud resources are organized and who can use them; it is different from a service model such as IaaS or SaaS.</p>
+<table>
+<thead>
+<tr>
+<th>Deployment model</th>
+<th>What it means</th>
+<th>Common trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public cloud</td>
+<td>A third-party provider offers cloud resources for use by customers.</td>
+<td>Rapid provisioning and broad provider services, with less direct control of the underlying infrastructure.</td>
+</tr>
+<tr>
+<td>Private cloud</td>
+<td>A cloud environment is dedicated to one organization. It can be hosted on-site or by a third party.</td>
+<td>More control over the environment, while the organization retains more responsibility for infrastructure and operations.</td>
+</tr>
+<tr>
+<td>Hybrid cloud</td>
+<td>Public and private cloud environments are connected and used together.</td>
+<td>Greater flexibility in deciding where workloads and data run, with additional integration and management work.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cloud model use cases (<code>cc-cloud-model-use-cases</code>).</strong> Choose from requirements, not from a claim that one model is universally best. Public cloud can suit a team that needs to provision capacity quickly or avoid purchasing its own datacenter hardware. A private cloud can fit an organization that needs a dedicated environment and is prepared to retain greater infrastructure control and responsibility. A hybrid model can be useful when some workloads need to remain in a private environment while others benefit from public-cloud scale, or when public resources temporarily supplement private capacity. Security, legal obligations, skills, costs, and existing systems all affect the decision.</p>
+<p><strong>Consumption model (<code>cc-consumption-model</code>).</strong> Under a consumption-based approach, a customer pays for measured services it uses rather than purchasing all capacity in advance. Resources can often be added as needs grow and removed when they are no longer needed. This can reduce idle capacity and upfront infrastructure purchases, but “pay for what you use” does not mean cloud services are automatically inexpensive: unused resources, unexpectedly high demand and poor configuration can still create costs. Monitoring and deliberate capacity choices matter.</p>
+<p><strong>Pricing models (<code>cc-pricing-models</code>).</strong> In the AZ-900 comparison, purchasing and maintaining physical infrastructure is commonly presented as capital expenditure (CapEx), while metered cloud services are commonly presented as operational expenditure (OpEx). This is a budgeting distinction, not a promise that every cloud charge is variable. <em>Pay-as-you-go</em> charges follow service consumption. <em>Reservations</em> commit to qualifying usage for a defined term in return for a discount on matching usage; they can suit stable demand but may not fit uncertain or mismatched use. Terms, eligible services, and payment choices vary.</p>
+<blockquote>
+<p><strong>Verify:</strong> Confirm current rates, eligible products, reservation terms, and billing choices in the <a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/pricing-calculator">Azure pricing calculator</a> and current product pricing information before making a purchasing decision. An estimate is not a guaranteed invoice.</p>
+</blockquote>
+<p><strong>Serverless (<code>cc-serverless</code>).</strong> Serverless is a cloud execution approach in which the provider manages the servers and much of the infrastructure operation, while the customer concentrates on application logic. It does not mean that servers do not exist. Azure Functions, for example, supports event-driven code such as responding to a file upload, a scheduled event, or a message. Hosting options and their scaling and billing behavior differ, so do not assume every serverless workload scales identically or is billed only when code runs.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Keep three labels separate: the <strong>deployment model</strong> (public/private/hybrid) describes the environment; the <strong>service model</strong> (IaaS/PaaS/SaaS) describes the stack the provider operates; the <strong>billing model</strong> describes how charges are calculated. A public-cloud customer might use a PaaS database and pay according to measured usage—one label does not determine the others.</p>
+<p>Moving a workload to the cloud does not hand off all security obligations. Customers still protect data, manage access, configure services, and monitor what they control. Provider-managed infrastructure does not make a workload secure by default; the boundary depends on the service and its configuration.</p>
+<blockquote>
+<p><strong>Conflict:</strong> Microsoft's AZ-900 cloud-compute learning unit (dated 2024) describes identity and access as shared for PaaS and SaaS, explaining that the customer manages users, roles, and policies while the provider operates the authentication platform. Microsoft's Shared Responsibility article (dated 2026) lists “identities and users” and access management among customer responsibilities across cloud types. These descriptions use different levels of detail and their broad wording does not align exactly. A useful operational distinction is between operating an identity service and configuring the organization's users, roles, and access controls; verify the responsibility for the specific service and feature rather than treating “shared” as a blanket answer.</p>
+</blockquote>
+<h3>Example or worked scenario</h3>
+<p>A small retailer is preparing a one-week online promotion. It needs additional capacity during the campaign, does not want to purchase servers that may sit idle afterward, and already has an internal policy requiring sensitive finance records to stay in its private environment.</p>
+<p>The retailer could host the campaign site in public cloud, scale it back afterward, and retain the finance workload privately in a hybrid design. PaaS suits developers who want to avoid OS patching; a legacy application requiring OS-level changes may call for IaaS. Consumption-based charges can follow campaign usage, while reservations are better evaluated for steady eligible demand than a short uncertain peak. In each case, the retailer manages its data, identities, and applicable controls.</p>
+<h3>Exam or practical application</h3>
+<p>For a scenario, identify the key requirement: OS control points to IaaS, infrastructure upkeep in a dedicated environment to private cloud, and connected private/public resources to hybrid. For costs, distinguish owned infrastructure from metered services and reservations from pay-as-you-go. For security, identify the service model and specific control.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>A team wants to keep full control of a server operating system while avoiding ownership of physical hosts. Which arrangement best fits?</p>
+<p><strong>Answer:</strong> IaaS in a cloud environment. The provider manages the physical hosts; the customer manages the guest operating system and much of the workload stack.</p>
+</li>
+<li>
+<p>What is the key difference between a private cloud and a hybrid cloud?</p>
+<p><strong>Answer:</strong> A private cloud is dedicated to one organization. A hybrid cloud connects and uses private and public cloud environments together.</p>
+</li>
+<li>
+<p>Does consumption-based billing guarantee that costs will be low?</p>
+<p><strong>Answer:</strong> No. It ties charges to measured use, but waste, unexpected demand, or poor configuration can still make costs high.</p>
+</li>
+<li>
+<p>What does “serverless” mean, and what does it not mean?</p>
+<p><strong>Answer:</strong> The provider manages much of the server infrastructure so the customer can focus on application logic; it does not mean that no servers exist.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/">Describe cloud computing — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/3-what-cloud-compute">What is cloud computing — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/4-describe-shared-responsibility-model">Shared responsibility model (AZ-900 learning unit) — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/5-define-cloud-models">Define cloud models — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/6-describe-consumption-based-model">Describe the consumption-based model — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility">Shared responsibility in the cloud — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/save-compute-costs-reservations">What are Azure Reservations? — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/pricing-calculator">Azure pricing calculator — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview">Azure Functions overview — Microsoft Learn</a></li>
+</ul>
+<h2 id="s7">Why organizations use the cloud</h2>
+<h3>Learning intent</h3>
+<p>Describe how cloud services can help an organization maintain service availability, adjust capacity, plan performance and cost, strengthen security and governance practices, and manage resources more effectively. Understand that these are capabilities to design and use—not automatic outcomes guaranteed by choosing a cloud provider.</p>
+<h3>Core concepts</h3>
+<p><strong>High availability and scalability (<code>cc-ha-scalability</code>).</strong> <em>High availability</em> is the design goal of keeping a service usable when failures or disruptions occur. Availability commitments are service-specific and are described in applicable service-level agreements (SLAs). An SLA is not a substitute for a resilient design: the organization must select suitable services, configure redundancy where available, and plan for recovery.</p>
+<p><em>Scalability</em> is the ability to adjust resources to meet changing demand. <strong>Vertical scaling</strong> changes the capacity of an individual resource—for example, selecting a virtual machine with more compute capacity. <strong>Horizontal scaling</strong> changes the number of resource instances, such as adding or removing application instances. Scaling <em>out</em> adds capacity; scaling <em>in</em> removes it. <em>Elasticity</em> is the ability to adjust capacity as demand rises and falls, often by automating scale actions. Whether a particular resource can scale, how quickly it can do so, and whether the action is automatic depend on the service and its configuration.</p>
+<p><strong>Reliability and predictability (<code>cc-reliability-predictability</code>).</strong> <em>Reliability</em> concerns a workload's ability to recover from failure and continue to provide its intended function. A design may use redundancy or regional distribution, but cloud infrastructure alone does not ensure that an application is reliable; architecture, configuration, and recovery planning matter. <em>Predictability</em> means planning with greater confidence about workload behavior and costs. Performance predictability can benefit from monitoring, load balancing, and autoscaling. Cost predictability can benefit from measuring usage, analyzing trends, setting budgets, and estimating planned deployments. These practices inform decisions; actual demand and charges can differ from estimates.</p>
+<p><strong>Security and governance (<code>cc-security-governance</code>).</strong> Cloud environments provide tools and provider capabilities that organizations can use to apply security and governance controls consistently. For example, templates can standardize deployments, and auditing can help identify resources that do not match an organization's baseline. The customer must still define requirements, assign appropriate access, configure controls, protect data, and respond to findings. Governance is the system of policies and practices used to keep resources aligned with business, security, and compliance requirements; it is not a guarantee that every deployment is compliant.</p>
+<p><strong>Manageability (<code>cc-manageability</code>).</strong> Microsoft Learn distinguishes <em>management of the cloud</em> from <em>management in the cloud</em>. Management <strong>of</strong> the cloud is about operating or automating the resources themselves—for example, scaling based on demand, deploying from templates, monitoring resource health, or setting alerts. Management <strong>in</strong> the cloud is about the tools used to administer cloud resources, such as a web portal, command-line interface, APIs, and PowerShell. These tools can make operations repeatable and visible, but teams still need roles, processes, monitoring, and skills to use them effectively.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Availability, reliability, scalability, and elasticity are related but distinct. A scalable service can still have a single point of failure; replication may improve availability without increasing processing capacity. Reliability includes failure recovery, high availability focuses on maintaining access, and elasticity describes capacity changing with demand.</p>
+<p>Predictability can mean anticipating performance as demand changes or forecasting cost. Scaling can support both, but does not replace monitoring. Autoscaling rules, limits, startup time, and billing effects are service-specific; estimates use assumptions, while bills reflect actual usage and current prices.</p>
+<p>Cloud security is shared: the provider operates underlying facilities and offers security capabilities, while the customer decides who can access data and how workloads are configured. Automation improves consistency only when templates, policies, and alerts reflect the organization's requirements.</p>
+<h3>Example or worked scenario</h3>
+<p>A ticketing company can add application instances horizontally during a popular sale and scale them back afterward. Monitoring and load balancing help the team observe and distribute demand, but it must test startup times, database capacity, and failure recovery. Finance and engineering can compare estimates with usage, standardize deployments with templates, and alert operators to health problems. These practices improve visibility and control but do not eliminate outages or cost surprises.</p>
+<h3>Exam or practical application</h3>
+<p>When asked to classify a cloud benefit, look for the core action in the scenario: keeping a workload operating amid disruptions suggests high availability; recovering and continuing after failure suggests reliability; changing capacity suggests scalability; automatically following demand up and down suggests elasticity. Better estimates of operating expenses are cost predictability; confidence that a workload meets demand is performance predictability. For manageability, ask whether the scenario is automating resource operation (management <strong>of</strong> the cloud) or using a tool or interface to administer resources (management <strong>in</strong> the cloud). Do not interpret “cloud benefit” as “automatic guarantee.”</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>A team adds more identical application instances to handle a traffic spike. Is this vertical or horizontal scaling?</p>
+<p><strong>Answer:</strong> Horizontal scaling; the team is changing the number of instances.</p>
+</li>
+<li>
+<p>How does reliability differ from scalability?</p>
+<p><strong>Answer:</strong> Reliability is about recovering from failure and continuing to function. Scalability is the ability to adjust resources to meet demand.</p>
+</li>
+<li>
+<p>Give one example each of management of the cloud and management in the cloud.</p>
+<p><strong>Answer:</strong> Automatically replacing or scaling resources is management of the cloud. Administering resources through a portal, CLI, API, or PowerShell is management in the cloud.</p>
+</li>
+<li>
+<p>Does using a cloud provider guarantee that an organization meets its security and compliance obligations?</p>
+<p><strong>Answer:</strong> No. Provider capabilities can help, but the customer must configure and operate its controls and meet its own obligations.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/">Describe the benefits of using cloud services — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/2-high-availability-scalability-cloud">High availability and scalability in the cloud — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/3-reliability-predictability-cloud">Reliability and predictability in the cloud — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/4-security-governance-cloud">Security and governance in the cloud — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/5-manageability-cloud">Manageability in the cloud — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/well-architected/">Azure Well-Architected Framework — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management">Overview of Cost Management — Microsoft Learn</a></li>
+</ul>
+<h2 id="s8">Cloud service types: IaaS, PaaS, SaaS</h2>
+<h3>Learning intent</h3>
+<p>Explain Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS); compare the responsibilities they leave with the customer; and match each type to a practical need. The central distinction is how much of the technology stack the provider operates on the customer's behalf.</p>
+<h3>Core concepts</h3>
+<p><strong>Infrastructure as a Service (<code>cc-iaas</code>).</strong> IaaS provides computing infrastructure—such as virtual machines, storage, and networking—as services. The provider operates the physical datacenter, physical hosts, and network infrastructure; the customer has substantial control over and responsibility for the guest operating system, configuration, applications, and data. It offers the most flexibility of the three, with more operational work; it can fit a workload requiring customer control of its OS or configuration.</p>
+<p><strong>Platform as a Service (<code>cc-paas</code>).</strong> PaaS provides a managed platform on which the customer builds, deploys, or runs applications. The provider manages the physical infrastructure and platform components such as the operating system and runtime. The customer focuses more on application code, data, and service configuration. It can fit a team building and deploying an application without maintaining servers or the operating system.</p>
+<p><strong>Software as a Service (<code>cc-saas</code>).</strong> SaaS provides a ready-to-use application operated by the provider. The provider manages most of the application stack and its infrastructure; the customer typically manages its data, users, access choices, and how the application is used. Email, messaging, and productivity applications are common examples. SaaS offers quick access to a complete application, with less infrastructure and software control than IaaS or PaaS.</p>
+<p>The table summarizes the broad pattern; exact responsibility depends on the service and configuration.</p>
+<table>
+<thead>
+<tr>
+<th>Service type</th>
+<th>Provider primarily manages</th>
+<th>Customer primarily manages</th>
+<th>Typical choice when…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IaaS</td>
+<td>Physical facilities, hosts, and underlying network</td>
+<td>Operating system, much of configuration, applications, data, and access</td>
+<td>You need control over the operating system or want to move a customizable workload.</td>
+</tr>
+<tr>
+<td>PaaS</td>
+<td>Infrastructure, operating system, runtime, and managed platform</td>
+<td>Application code, data, and service-level configuration</td>
+<td>You want to build or run an application without operating its platform.</td>
+</tr>
+<tr>
+<td>SaaS</td>
+<td>Infrastructure, platform, and ready-made application</td>
+<td>Data, users, access settings, and appropriate use</td>
+<td>You need a complete application rather than a platform to build on.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Service-type use cases (<code>cc-service-type-use-cases</code>).</strong> Ask what the organization wants to manage. Choose IaaS when retaining lower-level control—especially over the operating system—is important and the team can take on patching and maintenance. Choose PaaS when the priority is developing or deploying applications while delegating infrastructure and platform upkeep. Choose SaaS when the requirement is to use a complete application with minimal infrastructure management. Real solutions can combine service types; a single organization can use SaaS for collaboration, PaaS for a custom application, and IaaS for a legacy workload.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Think of a stack: facilities and hardware, virtualization and networking, operating system and runtime, application, then data and user configuration. Moving from IaaS through PaaS to SaaS generally shifts more operation to the provider and reduces customer infrastructure work, but also reduces customization of provider-managed layers. Customers still have duties in every model.</p>
+<p>IaaS differs from on-premises hosting because the provider operates the physical host and datacenter even while the customer manages a VM's OS. PaaS is distinguished by provider-managed platform components; SaaS is a provider-operated application. Across all three, customers manage data and accounts and must understand applicable access, network, and security controls. SaaS reduces infrastructure work, not identity or data-governance duties; IaaS does not place the physical datacenter under customer control.</p>
+<blockquote>
+<p><strong>Verify:</strong> Individual cloud services may combine features or expose configuration choices that change the practical responsibility boundary. Consult the service's current documentation and responsibility guidance rather than inferring every control solely from the label IaaS, PaaS, or SaaS.</p>
+</blockquote>
+<h3>Example or worked scenario</h3>
+<p>A nonprofit wants to launch a public-facing donation website. Its developers are comfortable maintaining application code but do not want to patch a web server operating system. A PaaS web-hosting service is a plausible fit: the provider operates the underlying platform, while the nonprofit focuses on its application and data. The nonprofit still configures access, protects donor information, and monitors the application.</p>
+<p>An older finance application needing a custom OS component may fit IaaS, while staff email and document collaboration may fit SaaS. The nonprofit can use different service types for different workloads rather than choosing a single label for the organization.</p>
+<h3>Exam or practical application</h3>
+<p>Use the responsibility boundary to classify service types: customer-managed guest OS on a cloud VM indicates IaaS; provider-managed OS/runtime with customer-deployed code indicates PaaS; a provider-operated business application indicates SaaS. Minimal infrastructure work points to SaaS for a complete product or PaaS for a customer's own app. OS control points to IaaS.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>Which service type best fits a development team that wants to deploy its own code but not patch the operating system?</p>
+<p><strong>Answer:</strong> PaaS, because the provider manages the operating system and managed platform while the team focuses on its application.</p>
+</li>
+<li>
+<p>In IaaS, who typically patches and maintains the guest operating system?</p>
+<p><strong>Answer:</strong> The customer. The provider manages the physical infrastructure, but the guest OS is part of the customer-managed workload.</p>
+</li>
+<li>
+<p>A company uses a hosted email product without operating its own mail servers or application. Which service type is this?</p>
+<p><strong>Answer:</strong> SaaS, a ready-to-use application operated by the provider.</p>
+</li>
+<li>
+<p>Does choosing SaaS remove every customer security responsibility?</p>
+<p><strong>Answer:</strong> No. Customers continue to manage their data, identities, users, access settings, and other controls applicable to their use of the service.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/">Describe cloud service types — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/2-describe-infrastructure-service">Describe Infrastructure as a Service — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/3-describe-platform-service">Describe Platform as a Service — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/4-describe-software-service">Describe Software as a Service — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility">Shared responsibility in the cloud — Microsoft Learn</a></li>
+</ul>
+</section><section class="chapter"><h1 id="s9">Azure architecture and services (35-40%)</h1>
+<p>This chapter maps the physical locations, organization, and services that make up Azure to everyday design choices. It introduces compute and networking, storage and migration, and identity and security concepts, emphasizing how to select a service based on a workload rather than memorize product names in isolation. Examples focus on the distinctions that help you explain a design and recognize the appropriate Azure building block.</p>
+<h2 id="s10">Azure's physical and organizational structure</h2>
+<h3>Learning intent</h3>
+<p>Be able to describe where Azure resources run and how Azure organizes them for management. Distinguish regions, region pairs, availability zones, and datacenters; then explain how resources, resource groups, subscriptions, and management groups form a hierarchy. The core practical idea is that physical resilience and management scope are related design concerns, but they are not the same thing: a governance hierarchy does not itself make an application highly available.</p>
+<h3>Core concepts</h3>
+<p><strong>Regions (<code>as-regions</code>).</strong> An Azure region is a geographic area containing one or more datacenters connected through a low-latency network. A region is a deployment location for regional Azure resources; which services, features, and capacities are available varies by region. The region selected for a resource can affect latency to users and other components, data residency, resilience options, and cost. A region name in the portal is a service location choice, not a guarantee that every Azure service is available there.</p>
+<p>Some regions are associated with a second region in a <em>region pair</em>. Some services use the pair for geo-replication or disaster recovery, and Azure may stagger updates or prioritize recovery across the pair. Deployment in one member does not itself replicate an application or automatically fail it over. Many regions are unpaired, and some services offer geo-redundancy independently. Plan application recovery explicitly and verify each service's behavior.</p>
+<p>A <em>geography</em> is a broad market and data-residency area that can contain multiple regions. Specialized or sovereign cloud environments address particular legal, compliance, or operational requirements. A public-cloud region name alone does not establish that a specific legal regime applies; confirm requirements and service availability with current Microsoft documentation and your compliance team.</p>
+<p><strong>Availability zones (<code>as-availability-zones</code>).</strong> In a region that supports them, availability zones are physically separate groupings of one or more datacenters. Each zone has independent power, cooling, and networking, with connectivity designed for low-latency communication across the region. Zones are intended to reduce the chance that a localized datacenter or infrastructure failure affects every copy of a workload. Not every region or Azure service supports zones, and the service may use a different subset or count of zones than the region offers.</p>
+<p>A <em>zonal</em> resource is placed in one selected zone; a <em>zone-redundant</em> resource is distributed or replicated across multiple zones by the service. Zonal placement alone does not protect against failure of that zone: the solution needs instances in other zones and a failover design. Service-managed zone redundancy behavior varies. A resilient web tier can still depend on a single-zone database or network component.</p>
+<p><strong>Datacenters (<code>as-datacenters</code>).</strong> A datacenter is a physical facility that houses computing, networking, and storage hardware. Azure datacenters are operated as part of Microsoft's cloud infrastructure; customers usually consume Azure services rather than select a specific building. Availability zones abstract physical placement into a failure-isolation choice. For a service that does not expose zone controls, consult its reliability documentation instead of assuming that a resource is in one particular datacenter or zone.</p>
+<p><strong>Resources and resource groups (<code>as-resources-rgs</code>).</strong> A <em>resource</em> is a manageable Azure item, such as a virtual machine, virtual network, storage account, database, or web app. A <em>resource group</em> is a logical container for resources commonly managed together. It gives a shared scope for access control, policy, monitoring, tagging, and lifecycle operations. Group resources with a sensible common lifecycle; shared networking, for example, may need a different lifecycle from an application.</p>
+<p>Every resource belongs to a resource group, and resource groups belong to one subscription. The resource group's location stores metadata about the group; the resources within it can be in other regions. Deleting a resource group is a consequential lifecycle action because it can delete resources in the group. Use deliberate naming, access controls, and safeguards before applying bulk operations.</p>
+<p><strong>Subscriptions (<code>as-subscriptions</code>).</strong> An Azure subscription is a management and deployment boundary for Azure resources and is associated with a billing arrangement. It provides a scope for access control, quotas, and governance policies. Organizations often separate subscriptions to reflect environments, teams, business units, or compliance boundaries, but a subscription is not the same thing as a Microsoft Entra directory and should not be confused with a resource group. A tenant can be associated with multiple subscriptions; a subscription trusts one Microsoft Entra tenant at a time for its identity directory context.</p>
+<p>Subscriptions also have service-specific quotas, which may be adjustable or fixed; available capacity varies by region and resource type. A subscription helps organize and govern resources but does not by itself isolate their network traffic. Check service limits before large deployments.</p>
+<p><strong>Management groups (<code>as-management-groups</code>).</strong> Management groups provide a hierarchy above subscriptions for organizing and governing them at scale. Policies and role assignments can be applied at a management-group scope and inherited by descendant scopes, including subscriptions and their resources, subject to the feature and scope involved. This enables central administration without configuring every subscription independently. Subscriptions in one management-group hierarchy must use the same Microsoft Entra tenant.</p>
+<p><strong>Resource hierarchy (<code>as-resource-hierarchy</code>).</strong> The main governance hierarchy is:</p>
+<p><code>Microsoft Entra tenant (directory) → management groups → subscriptions → resource groups → resources</code></p>
+<p>Not every organization needs every optional level. Management groups may contain child management groups or subscriptions; a subscription contains resource groups; a resource group contains resources. Parent-scope policy and role assignments can apply down the tree. A resource group does not contain a subscription, and a management group is not a physical location. This hierarchy supports governance; region and zone placement describe where supported service resources run.</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Primarily helps you organize or control</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Management group</td>
+<td>Multiple subscriptions</td>
+<td>Apply broad policy or access governance across a portfolio</td>
+</tr>
+<tr>
+<td>Subscription</td>
+<td>A deployment, quota, and billing-related scope</td>
+<td>Separate production from development or isolate cost/governance boundaries</td>
+</tr>
+<tr>
+<td>Resource group</td>
+<td>Related resources with a common management lifecycle</td>
+<td>Deploy and manage one application environment</td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>An individual service instance</td>
+<td>Configure a VM, storage account, network, or database</td>
+</tr>
+</tbody>
+</table>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Keep physical placement (region → zones → datacenters) separate from governance (tenant → management groups → subscriptions → resource groups → resources). A resource has a place in both maps. Region pairs do not guarantee application replication or automatic failover; availability zones protect against some zone failures but are not regional disaster recovery. The component that detects failure, replicates data, routes traffic, and restores service depends on the service and architecture.</p>
+<p>Resource Manager is Azure's consistent management layer across portal, CLI, PowerShell, APIs, and SDKs. Resource groups and subscriptions are management scopes; regions and zones are service locations. Region lists, service availability, quotas, and residency rules change, so validate them before deployment.</p>
+<blockquote>
+<p><strong>Verify:</strong> Check the current region list, zone support, restricted-region access, and service reliability guidance.</p>
+</blockquote>
+<h3>Example or worked scenario</h3>
+<p>A retailer separates production and nonproduction into subscriptions. A management group applies a region policy to both; a production scope adds stricter rules. The production subscription has separate resource groups for its ordering app and shared networking. The app uses a supported zone-resilient tier, while the team separately configures and tests database recovery in another region. Scopes govern and organize; they do not perform failover.</p>
+<h3>Hands-on activity</h3>
+<p>In the portal, inspect <strong>Subscriptions</strong>, <strong>Resource groups</strong>, and—if permitted—<strong>Management groups</strong>. Compare a group's location with the regions of its resources; avoid making changes. Use the current Microsoft Learn region list to confirm service and zone availability. Optional read-only CLI: <code>az account show --output table</code> shows the active subscription; <code>az group list --output table</code> lists visible groups.</p>
+<h3>Exam or practical application</h3>
+<p>For location scenarios, identify the requirement: latency, residency, a zone failure, or regional disaster recovery. For governance scenarios, select a scope that applies to the intended subscriptions or resources. Common traps are assuming a region pair automatically deploys a replica, treating a resource-group location as the location of all its resources, or confusing a management group with a physical location.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p><strong>Does deploying a VM in one region of a region pair automatically create a copy in the paired region?</strong><br />
+<strong>Answer:</strong> No. Pairing can support some service-level replication and recovery strategies, but deployment and application failover must be configured and tested.</p>
+</li>
+<li>
+<p><strong>What is the difference between a zonal and a zone-redundant resource?</strong><br />
+<strong>Answer:</strong> A zonal resource is assigned to one selected zone. A zone-redundant resource is distributed or replicated across multiple zones by the service; exact behavior depends on the service.</p>
+</li>
+<li>
+<p><strong>Can a resource group contain resources deployed to different Azure regions?</strong><br />
+<strong>Answer:</strong> Yes. The resource group's own location concerns its metadata; it does not force every resource in the group to use that region.</p>
+</li>
+<li>
+<p><strong>Which scope is above subscriptions and is used to govern several subscriptions together?</strong><br />
+<strong>Answer:</strong> A management group.</p>
+</li>
+<li>
+<p><strong>Put these scopes in parent-to-child order: resource group, management group, resource, subscription.</strong><br />
+<strong>Answer:</strong> Management group → subscription → resource group → resource.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/reliability/regions-paired">Azure regions, region pairs, and nonpaired regions</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/microsoft-sovereign-cloud">What is Microsoft Sovereign Cloud?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/reliability/regions-list">List of Azure regions</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview">What are Azure Availability Zones?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview">What is Azure Resource Manager?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal">Manage resource groups with the Azure portal</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/governance/management-groups/overview">Organize resources with management groups</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits">Azure subscription and service limits, quotas, and constraints</a></li>
+</ul>
+<h2 id="s11">Compute and networking</h2>
+<h3>Learning intent</h3>
+<p>Choose a compute model that matches how much infrastructure control an application needs, and identify the foundational VM resources that make a virtual machine usable. Explain the purpose of common VM availability and scaling options, app-hosting services, virtual networks and subnets, peering, DNS, VPN Gateway, ExpressRoute, and public/private endpoints. Focus on the workload requirement—control, portability, event response, managed operations, connectivity, or exposure—rather than assuming that one service is universally best.</p>
+<h3>Core concepts</h3>
+<p><strong>Compute types (<code>as-compute-types</code>).</strong> Azure offers multiple ways to run software. The level of control generally trades off against the amount of infrastructure the customer must manage.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>What it runs</th>
+<th>Who manages most of the host environment?</th>
+<th>Good fit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Virtual machines</td>
+<td>A guest operating system and software selected by the customer</td>
+<td>Customer manages the OS and installed software; Azure manages physical infrastructure</td>
+<td>Existing software, custom OS or network needs, lift-and-shift workloads</td>
+</tr>
+<tr>
+<td>Containers</td>
+<td>An application packaged with its dependencies in an image</td>
+<td>Depends on the hosting service; a managed container platform can abstract hosts and orchestration</td>
+<td>Portable services, microservices, repeatable packaging</td>
+</tr>
+<tr>
+<td>Functions</td>
+<td>Small units of code activated by triggers or events</td>
+<td>Azure manages the execution infrastructure according to the selected hosting plan</td>
+<td>Event-driven tasks, scheduled work, or small APIs</td>
+</tr>
+</tbody>
+</table>
+<p>A VM is a virtual computer with a guest operating system. It provides broad control but still requires maintenance such as patching, configuration, and software management. Containers package an app and its dependencies, but containers are not themselves a complete hosting service: choose a platform that runs and scales them. Functions let a developer focus on event-triggered code, while the platform handles much of the hosting and scaling work. “Serverless” means the customer does not manage the underlying servers in the same way; it does not mean that servers do not exist or that an application has no configuration, costs, or operational responsibilities.</p>
+<p><strong>VM options (<code>as-vm-options</code>).</strong> A standalone VM is suited to a workload needing a particular machine configuration. A <em>Virtual Machine Scale Set</em> manages a group of VMs and can scale the instance count based on demand or a schedule; load balancing and distribution features support applications that run across instances. An <em>availability set</em> logically distributes VMs across fault and update domains to reduce correlated maintenance or infrastructure failures, especially in regions without zones. Where supported and appropriate, Microsoft recommends considering scale sets with flexible orchestration for broad high-availability and scale capabilities; availability sets remain a distinct pattern. Neither an availability set nor a scale set guarantees application-level resilience if the application or data tier is a single point of failure.</p>
+<p><em>Azure Virtual Desktop</em> is a desktop and app virtualization service, not just a general-purpose application web-hosting option. It delivers Windows desktops or individual RemoteApps to users from host pools, including pooled or personal desktop approaches. It is useful when users need centrally managed remote desktops or published applications. It has its own service configuration, identity, networking, and VM cost considerations.</p>
+<p><strong>VM resources (<code>as-vm-resources</code>).</strong> A VM typically relies on a virtual network, a network interface attached to that network, an operating-system disk, and often one or more data disks. It can also use private and/or public IP addressing, network security groups (NSGs), monitoring, and identity or access configuration. A VM size determines a supported combination of compute, memory, and networking capacity; available sizes and features vary by region and workload. The OS image supplies the operating system, and credentials or keys are needed for administrative access. Consider data-disk separation where it suits the workload, and select a disk type and size for its performance and durability requirements. Each associated resource can have separate pricing or limits.</p>
+<p><strong>App hosting (<code>as-app-hosting</code>).</strong> Common choices include Azure App Service, container hosting, and VMs. App Service is a managed platform for web applications, mobile back ends, and REST APIs. It supports multiple language runtimes and custom containers while abstracting much of the server administration. Azure Container Apps is a managed platform for containerized applications, including APIs, microservices, jobs, and event-driven workloads, with platform features for ingress and scaling. Azure Kubernetes Service (AKS) offers managed Kubernetes when the application needs Kubernetes APIs and orchestration control; it is not identical to a platform that hides Kubernetes details. VMs offer the greatest control but require the most guest-OS operations. Azure Functions is a separate event-driven/serverless compute choice, even though functions can also run on some container platforms.</p>
+<table>
+<thead>
+<tr>
+<th>Hosting choice</th>
+<th>Control and management emphasis</th>
+<th>Typical scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App Service</td>
+<td>Managed web-app platform; less host management</td>
+<td>Web app or REST API using a supported runtime</td>
+</tr>
+<tr>
+<td>Container Apps</td>
+<td>Managed container platform with scaling and application-focused features</td>
+<td>Containerized API, microservice, background job</td>
+</tr>
+<tr>
+<td>AKS</td>
+<td>Managed Kubernetes control plane; customer works with Kubernetes concepts</td>
+<td>Kubernetes orchestration, portability or fine-grained cluster requirements</td>
+</tr>
+<tr>
+<td>Virtual machines</td>
+<td>Customer controls guest OS and software</td>
+<td>Legacy or specialized software requiring machine-level control</td>
+</tr>
+<tr>
+<td>Functions</td>
+<td>Event-driven code with triggers and bindings</td>
+<td>React to queue, timer, HTTP, or other supported events</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Virtual networks, subnets, and peering (<code>as-vnet-subnets-peering</code>).</strong> An Azure Virtual Network (VNet) is a logically isolated network boundary for Azure resources. It has an address space defined with IP address ranges and can be segmented into <em>subnets</em>. Subnets group resources and support traffic controls or service-specific configuration; they are not necessarily separate VNets. Address ranges must be planned to avoid overlap with connected networks, especially when peering or hybrid connectivity is planned.</p>
+<p>VNet peering connects two VNets over Microsoft's network so their resources can communicate using private IP addresses, subject to routes, security rules, and peering settings. Local peering links VNets in the same region; global peering connects across regions. Peering is not the same as merging subscription ownership or removing the need for network security. VNet peering is not transitive by default: if VNet A peers with B and B peers with C, that alone does not mean A can reach C. Centralized transit requires an appropriate hub-and-spoke or other routing design.</p>
+<p><strong>DNS, VPN Gateway, and ExpressRoute (<code>as-dns-vpn-expressroute</code>).</strong> DNS translates names into IP addresses. Azure DNS provides public DNS hosting and private DNS zones for name resolution in virtual networks; Azure DNS Private Resolver can support resolution between Azure private zones and on-premises DNS environments without operating DNS VMs. DNS resolves names; it does not itself create a network route or grant access.</p>
+<p>Azure VPN Gateway connects VNets or connects an Azure VNet with an on-premises network using encrypted VPN tunnels. Common patterns include site-to-site connections for network-to-network, point-to-site connections for individual remote clients, and VNet-to-VNet connections. These VPN connections use the public internet as transport for encrypted tunnels in common hybrid setups. ExpressRoute extends an on-premises network to Microsoft cloud through a connectivity provider and a private connection that does not traverse the public internet. It can offer more consistent network characteristics for eligible use cases, but it requires connectivity-provider arrangements and appropriate circuit and routing design. Neither VPN nor ExpressRoute automatically configures the application’s DNS, routes, or security rules.</p>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Typical service</th>
+<th>Key distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Publish and resolve public DNS records</td>
+<td>Azure Public DNS</td>
+<td>DNS hosting for internet-facing domains</td>
+</tr>
+<tr>
+<td>Resolve private names within connected VNets</td>
+<td>Azure Private DNS</td>
+<td>Private zone and VNet-link configuration</td>
+</tr>
+<tr>
+<td>Encrypted connection over internet</td>
+<td>VPN Gateway</td>
+<td>Tunnel-based connectivity; site-to-site or point-to-site patterns</td>
+</tr>
+<tr>
+<td>Provider-backed private connectivity</td>
+<td>ExpressRoute</td>
+<td>Private connection to Microsoft cloud, not a VPN tunnel over the public internet</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Public and private endpoints (<code>as-endpoints</code>).</strong> A <em>public endpoint</em> is reachable through a public IP address and the public network path, subject to the service's authentication and network controls. A <em>private endpoint</em> is a network interface with a private IP address from a VNet subnet, connected through Azure Private Link to a supported service. It lets a client reach that service through a private IP path. Private endpoints require correct DNS configuration for clients to resolve the service name to the intended private address, and the service owner may need to approve the connection.</p>
+<p>Don't confuse private endpoints with <em>service endpoints</em>. A service endpoint extends VNet identity and routes traffic to a supported Azure service over the Azure backbone, while the service continues to use its service endpoint address; a private endpoint places a private IP network interface into your VNet for the service connection. Microsoft recommends Private Link/private endpoints for many private access scenarios, but the correct option depends on architecture and service support. A private endpoint does not by itself disable every public path to the service; configure the service's network access controls as required.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Choose compute by balancing control with managed operations. VMs allow guest-OS control but require patching and configuration; App Service reduces server management for supported web workloads; managed container platforms fit containerized apps; Functions fit event-triggered code. These are guidelines, not rigid rules. High availability and autoscaling differ: scaling changes instance count, while resilience depends on fault isolation, application behavior, data replication, and traffic distribution. Availability-set, scale-set, and zone capabilities vary by service and region.</p>
+<p>For networking, distinguish DNS name resolution, routing, traffic filtering, and connectivity. A DNS record is not a route; a VNet or private endpoint does not grant authorization. Peering is not transitive by default. A private endpoint requires appropriate DNS and service network controls.</p>
+<blockquote>
+<p><strong>Verify:</strong> VM sizes, zones, and supported endpoint services change; check current service guidance.</p>
+</blockquote>
+<blockquote>
+<p><strong>Conflict:</strong> The Azure Virtual Desktop overview says the classic service retires on September 30, 2026, but that date has passed as of October 11, 2026 and the page does not confirm the post-retirement state. Verify current lifecycle and migration guidance before relying on classic resources.</p>
+</blockquote>
+<h3>Example or worked scenario</h3>
+<p>A retailer initially moves a legacy Windows app to VMs because it needs OS control. VMs sit in a VNet with separate application and database subnets and narrowly scoped NSG rules. The modernized public API later moves to App Service or a managed container platform; a file-upload process may use Functions. Branch offices connect through VPN Gateway, while ExpressRoute is evaluated for a private provider connection. Each component is matched to its own needs.</p>
+<h3>Hands-on activity</h3>
+<p>In the portal, inspect a VNet's address space, subnets, peerings, and DNS settings, then inspect a VM's size, NIC, disks, and IP configuration (read-only). Optional CLI: <code>az network vnet list --output table</code> and <code>az vm list-sizes --location &lt;region&gt; --output table</code> list visible VNets and available VM sizes. For a lab, use a disposable subscription and remove resources when finished.</p>
+<h3>Exam or practical application</h3>
+<p>Match workload clues: guest OS control → VM; managed web app → App Service; containerized app without Kubernetes control requirements → Container Apps; Kubernetes API → AKS; event trigger → Functions. For networking, decide whether the problem is name resolution, VNet connectivity, encrypted hybrid access, private cloud-service access, or public exposure. VM basics include a VM, network interface/VNet, OS disk, and commonly optional data disks and security controls.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p><strong>Which compute option gives you the most control over the guest operating system?</strong><br />
+<strong>Answer:</strong> An Azure virtual machine; the customer still has to configure and maintain its guest OS and software.</p>
+</li>
+<li>
+<p><strong>When might you choose Azure Functions rather than a VM?</strong><br />
+<strong>Answer:</strong> For code that responds to events or triggers, such as a scheduled task or file-upload processing, when a serverless execution model fits.</p>
+</li>
+<li>
+<p><strong>Does peering VNet A to B and B to C automatically provide transitive connectivity from A to C?</strong><br />
+<strong>Answer:</strong> No. Peering is not transitive by default; a suitable routing or transit design is needed.</p>
+</li>
+<li>
+<p><strong>How does a private endpoint differ from a public endpoint?</strong><br />
+<strong>Answer:</strong> A private endpoint uses a private IP address in a VNet to connect to a supported service through Private Link. A public endpoint is addressed through a public network endpoint, with access governed by service controls.</p>
+</li>
+<li>
+<p><strong>Which service is commonly used for a private connectivity-provider circuit between an on-premises network and Microsoft cloud?</strong><br />
+<strong>Answer:</strong> ExpressRoute. A VPN Gateway instead establishes encrypted VPN tunnels, commonly over the public internet for hybrid connectivity.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree">Choose an Azure compute service</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/overview">Overview of virtual machines in Azure</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview">Azure Virtual Machine Scale Sets overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview">Availability sets overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-desktop/overview">What is Azure Virtual Desktop?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/overview">Overview of Azure App Service</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/container-apps/overview">Azure Container Apps overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview">Azure Functions overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview">What is Azure Virtual Network?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview">Azure Virtual Network peering</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/dns/dns-overview">Azure DNS overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways">About Azure VPN Gateway</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction">Azure ExpressRoute overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview">What is a private endpoint?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview">Azure virtual network service endpoints</a></li>
+</ul>
+<h2 id="s12">Storage and data movement</h2>
+<h3>Learning intent</h3>
+<p>Match a data workload to the right Azure Storage service, access tier, redundancy pattern, account type, and data-movement tool. Understand that these are separate choices: the service describes how an application works with the data; the tier expresses access economics for supported blob data; redundancy describes the copies and failure domains; and an account type governs supported services and performance characteristics. For moving data, distinguish network copy utilities, file synchronization, migration planning, and offline bulk transfer.</p>
+<h3>Core concepts</h3>
+<p><strong>Azure Storage services (<code>as-storage-services</code>).</strong> Azure Storage groups several managed storage services behind storage accounts, while VM disks and some specialized services have their own resource models. Select the service based on the data shape and access pattern.</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Data model and common purpose</th>
+<th>Typical clue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blob Storage</td>
+<td>Object storage for unstructured text and binary data; supports data-lake capabilities</td>
+<td>Images, backups, logs, documents, analytics data</td>
+</tr>
+<tr>
+<td>Azure Files</td>
+<td>Managed file shares accessible through SMB and, for supported configurations, NFS</td>
+<td>Shared folder or application expects a file-system share</td>
+</tr>
+<tr>
+<td>Queue Storage</td>
+<td>Messages that decouple application components or hold asynchronous work</td>
+<td>A worker needs to process a backlog independently</td>
+</tr>
+<tr>
+<td>Table Storage</td>
+<td>Schemaless NoSQL key/attribute data</td>
+<td>Simple structured entities without a relational database requirement</td>
+</tr>
+<tr>
+<td>Managed disks</td>
+<td>Block storage volumes for Azure VMs</td>
+<td>OS or data disk attached to a VM</td>
+</tr>
+</tbody>
+</table>
+<p>Blob Storage stores objects in containers and is not a conventional mounted file share. Azure Files provides shared file-system semantics and can be mounted by clients. Queue Storage is a message store, not a general document database. Table Storage is a NoSQL option, not a relational SQL database. Managed disks are block-level storage used with VMs and are managed by Azure; they are distinct from blobs even though Azure Storage as a platform also offers Blob Storage. Some closely related services (such as Azure Elastic SAN and Azure NetApp Files) serve more specialized storage needs.</p>
+<p><strong>Storage access tiers (<code>as-storage-tiers</code>).</strong> Access tiers help tune Blob Storage costs according to access frequency and latency expectations. The Hot tier is for data read or changed frequently; it typically has higher storage cost and lower access cost. Cool is for infrequent access with an online, immediately available retrieval model, and Cold is for rarer access while still online. Archive is an offline tier for rarely accessed data where retrieval latency of hours can be acceptable; data generally must be rehydrated before normal online reads. Moving data between tiers, early deletion, retrieval, and transaction costs can affect total cost, so compare the full workload rather than storage price alone.</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Access pattern</th>
+<th>Online availability</th>
+<th>Cost trade-off and planning point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>Frequent access or active data</td>
+<td>Yes</td>
+<td>Higher storage cost, lower access costs</td>
+</tr>
+<tr>
+<td>Cool</td>
+<td>Infrequent access</td>
+<td>Yes</td>
+<td>Lower storage and higher access costs; minimum-retention rules apply</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>Rare access, but fast retrieval is still required</td>
+<td>Yes</td>
+<td>Lower storage than cool, higher access costs; minimum-retention rules apply</td>
+</tr>
+<tr>
+<td>Archive</td>
+<td>Very infrequent access and flexible retrieval time</td>
+<td>No (offline)</td>
+<td>Lowest-cost storage tier among these in many comparisons; rehydration and retention conditions matter</td>
+</tr>
+<tr>
+<td>Smart tier</td>
+<td>Data's hot/cool/cold usage pattern is managed automatically where supported</td>
+<td>Tier dependent</td>
+<td>Platform-selected movement can simplify optimization; verify availability and costs</td>
+</tr>
+</tbody>
+</table>
+<p>Tier availability and supported blob types depend on account and feature configuration. Archive is not interchangeable with cool/cold: the online tiers are immediately accessible, whereas archived data needs a rehydration step. Access tiers are a Blob Storage data-management choice, not a replacement for choosing an account redundancy option.</p>
+<blockquote>
+<p><strong>Verify:</strong> The current Microsoft Learn tier page includes Hot, Cool, Cold, Archive, and Smart tier terminology; availability, supported account types, retrieval behavior, and exam-guide emphasis can change, so check the current page and service region before using newer tier names in a design.</p>
+</blockquote>
+<p><strong>Storage redundancy (<code>as-storage-redundancy</code>).</strong> Azure Storage maintains copies of data for durability and availability, with selectable redundancy options. The key dimensions are whether copies stay within one datacenter or span zones in the primary region, whether data is replicated to a secondary region, and whether reads from that secondary region are available before failover.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Replication pattern</th>
+<th>Main protection</th>
+<th>Secondary-region read access?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LRS (locally redundant storage)</td>
+<td>Multiple copies in one physical datacenter in the primary region</td>
+<td>Some local hardware failures</td>
+<td>No secondary region</td>
+</tr>
+<tr>
+<td>ZRS (zone-redundant storage)</td>
+<td>Synchronous copies across availability zones in the primary region</td>
+<td>A failure affecting one zone</td>
+<td>No secondary region</td>
+</tr>
+<tr>
+<td>GRS (geo-redundant storage)</td>
+<td>LRS in primary region plus asynchronous replication to a secondary region</td>
+<td>Regional disaster, after/with failover behavior</td>
+<td>Not by default before failover</td>
+</tr>
+<tr>
+<td>RA-GRS (read-access geo-redundant storage)</td>
+<td>GRS replication plus read access to the secondary region</td>
+<td>Regional disaster with secondary reads available</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>GZRS (geo-zone-redundant storage)</td>
+<td>ZRS in primary region plus asynchronous replication to a secondary region</td>
+<td>Zone failure in primary and regional disaster</td>
+<td>Not by default before failover</td>
+</tr>
+<tr>
+<td>RA-GZRS</td>
+<td>GZRS plus read access to the secondary region</td>
+<td>Zone and regional failure with secondary reads</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>LRS is generally the lowest-cost option and protects against local hardware failures but not the loss of the datacenter. ZRS spans zones within the primary region and supports continued service through some zone failures. GRS and GZRS add asynchronous replication to another region; an outage may mean the secondary copy is behind the primary. The <code>RA-</code> variants allow read access to the secondary region even when it has not become primary. Exact supported options vary by storage type, region, and account kind.</p>
+<p>Redundancy is not backup. If an application or user deletes or overwrites data, those changes can be replicated to other copies. Use suitable backup, versioning, soft-delete, or recovery arrangements for accidental deletion and logical corruption. For regional disaster recovery, plan how to redirect application traffic and verify service-specific failover; replication by itself does not switch every dependent component to the secondary region.</p>
+<p><strong>Storage account types (<code>as-storage-account-types</code>).</strong> A storage account provides a namespace and shared configuration for storage resources such as blobs, files, queues, and tables. Standard general-purpose v2 is the recommended account type for many common scenarios because it supports these core services. Premium accounts are specialized for particular performance and storage models, including block blobs, file shares, or page blobs; they do not necessarily support every service available in general-purpose v2. The account type affects the supported redundancy choices and pricing. Choose it from workload needs and validate the feature matrix before deployment.</p>
+<p>An account-level redundancy setting applies across storage services in that account. If different data needs different resilience or performance settings, separate accounts may be appropriate. Some storage account properties and types cannot simply be switched in place; migrating data may require creating a new account and copying data.</p>
+<blockquote>
+<p><strong>Verify:</strong> Do not rely on remembered account labels or assume that premium, legacy, and general-purpose offerings have identical feature support; consult the current account-type comparison before creating an account.</p>
+</blockquote>
+<p><strong>File movement tools (<code>as-file-movement</code>).</strong> Choose a transfer method based on dataset size, network capacity, direction, and whether the activity is a one-time copy or ongoing synchronization.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Best suited to</th>
+<th>How to think about it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AzCopy</td>
+<td>Scriptable command-line copy or synchronization to, from, and between supported Azure Storage locations</td>
+<td>Useful for controlled transfers and automation over a network</td>
+</tr>
+<tr>
+<td>Azure Storage Explorer</td>
+<td>Graphical browsing and management of supported storage resources</td>
+<td>Useful for interactive upload, download, and inspection; it is a client tool, not a migration planning service</td>
+</tr>
+<tr>
+<td>Azure File Sync</td>
+<td>Keeping Windows Server file caches synchronized with a central Azure file share</td>
+<td>Hybrid file-server solution; can tier infrequently used data to the cloud</td>
+</tr>
+<tr>
+<td>Azure Storage Mover</td>
+<td>Managed high-scale file migration to Azure Storage</td>
+<td>Designed to orchestrate, monitor, and scale transfers for supported scenarios</td>
+</tr>
+</tbody>
+</table>
+<p>AzCopy transfers data; Storage Explorer gives an interactive graphical interface; File Sync keeps file shares coordinated between servers and Azure Files. They solve related but different problems. File Sync is not a general-purpose migration inventory service and does not synchronize arbitrary Blob containers like a file share. Check identity, permissions, network reachability, and supported source and target types before a transfer.</p>
+<p><strong>Migration options (<code>as-migration-options</code>).</strong> Azure Migrate helps discover and assess workloads, build a migration plan, and coordinate migration using tools for servers, databases, web apps, and other workloads. It supports migration and modernization pathways; it is not the same product as a file-copy command. Azure Data Box addresses large offline data transfers: Microsoft ships a secure device to the customer, data is copied locally, and the device is returned for upload or export processing. It is helpful when network bandwidth is limited or a dataset is too large for practical online transfer. The specific device models, capacity, availability, and order process change over time.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Choose storage first by data shape, then access pattern, redundancy, and transfer method. Blob is object storage; Files is a shared file system; Queue stores messages; Table stores NoSQL entities; managed disks provide VM block volumes. For supported blobs, tiers balance storage charges against retrieval, transaction, and latency costs. Archive is offline, unlike online Hot, Cool, and Cold.</p>
+<p>Redundancy is not backup: replicated deletions or overwrites can affect copies. Zone replication addresses failures within a primary region; geo-replication adds an asynchronous secondary copy, and application failover still needs planning. Account-type, service, tier, and redundancy compatibility varies. Azure Migrate assesses and coordinates workload migration; Data Box transfers bulk data offline; AzCopy copies data; File Sync maintains hybrid file shares.</p>
+<blockquote>
+<p><strong>Verify:</strong> Check current tiers, account-type support, regional availability, pricing, and Data Box device lifecycle.</p>
+</blockquote>
+<h3>Example or worked scenario</h3>
+<p>A media company stores video objects in Blob Storage, shared production folders in Azure Files, processing messages in Queue Storage, and VM disks as managed disks. Hot data moves to cooler online tiers when reads decline; only material that can tolerate offline retrieval is considered for Archive. File Sync keeps office caches connected to an Azure file share. For resilience, the company selects zone or geo-redundancy based on the failure it must survive and separately protects against deletion. Data Box may support an initial bulk import; File Sync or AzCopy serves different follow-on needs.</p>
+<h3>Hands-on activity</h3>
+<p>Inspect a test or authorized storage account in the portal. Record its account type, region, redundancy, and network controls; then inspect the access tier of a test blob. Do not modify production settings. Optional read-only CLI: <code>az storage account list --output table</code> and <code>az storage account show --name &lt;account-name&gt; --resource-group &lt;resource-group&gt; --output json</code>. Use a test container and approved identity for any transfer.</p>
+<h3>Exam or practical application</h3>
+<p>Select by data model: shared folder → Azure Files; unstructured object → Blob; asynchronous message → Queue; NoSQL key/attribute data → Table; VM volume → managed disk. Frequent blob access suggests Hot; immediate but infrequent access suggests Cool or Cold; offline flexible-latency data may suit Archive. LRS stays in one datacenter, ZRS spans zones, GRS/GZRS add a secondary region, and RA variants add secondary read access. Distinguish replication from backup.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p><strong>Which service fits an application that needs a shared file share mounted by multiple clients?</strong><br />
+<strong>Answer:</strong> Azure Files, using a supported protocol such as SMB or NFS for the scenario.</p>
+</li>
+<li>
+<p><strong>Is Archive an online Blob access tier for immediate retrieval?</strong><br />
+<strong>Answer:</strong> No. Archive is offline; data must be rehydrated before normal online access.</p>
+</li>
+<li>
+<p><strong>What is the key difference between ZRS and GZRS?</strong><br />
+<strong>Answer:</strong> ZRS copies data across availability zones in the primary region. GZRS combines zone redundancy in the primary region with asynchronous replication to a secondary region.</p>
+</li>
+<li>
+<p><strong>Which option adds read access to a geo-replicated secondary region?</strong><br />
+<strong>Answer:</strong> The read-access variants, RA-GRS or RA-GZRS.</p>
+</li>
+<li>
+<p><strong>A company needs continuous synchronization between Windows file servers and a central Azure file share. Which tool is designed for this?</strong><br />
+<strong>Answer:</strong> Azure File Sync.</p>
+</li>
+<li>
+<p><strong>Which product helps plan and assess workload migration, and which option physically ships bulk data?</strong><br />
+<strong>Answer:</strong> Azure Migrate helps assess and plan workload migration; Azure Data Box uses a shipped device for offline bulk transfer.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction">Introduction to Azure Storage</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview">Storage account overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy">Data redundancy in Azure Storage</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview">Access tiers for blob data</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction">What is Azure Files?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction">Introduction to Azure Queue Storage</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview">Introduction to Table storage</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview">Overview of Azure Disk Storage</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10">Copy or move data by using AzCopy v10</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-introduction">What is Azure File Sync?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview">About Azure Migrate</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/databox/data-box-overview">Microsoft Azure Data Box overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage-mover/service-overview">Introduction to Azure Storage Mover</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer">Get started with Storage Explorer</a></li>
+</ul>
+<h2 id="s13">Identity, access, and security</h2>
+<h3>Learning intent</h3>
+<p>Explain how Microsoft Entra ID and Microsoft Entra Domain Services support different identity needs; distinguish authentication from authorization; recognize single sign-on (SSO), multifactor authentication (MFA), and passwordless methods; and describe external identities, Conditional Access, Azure RBAC, Zero Trust, defense in depth, and Microsoft Defender for Cloud. The key is to layer controls: verify identities, grant only the necessary permissions, evaluate context, protect workloads and data, and monitor for risk.</p>
+<h3>Core concepts</h3>
+<p><strong>Directory services (<code>as-directory-services</code>).</strong> Microsoft Entra ID is Microsoft's cloud identity and access management service for users, groups, applications, devices, and resources. An organization uses a Microsoft Entra tenant (directory) to manage identity objects and access policies. Azure subscriptions use a directory as their identity context, while Azure RBAC controls authorization to Azure resource scopes. Microsoft Entra ID is not simply a cloud-hosted Windows domain controller; modern cloud sign-in and access management are its primary role.</p>
+<p>Microsoft Entra Domain Services is a managed domain service for applications that still need traditional Active Directory Domain Services (AD DS) protocols and features such as domain join, Group Policy, LDAP, and Kerberos/NTLM. It reduces the need to deploy and maintain domain controllers for supported legacy workloads. It integrates with Microsoft Entra ID, which acts as the source of authority for identities, but it is not a replacement for every AD DS deployment or for Microsoft Entra ID's modern cloud identity functions.</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Main purpose</th>
+<th>Typical fit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Microsoft Entra ID</td>
+<td>Cloud identity, sign-in, authentication, and access-policy foundation</td>
+<td>Users and apps accessing cloud and integrated services</td>
+</tr>
+<tr>
+<td>Microsoft Entra Domain Services</td>
+<td>Managed domain protocols and legacy AD-compatible capabilities</td>
+<td>Cloud workloads dependent on LDAP, Kerberos/NTLM, domain join, or Group Policy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Authentication methods (<code>as-authentication-methods</code>).</strong> Authentication answers “Who are you?”; authorization answers “What are you allowed to do?” Microsoft Entra ID supports passwords, authenticator-based sign-in, passkeys, certificate-based methods, and other methods, subject to configuration and service capability. The exact authentication method available for first factor, MFA, self-service password reset, or recovery varies; consult the current method matrix rather than assuming every method can be used for every purpose.</p>
+<p><em>Single sign-on (SSO)</em> allows a user to authenticate once and then access multiple applications without re-entering credentials for each app, subject to the applications' sign-in sessions and policies. SSO improves user experience and can reduce password prompts, but it does not remove the need to secure the sign-in session or control authorization to each resource.</p>
+<p><em>MFA</em> requires more than one verification factor in a sign-in. Factors are commonly described as something you know, have, or are. A password plus a second proof can make stolen passwords less sufficient on their own; however, not all MFA methods offer the same phishing resistance. Passwordless authentication lets a user sign in without a conventional password, using supported methods such as passkeys or authenticator mechanisms. A passwordless method can also satisfy strong authentication requirements depending on configuration. Avoid equating “passwordless” with “no authentication” or treating every method as equally resistant to phishing.</p>
+<table>
+<thead>
+<tr>
+<th>Method or concept</th>
+<th>What it means</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSO</td>
+<td>One authenticated session can be used across integrated apps</td>
+<td>Reduces repeated sign-in prompts; app access still follows policy</td>
+</tr>
+<tr>
+<td>MFA</td>
+<td>More than one proof is required</td>
+<td>Reduces reliance on a password alone</td>
+</tr>
+<tr>
+<td>Passwordless</td>
+<td>Sign-in without entering a conventional password</td>
+<td>Can improve usability and reduce password-related risk; method security varies</td>
+</tr>
+</tbody>
+</table>
+<p><strong>External identities (<code>as-external-identities</code>).</strong> Microsoft Entra External ID supports secure access for people outside an organization. For business-to-business (B2B) collaboration, a partner or guest can use an external identity to collaborate in the organization's workforce tenant, with access limited to what is granted. For customer identity and access management (CIAM), an organization can use an external-tenant configuration to manage consumer or business-customer sign-up and sign-in experiences separately from its workforce directory. The distinction is audience and tenant purpose: workforce collaboration with invited partners is not the same scenario as customer sign-in to a public-facing application.</p>
+<p>External users should receive only the permissions needed for the collaboration or application. Invitation, federation, self-service registration, authentication method, terms, and lifecycle settings depend on the configuration. A guest identity is not automatically an administrator or a trusted user for all resources.</p>
+<p><strong>Conditional Access (<code>as-conditional-access</code>).</strong> Microsoft Entra Conditional Access is a policy engine that evaluates signals and applies access controls after first-factor authentication. Policies can consider the user or group, application, device, location, and risk signals, then require an action such as MFA, require a compliant device, or block access. It is often expressed as an “if this context, then that control” rule. For example, require MFA when an employee accesses a sensitive application from an unfamiliar context.</p>
+<p>Conditional Access is not a replacement for authentication or a firewall, and it is not intended as the first-line defense against every type of attack. Policies need to be tested carefully to avoid unintended lockouts, and exclusions should be narrow and monitored. Licensing and feature availability affect which signals and controls are available.</p>
+<p><strong>Azure role-based access control (<code>as-rbac</code>).</strong> Azure RBAC is Azure Resource Manager's authorization system for managing access to Azure resources. A role assignment combines three parts: a <em>security principal</em> (user, group, service principal, or managed identity), a <em>role definition</em> (the allowed actions), and a <em>scope</em> (where those permissions apply). Azure built-in roles include broad roles such as Owner and narrower roles such as Reader or service-specific contributor roles; custom roles can be created when built-ins do not meet a need.</p>
+<p>Common scopes are management group, subscription, resource group, and individual resource. A role assignment at a parent scope can be inherited by descendant resources. Use the narrowest practical scope and least-privilege role. Azure RBAC is not the same as Microsoft Entra directory roles: RBAC governs Azure resource access; directory roles administer identity and tenant functions. A user can authenticate successfully yet lack permission to create or modify an Azure resource.</p>
+<p><strong>Zero Trust (<code>as-zero-trust</code>).</strong> Zero Trust is a security model built around “never trust, always verify.” It assumes that location on an internal network does not automatically make a request safe. The three common principles are:</p>
+<ul>
+<li><strong>Verify explicitly:</strong> authenticate and authorize access using available identity, device, location, and risk context.</li>
+<li><strong>Use least privilege:</strong> grant only the minimum access needed and only for as long as needed.</li>
+<li><strong>Assume breach:</strong> design controls to detect compromise, limit movement and impact, and support response.</li>
+</ul>
+<p>Zero Trust is not one product or a single network appliance. It is a way to combine identity, devices, network, applications, data, infrastructure, and monitoring controls. It encourages continuous evaluation as conditions change.</p>
+<p><strong>Defense in depth (<code>as-defense-in-depth</code>).</strong> Defense in depth uses multiple layers of security controls so that failure of one control does not immediately expose the entire system. A simplified Azure-oriented view includes physical security operated by the cloud provider, identity and access controls, perimeter and network protections, compute and application hardening, data protection, and detection/response. The cloud provider and customer share responsibilities; the exact division depends on the service model. For example, Azure operates datacenter facilities, while the customer configures resource access, workload settings, and data permissions.</p>
+<p>The layers should be complementary, not redundant checkboxes. MFA protects sign-in; RBAC limits actions; NSGs and private endpoints constrain network exposure; encryption protects data in transit or at rest; backup supports recovery; monitoring and Defender for Cloud can help identify risk. No single layer guarantees that a workload cannot be compromised.</p>
+<p><strong>Microsoft Defender for Cloud (<code>as-defender-for-cloud</code>).</strong> Defender for Cloud is a cloud security platform for assessing and improving security posture and protecting workloads across Azure and supported hybrid or multicloud environments. Its capabilities include cloud security posture management (CSPM), workload protection (CWPP), and security support across development workflows. It surfaces recommendations, security findings, and threat-protection capabilities depending on environment, plan, and configuration. It helps teams identify risks and improve protections; it does not automatically remediate every finding or replace the team's secure design and operations.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Treat identity, policy, authorization, network controls, and monitoring as distinct layers. Authentication proves identity; Conditional Access evaluates context and can require MFA or block; Azure RBAC authorizes actions on Azure resources. A user may sign in successfully yet lack permission to change a resource. Use the least-privileged principal, role, and scope. Parent-scope assignments can be inherited by descendants.</p>
+<p>Conditional Access policies need careful testing to avoid lockouts; licensing and configuration affect signals and controls. Entra ID supports modern cloud identity, while Domain Services serves compatible legacy AD protocol needs. Defender for Cloud recommendations depend on onboarding and enabled plans and do not automatically fix every issue.</p>
+<blockquote>
+<p><strong>Verify:</strong> Microsoft Entra naming, Defender portal experiences, plans, licensing, available authentication methods, and preview states change; consult current Learn guidance.</p>
+</blockquote>
+<h3>Example or worked scenario</h3>
+<p>A company gives supplier guests access to one project through Entra External ID B2B collaboration. It assigns a group a narrow Azure RBAC role at the project resource group and uses Conditional Access to require MFA for the application. An app uses a managed identity rather than a stored password to access a storage service. A private endpoint limits the network path, and Defender for Cloud helps surface posture recommendations. Backup and recovery remain separately planned.</p>
+<h3>Hands-on activity</h3>
+<p>In an authorized test tenant, inspect Entra <strong>Users</strong>, <strong>Groups</strong>, <strong>Authentication methods</strong>, and <strong>External identities</strong>. In the Azure portal, review a resource group's <strong>Access control (IAM)</strong> assignments and identify principal, role, and scope without changing them. Inspect Conditional Access policies in report-only mode where available, then review Defender for Cloud recommendations. Do not invite users, assign roles, or enable production policies as practice.</p>
+<h3>Exam or practical application</h3>
+<p>Separate authentication from authorization: SSO shares sign-in across integrated apps; MFA uses multiple proofs; passwordless omits a conventional password; RBAC governs Azure resource actions. Use Domain Services for supported legacy AD protocols, External ID for partners or customers, and Conditional Access for context-based controls. Zero Trust means verify explicitly, use least privilege, and assume breach. Defender for Cloud helps improve posture and protect supported workloads; it is not a directory, firewall, or automatic fix for all risks.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p><strong>What are the three components of an Azure RBAC role assignment?</strong><br />
+<strong>Answer:</strong> Security principal, role definition, and scope.</p>
+</li>
+<li>
+<p><strong>An application needs LDAP and Kerberos but cannot be modernized. Which service may provide managed domain capabilities?</strong><br />
+<strong>Answer:</strong> Microsoft Entra Domain Services, subject to workload compatibility and service requirements.</p>
+</li>
+<li>
+<p><strong>Does MFA decide whether a signed-in user may delete a resource group?</strong><br />
+<strong>Answer:</strong> No. MFA is an authentication control. Azure RBAC determines whether the principal is authorized for that Azure operation at the applicable scope.</p>
+</li>
+<li>
+<p><strong>What are the three Zero Trust principles?</strong><br />
+<strong>Answer:</strong> Verify explicitly, use least privilege, and assume breach.</p>
+</li>
+<li>
+<p><strong>What is Conditional Access for?</strong><br />
+<strong>Answer:</strong> Evaluating sign-in context and applying controls such as requiring MFA or blocking access according to policy.</p>
+</li>
+<li>
+<p><strong>What is Microsoft Defender for Cloud's general purpose?</strong><br />
+<strong>Answer:</strong> Help assess and improve cloud security posture and protect supported workloads across Azure and supported hybrid or multicloud environments.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra">What is Microsoft Entra?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/domain-services/overview">Overview of Microsoft Entra Domain Services</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/authentication/overview-authentication">Microsoft Entra authentication overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/what-is-single-sign-on">What is single sign-on in Microsoft Entra ID?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/external-id/external-identities-overview">Microsoft Entra External ID overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview">Microsoft Entra Conditional Access overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/overview">What is Azure role-based access control (Azure RBAC)?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview">Zero Trust as a security foundation</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/security/fundamentals/overview">Introduction to Azure security</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction">Microsoft Defender for Cloud overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview">Azure Virtual Network overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview">What is a private endpoint?</a></li>
+</ul>
+</section><section class="chapter"><h1 id="s14">Azure management and governance (30-35%)</h1>
+<p>Azure gives organizations tools to understand what cloud resources cost, apply rules consistently, deploy resources repeatably, and detect problems before they become outages. It focuses on estimating, setting guardrails, deploying consistently, and responding to health signals.</p>
+<h2 id="s15">Costs in Azure</h2>
+<h3>Learning intent</h3>
+<p>Learn to recognize what can change an Azure bill, create a planning estimate with the Azure pricing calculator, use Microsoft Cost Management to inspect and manage spending, and use tags to organize resources and cost data. Remember that an estimate is a planning aid, while billing data records measured and rated use; neither a tag nor a budget by itself prevents all spending.</p>
+<h3>Core concepts</h3>
+<p><strong>Factors that affect Azure costs (<code>mg-cost-factors</code>).</strong> A cloud bill is the result of what you provision, how much you use it, and the applicable price and commercial terms. The service and configuration matter: for example, compute size, storage capacity or access pattern, database tier, and network design determine which meters apply. The quantity and duration of use matter too. A virtual machine left running for more hours generally incurs more compute usage than one stopped and deallocated sooner; storage can continue to incur charges even when a workload is idle. Transferred data, backups, monitoring, and other related services may contribute additional charges.</p>
+<p>Location can affect the available products and their rates, so a configuration estimated in one region should not be assumed to cost the same in another. Discounts, negotiated prices, reservations, savings plans, and other eligible purchase choices can also change the effective price. Taxes, support, licensing, marketplace purchases, credits, and billing-specific arrangements may be accounted for differently from the resource-level cost view. Always identify which costs a particular estimate or report includes before using it as an invoice prediction.</p>
+<p>A useful mental model is <strong>configuration × measured consumption × applicable rate</strong>, with billing adjustments and commercial terms layered on top. It is not a universal formula: products meter usage differently, and cost data may not match a finalized invoice.</p>
+<p><strong>Azure pricing calculator (<code>mg-pricing-calculator</code>).</strong> The Azure pricing calculator is a public, browser-based planning tool. Build an estimate by adding services, selecting product variants and region, and entering expected usage. The calculator displays the resulting estimated costs for the selected configuration. For some offerings it can show upfront and monthly amounts, and some services expose purchase options such as reserved capacity or savings plans. Signing in can let the calculator use negotiated or discounted prices associated with the account; the displayed public estimate is not necessarily the price a particular customer will pay.</p>
+<p>Make calculator assumptions explicit: estimate the intended instance count and size, runtime, storage, transfer, and supporting services. Revisit the estimate as the design changes. It is not a quote, deployment, or spending cap; actual costs depend on actual usage and applicable account terms.</p>
+<p><strong>Microsoft Cost Management (<code>mg-cost-management</code>).</strong> Microsoft Cost Management provides FinOps-oriented tools to analyze, monitor, and optimize Microsoft cloud spending. Azure users can inspect cost data at available scopes such as billing accounts, subscriptions, resource groups, and management groups, subject to their access and agreement. Cost Analysis helps answer questions such as “Which services drove this month's increase?” or “How is spending distributed across teams?” Users can group and filter data, review trends, and export cost details for other analysis or processes.</p>
+<p>Cost Management supports proactive tracking as well as retrospective analysis. Budgets let an authorized user set a spending or usage target and configure alerts when actual or forecast cost reaches defined thresholds. An alert notifies people or systems; it does not automatically stop resources or guarantee that the final bill stays below the target. Cost anomaly features can help surface unusual patterns, and scheduled alerts and exports can support recurring review and downstream reporting. Available features, scopes, and billing data depend on the account and current service capabilities.</p>
+<p>Keep the distinction between <strong>Cost Management</strong> and <strong>Billing</strong> clear. Cost Management is for analyzing, managing, and optimizing cost. Billing experiences address the commercial billing relationship—such as invoices, payment methods, and credits—where applicable. The data and timing are related but not identical. In particular, invoices may include credits, taxes, or purchases that are not represented in the same way in Cost Management data. If reconciliation matters, use the appropriate billing documents and scope rather than treating a cost chart as an invoice.</p>
+<p><strong>Tags (<code>mg-tags</code>).</strong> A tag is a key-value pair of metadata attached to a resource, resource group, or subscription. For example, <code>Environment = Production</code> or <code>CostCenter = 1200</code> can support organization, automation, reporting, and cost attribution. Where billing data supports tags, teams can group costs by department, application, or project.</p>
+<p>Tags are not a separate access-control system, and adding a tag does not itself change a resource's behavior. A resource also does not automatically inherit tags from its resource group or subscription. An organization can use Azure Policy to require or apply tags, and Cost Management supports tag inheritance and cost-allocation capabilities in supported contexts, but the existence of a parent tag alone does not guarantee child resources or every cost record carry it. Tags are plain text: do not put secrets, personal data, or other sensitive values in them. Agree on consistent key names and value conventions so reports remain useful.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Cost estimation and cost observation answer related but different questions. The calculator asks, “Given this proposed configuration and these assumptions, what might it cost?” Cost Management asks, “What cost data is available for the scope and period I can access, and how can I analyze or manage it?” Billing asks, “What are the charges, credits, and payment obligations in the billing relationship?” Use each for its purpose: estimate before deployment, inspect actual cost during operation, and reconcile with billing artifacts when needed.</p>
+<p>The main cost drivers are not limited to a monthly service price. Consider the chosen service tier and resource size, the quantity provisioned, the time it runs, usage-based measures such as requests or data processed, data storage and transfer, region, and applicable discounts or commitments. A design that reduces one meter can increase another—for example, additional redundancy may raise storage or transfer requirements while improving resilience. Cost optimization is therefore a design trade-off, not simply choosing the smallest virtual machine.</p>
+<table>
+<thead>
+<tr>
+<th>Tool or mechanism</th>
+<th>Main question it answers</th>
+<th>What it does not guarantee</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure pricing calculator</td>
+<td>What is a planned configuration likely to cost under stated assumptions?</td>
+<td>It does not deploy resources, lock in a price, or guarantee an invoice amount.</td>
+</tr>
+<tr>
+<td>Cost Analysis</td>
+<td>What cost data is available for this scope and period, and how is it distributed?</td>
+<td>It is not necessarily the final invoice or a live meter with zero delay.</td>
+</tr>
+<tr>
+<td>Budget and alert</td>
+<td>Has spending or a forecast reached a threshold that people should review?</td>
+<td>An alert is not a spending cap and does not automatically stop resources by default.</td>
+</tr>
+<tr>
+<td>Tags</td>
+<td>How can resources and supported cost records be classified or grouped?</td>
+<td>Tags do not enforce permissions, inherit automatically, or guarantee complete billing coverage.</td>
+</tr>
+</tbody>
+</table>
+<p>Cost data and billing records can differ in timing and scope. Before reconciling differences, check the period, price terms, credits, taxes, and data definitions; do not promise an exact amount without confirming current prices and account terms.</p>
+<blockquote>
+<p><strong>Verify:</strong> Calculator catalog options, negotiated-price behavior, Cost Management features, report scopes, and billing-data timing can change. Check the live calculator and the account's applicable Cost Management and billing experience before making a purchasing commitment.</p>
+</blockquote>
+<h3>Example or worked scenario</h3>
+<p>A small product team plans a test environment with two virtual machines, managed storage, and a database. Before creating anything, the team uses the calculator to add each service, chooses the intended region and service tiers, enters the expected hours and capacity, and checks whether any applicable purchase options should be modeled. It records two scenarios: one for a continuously running test system and another for a system shut down outside working hours. The comparison makes the runtime assumption visible instead of hiding it inside one monthly total.</p>
+<p>After deployment, the team applies <code>Application = CatalogDemo</code>, <code>Environment = Test</code>, and <code>CostCenter = 1200</code> tags according to its naming convention. In Cost Analysis, it filters to the test resource group, compares the current period with the prior period, and groups by service or tag where available. It sets a budget with an alert for the team mailbox, but treats the message as a prompt to investigate—not as an automatic shutoff. If actual cost is higher than expected, the team checks whether VMs ran longer, data transfer or storage grew, or the selected configuration differed from the estimate. It also checks the billing view when reconciling final charges.</p>
+<h3>Hands-on activity</h3>
+<p>Use an authorized sandbox; no deployment is required.</p>
+<ol>
+<li>Open the <a href="https://azure.microsoft.com/pricing/calculator/">Azure pricing calculator</a>, add compute and storage, and vary region, runtime, or capacity. Record your assumptions and any costs not modeled.</li>
+<li>In the portal, open Cost Analysis for an authorized scope and note the time range, grouping, and filters available.</li>
+<li>Inspect budgets and alerts, if permitted, without creating one for production. Identify a sensible threshold and recipients for a test subscription.</li>
+<li>Review resource tags and verify child resources actually have them; do not assume inheritance.</li>
+</ol>
+<h3>Exam or practical application</h3>
+<p>When a question asks which option helps <strong>estimate future Azure use</strong>, choose the pricing calculator. When it asks how to <strong>analyze spending, track trends, or set threshold notifications</strong>, think Microsoft Cost Management. When the goal is to <strong>classify resources or group supported cost information</strong>, think tags. If the scenario says spending must stop at a precise cap, do not assume a budget alert is an enforcement mechanism; distinguish an alert from an action that actually changes or stops a workload.</p>
+<p>For a practical review, state the estimate's region, product configuration, quantity, runtime, and purchase assumptions. Identify the billing scope and period when reading actual costs.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p><strong>A project wants a predeployment estimate for a planned set of Azure services. Which tool should it start with?</strong><br />
+<strong>Answer:</strong> The Azure pricing calculator. It models expected products and usage; it does not deploy them or guarantee the final bill.</p>
+</li>
+<li>
+<p><strong>Name three factors that can change an Azure cost.</strong><br />
+<strong>Answer:</strong> Any three of service type/tier or size, quantity, runtime, usage volume, region, data transfer, storage, or applicable discounts and purchase terms.</p>
+</li>
+<li>
+<p><strong>Will a Cost Management budget alert automatically stop the resources when a threshold is reached?</strong><br />
+<strong>Answer:</strong> No. A budget can trigger notifications or configured alert actions, but a budget is not by itself a resource shutoff or guaranteed spending cap.</p>
+</li>
+<li>
+<p><strong>What is a tag, and what is one important limitation?</strong><br />
+<strong>Answer:</strong> A tag is key-value metadata used to classify resources and, in supported reports, organize costs. It does not automatically inherit from a parent resource group or subscription, and sensitive data should not be stored in it.</p>
+</li>
+<li>
+<p><strong>Why might a Cost Analysis amount differ from a final invoice?</strong><br />
+<strong>Answer:</strong> Cost data and invoice processing serve different purposes and can differ in timing, scope, credits, taxes, purchases, and other billing adjustments. Check the relevant billing artifacts for invoice reconciliation.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azure/">Describe Cost Management in Azure — AZ-900 Learn module</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management">Overview of Cost Management</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/pricing-calculator">Estimate costs with the Azure pricing calculator</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources">Use tags to organize Azure resources and management hierarchy</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets">Cost Management budgets</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/quick-acm-cost-analysis">Cost analysis in Cost Management</a></li>
+</ul>
+<h2 id="s16">Governance and compliance</h2>
+<h3>Learning intent</h3>
+<p>Distinguish the role of Microsoft Purview in data governance, protection, and compliance from the role of Azure Policy in applying resource-governance rules, and from resource locks that protect against accidental control-plane changes. Learn to match each tool to the problem it solves, and understand why none of these tools replaces identity permissions or an organization's broader compliance program.</p>
+<h3>Core concepts</h3>
+<p><strong>Microsoft Purview (<code>mg-purview</code>).</strong> Microsoft Purview is a suite of integrated solutions that helps an organization govern, protect, and manage data across its data estate. Its broad capabilities include data governance, data security, and data compliance. Depending on the solution and configuration, Purview can help organizations gain visibility into data, manage sensitive information, address regulatory requirements, and apply data-protection practices. Examples of the product areas include Data Map and Unified Catalog for data governance, and compliance and information-protection solutions for data compliance and security.</p>
+<p>Think of Purview in terms of <strong>data</strong>: understanding data assets, managing sensitive information and its lifecycle, and supporting governance and compliance processes. It does not mean every Azure resource has been configured securely, nor does it automatically make an organization compliant with a law or standard. Purview capabilities and licensing vary by solution. It is distinct from Azure Policy, which evaluates and governs Azure resources and requests against assigned policy rules.</p>
+<p>Purview has evolved from older Azure Purview descriptions. Verify the current solution, supported data sources, and licensing for a specific catalog, security, or compliance need.</p>
+<p><strong>Azure Policy (<code>mg-policy</code>).</strong> Azure Policy helps enforce organizational standards and assess compliance at scale. A policy definition describes a rule, such as allowing deployments only in approved regions or requiring a tag. An administrator assigns the definition—or a group of definitions called an initiative—to a scope, such as a management group, subscription, resource group, or resource. A higher-level assignment can cover resources below it; exclusions and exemptions can be used when authorized and appropriate.</p>
+<p>Policy rules use effects to determine the response to evaluation. Depending on the definition, a policy can audit a resource, deny a noncompliant create or update, modify a request, deploy related configuration, or support remediation of existing resources. The compliance view reports evaluation results and helps identify noncompliant resources. Some policies only report; they do not automatically repair every existing resource. Remediation behavior and permissions depend on the policy effect, assignment, and resource provider.</p>
+<p>Policy is a way to govern <strong>what resources are deployed or how they are configured</strong>, and in some cases to evaluate or restrict actions in a request. It is not the same as granting a user permission to perform operations. Use Azure RBAC to manage access by assigning roles to identities at scopes. A user can have permission to make a request that Azure Policy then denies because the request conflicts with an assigned rule.</p>
+<p><strong>Resource locks (<code>mg-locks</code>).</strong> A management lock helps protect a subscription, resource group, or resource from accidental deletion or modification. The two common lock types are <strong>CanNotDelete</strong> (shown in the portal as <strong>Delete</strong>) and <strong>ReadOnly</strong> (shown in the portal as <strong>Read-only</strong>). A CanNotDelete lock allows authorized users to read and modify a resource but prevents deletion. A ReadOnly lock permits reads but blocks updates and deletes through the control plane.</p>
+<p>A lock adds a restriction regardless of RBAC permissions; it grants no access. Parent locks are inherited, including by later resources, and the most restrictive applicable lock governs. Remove a lock before a blocked operation. Since ReadOnly locks can disrupt routine management calls, use them carefully.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>The following comparison is useful when multiple governance controls sound similar. They can coexist; the best answer depends on whether the problem is access, standards, protection against accidental changes, or data oversight.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Primary purpose</th>
+<th>Typical question</th>
+<th>Scope or target</th>
+<th>Important boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure RBAC</td>
+<td>Grant permissions to an identity through role assignments</td>
+<td>Who may perform this operation?</td>
+<td>Azure management scopes and supported data-plane scopes</td>
+<td>Permission can be constrained by scope and role, but it does not itself define the organization's desired configuration.</td>
+</tr>
+<tr>
+<td>Azure Policy</td>
+<td>Evaluate and enforce resource-governance rules</td>
+<td>Is this resource or request compliant with our standards?</td>
+<td>Policy-supported management scopes and resources</td>
+<td>An audit policy reports rather than blocks; effects and remediation vary by definition.</td>
+</tr>
+<tr>
+<td>Resource locks</td>
+<td>Prevent accidental control-plane deletion or modification</td>
+<td>How can we guard this resource against a mistaken management operation?</td>
+<td>Subscription, resource group, or resource</td>
+<td>A lock does not grant access or protect every operation on the data inside a service.</td>
+</tr>
+<tr>
+<td>Microsoft Purview</td>
+<td>Govern, protect, and manage data; support compliance processes</td>
+<td>What data do we have, how is it classified or protected, and how do we manage data risk?</td>
+<td>Data estate and Purview-supported solutions</td>
+<td>Capabilities, data sources, and licensing vary; it is not a blanket Azure-resource configuration policy.</td>
+</tr>
+</tbody>
+</table>
+<p>Locks are not backups or data-plane access controls. They apply to control-plane operations, so a lock on a storage account does not necessarily prevent a data-plane user from deleting a blob. ReadOnly locks can also block management operations that use write-style API calls. Check service-specific effects before applying locks broadly.</p>
+<p>Policy evaluates resources on relevant lifecycle and assignment events and periodically, so compliance is not always instantaneous. Existing resources might need a separate remediation task and suitable permissions; inspect the policy effect rather than assuming assignment fixes them.</p>
+<blockquote>
+<p><strong>Verify:</strong> Microsoft Purview solutions, supported data sources, licensing, and portal names change over time. Similarly, Azure Policy effects and resource lock behavior can differ by resource provider and operation. Check the current service documentation before treating a rule or lock as a complete compliance or data-protection control.</p>
+</blockquote>
+<h3>Example or worked scenario</h3>
+<p>A company requires production resources in approved regions, cost-center tags, deletion protection for a critical network resource, and governance for sensitive data.</p>
+<p>An administrator assigns policies for allowed locations and required tags, then reviews compliance and remediates existing resources where supported. RBAC still determines who can create or modify resources. A CanNotDelete lock adds deletion protection to the critical network resource and is removed through a controlled process when needed. The data team evaluates Microsoft Purview for supported data assets; it does not replace resource policies or locks.</p>
+<h3>Hands-on activity</h3>
+<p>Use a lab subscription or read-only browsing. Do not assign a deny policy or apply a lock to a shared or production resource.</p>
+<ol>
+<li>In the portal, inspect built-in Azure Policy definitions for allowed locations or required tags. Read the effect and distinguish a definition, assignment, and initiative.</li>
+<li>On a disposable lab resource, inspect the <strong>CanNotDelete</strong> and <strong>ReadOnly</strong> locks and their scope. Do not apply a lock to shared infrastructure.</li>
+<li>Review the current Microsoft Purview overview and identify its data-governance, data-security, and data-compliance solution areas; confirm tenant availability before planning deployment.</li>
+</ol>
+<h3>Exam or practical application</h3>
+<p>Choose <strong>Azure Policy</strong> when the requirement is to assess or enforce standards such as allowed regions, required tags, or configuration rules across a scope. Choose <strong>RBAC</strong> when the question is about which identity can perform an operation. Choose a <strong>resource lock</strong> when the requirement is protection from accidental control-plane deletion or modification, particularly when even an authorized role holder should encounter an extra barrier. Choose <strong>Microsoft Purview</strong> when the focus is governing, discovering, protecting, or managing data and related compliance processes.</p>
+<p>Avoid confusing “compliant” with “secure in every respect.” A policy compliance result is evidence about specified rules; a lock protects a defined set of management operations; Purview supports data governance and protection; RBAC controls access. Real governance uses these controls in combination with monitoring, data protection, process, and human review.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p><strong>Which service is designed to apply a required-tag or allowed-region rule across a resource scope?</strong><br />
+<strong>Answer:</strong> Azure Policy. An assignment evaluates resources at its scope and applies the effect defined by the policy.</p>
+</li>
+<li>
+<p><strong>A developer has Contributor access, but a resource has a CanNotDelete lock. Can the developer delete it through a normal Azure management operation?</strong><br />
+<strong>Answer:</strong> No. The lock adds a deletion restriction that applies even to users whose RBAC role would otherwise permit deletion. An authorized administrator must remove the lock first.</p>
+</li>
+<li>
+<p><strong>What is the difference between Azure Policy and RBAC?</strong><br />
+<strong>Answer:</strong> RBAC grants or limits what an identity can do. Policy evaluates or governs whether a resource or request conforms to assigned standards. A permitted RBAC action can still be denied by policy.</p>
+</li>
+<li>
+<p><strong>Does a lock on a storage account guarantee that no one can delete data in that account?</strong><br />
+<strong>Answer:</strong> No. Locks apply to control-plane management operations and do not generally block data-plane operations against stored data. Use appropriate data-plane access controls and protection mechanisms too.</p>
+</li>
+<li>
+<p><strong>What is Microsoft Purview primarily for in this comparison?</strong><br />
+<strong>Answer:</strong> It provides integrated solutions for governing, protecting, and managing data and supporting data compliance. It is not a substitute for Azure Policy's resource rules or RBAC permissions.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/purview/purview">Learn about Microsoft Purview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/governance/policy/overview">Overview of Azure Policy</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources">Lock your Azure resources to protect your infrastructure</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/overview">Azure RBAC overview</a></li>
+</ul>
+<h2 id="s17">Managing and deploying resources</h2>
+<h3>Learning intent</h3>
+<p>Understand that Azure resources can be managed through a shared Azure Resource Manager layer using the portal, command-line tools, APIs, and templates. Distinguish the Azure portal from Azure CLI and Azure PowerShell, and distinguish those tools from Cloud Shell, which supplies a browser-accessible command environment. Learn what Azure Arc adds for hybrid and multicloud management, what infrastructure as code means, and how ARM templates and Bicep support repeatable deployments.</p>
+<h3>Core concepts</h3>
+<p><strong>Azure portal (<code>mg-portal</code>).</strong> The Azure portal is a browser-based graphical interface for creating and managing Azure resources. It provides service blades, dashboards, search, resource views, and access to management features. It is useful for discovery, visual inspection, and one-off changes, especially while learning a service. Portal actions are requests to Azure management services; using a graphical interface does not make an action inherently safer or exempt it from access controls, policies, locks, or costs.</p>
+<p>The portal is one management option, not a separate deployment engine. The same Resource Manager capabilities are also exposed through Azure CLI, Azure PowerShell, REST APIs, and SDKs. An administrator can choose the interface that fits a task, then use role assignments and governance rules to control what happens.</p>
+<p><strong>Cloud Shell, Azure CLI, and Azure PowerShell (<code>mg-shell-cli-powershell</code>).</strong> Azure CLI and Azure PowerShell are command-line management tools. The Azure CLI uses commands beginning with <code>az</code>, such as <code>az group list</code>; it is cross-platform and can be used interactively or in scripts. Azure PowerShell is the collection of Microsoft PowerShell modules for Azure; the current recommended module is <strong>Az</strong>, with cmdlets such as <code>Get-AzResourceGroup</code>. PowerShell cmdlets commonly return structured .NET objects that can be piped into other PowerShell commands. The CLI commonly formats output as JSON by default and supports other output formats.</p>
+<p>Azure Cloud Shell is an authenticated, browser-accessible terminal available in the Azure portal and at shell.azure.com. It offers a Bash or PowerShell experience and comes with common Azure command-line tools. It is an <strong>environment</strong>, not a third command language: choose Bash or PowerShell and run Azure CLI or Az PowerShell commands in that shell. Cloud Shell is hosted and maintained by Microsoft, so it can be convenient when you do not want to install tools locally. Cloud Shell uses persistent file storage for the user's files and also runs on a temporary host; the service documentation describes session timeout and storage requirements. The hosting machine is free to use, but the required storage account can incur ordinary storage charges.</p>
+<table>
+<thead>
+<tr>
+<th>Choice</th>
+<th>What it is</th>
+<th>Typical fit</th>
+<th>Key distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure portal</td>
+<td>Browser-based graphical management interface</td>
+<td>Explore resources, review configuration, perform guided tasks</td>
+<td>A GUI that sends management requests; not the only way to manage Azure.</td>
+</tr>
+<tr>
+<td>Azure CLI</td>
+<td>Cross-platform command-line tool with <code>az</code> commands</td>
+<td>Shell scripts, interactive administration, cross-platform automation</td>
+<td>Commands commonly present results as JSON and can be composed in a shell.</td>
+</tr>
+<tr>
+<td>Azure PowerShell</td>
+<td>Azure's PowerShell modules and cmdlets, currently the Az module</td>
+<td>PowerShell automation and object-based pipelines</td>
+<td>Uses PowerShell cmdlets and objects; legacy AzureRM examples are not the current module.</td>
+</tr>
+<tr>
+<td>Azure Cloud Shell</td>
+<td>Hosted browser shell environment with Bash or PowerShell</td>
+<td>Run CLI or PowerShell without local installation</td>
+<td>An environment for tools, not a replacement name for CLI or PowerShell.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Azure Arc (<code>mg-arc</code>).</strong> Azure Arc extends Azure management and governance capabilities to supported resources outside Azure, including eligible servers, Kubernetes clusters, databases, and virtualized environments. Arc represents supported non-Azure resources in Azure Resource Manager so that teams can use a familiar Azure management experience and selected Azure services across on-premises, edge, and other cloud environments. The exact management operations depend on the Arc-enabled resource type and its configuration.</p>
+<p>Arc does not move an on-premises server into Azure or make every Azure service work identically everywhere. Onboarding, agents or extensions, network connectivity, and service prerequisites depend on resource type. Arc's control-plane representation does not change compute location, and attached Azure services can incur their own charges.</p>
+<p><strong>Infrastructure as code (<code>mg-iac</code>).</strong> Infrastructure as code (IaC) means defining infrastructure in machine-readable files and managing those definitions as code, commonly using source control, review, and automated deployment. Rather than repeat a sequence of manual actions, a team describes the intended resources and configuration, then uses tooling to deploy them. IaC helps with consistency, reuse, review, change history, and recreating environments. It does not remove the need for permissions, testing, secrets management, or careful review of planned changes.</p>
+<p>IaC may be declarative or imperative; ARM templates and Bicep are declarative Azure options. Versioned files can be parameterized and reused across environments. Review changes before deployment, especially possible deletions, replacements, or exposure.</p>
+<p><strong>Azure Resource Manager and ARM templates (<code>mg-arm</code>).</strong> Azure Resource Manager (ARM) is Azure's deployment and management service. Requests from the portal, command-line tools, APIs, and SDKs pass through the management layer, which authenticates and authorizes requests before forwarding them to resource providers. ARM provides consistent management capabilities such as deployment, access control, tags, and locks. Azure's management scopes include management groups, subscriptions, resource groups, and resources; scope affects how broadly settings and deployments apply.</p>
+<p>An <strong>ARM template</strong> is a JSON file that declares the Azure resources and properties to deploy. Templates can describe one resource or a larger solution, including dependencies, parameters, and outputs. Resource Manager orchestrates deployment ordering for dependent resources. A template can be deployed repeatedly to help keep environments consistent. ARM deployments can also be used at different scopes when supported by the template and deployment operation.</p>
+<p><strong>Bicep</strong> is a domain-specific declarative language for Azure resources. It offers a more concise authoring syntax than raw ARM template JSON while targeting the same Azure Resource Manager deployment platform. Bicep files are converted to ARM templates during deployment, so Bicep is not a different control plane. When comparing ARM and Bicep, compare authoring format and workflow, not whether they can deploy Azure resources.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Management interfaces and infrastructure definitions are complementary. The portal is convenient for exploration and guided tasks. CLI and PowerShell make commands repeatable and scriptable. Cloud Shell provides a browser-hosted place to run command-line tools. IaC files record intended infrastructure and can be reviewed or used in automation. All ultimately operate subject to identity, scope, policy, locks, provider support, and service-specific configuration.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>ARM template</th>
+<th>Bicep</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authoring format</td>
+<td>JSON</td>
+<td>Azure-focused declarative language with a more concise syntax</td>
+</tr>
+<tr>
+<td>Deployment destination</td>
+<td>Azure Resource Manager</td>
+<td>Azure Resource Manager; Bicep is compiled to an ARM template during deployment</td>
+</tr>
+<tr>
+<td>Desired use</td>
+<td>Declare resources and configuration for repeatable deployment</td>
+<td>Declare resources and configuration with simpler authoring and type-aware tooling</td>
+</tr>
+<tr>
+<td>Relationship</td>
+<td>Native template format used by the deployment platform</td>
+<td>Alternative authoring experience for ARM deployments, not a separate Azure management service</td>
+</tr>
+</tbody>
+</table>
+<p>A declarative template specifies target configuration, and ARM orchestrates represented dependencies. Repeatability does not guarantee success: provider behavior, API versions, permissions, current state, and external dependencies matter. Review changes and use ARM <strong>what-if</strong> when appropriate.</p>
+<p>Cloud Shell's persistence depends on its configured storage, even though its host is temporary. Cloud Shell may be subject to inactivity timeout, and local installation may be more suitable for durable development, offline work, specialized extensions, or local automation. The shell choice also matters: Bash syntax and PowerShell syntax differ, even when the Azure operation is conceptually the same. Avoid copying commands between environments without checking quoting, variables, and pipeline behavior.</p>
+<blockquote>
+<p><strong>Verify:</strong> Cloud Shell session behavior, storage prerequisites, installed tool versions, Azure CLI and Az module versions, ARM API versions, and Azure Arc resource capabilities can change. Use live documentation and check the selected subscription and tenant before running commands that create, modify, or delete resources.</p>
+</blockquote>
+<h3>Example or worked scenario</h3>
+<p>A company wants a consistent development environment in two subscriptions and visibility into an on-premises Linux server. An engineer explores the portal, writes Bicep, reviews it in source control, previews changes, and deploys after checking subscription and scope.</p>
+<p>An engineer uses Cloud Shell Bash and Azure CLI for investigation; another uses Az cmdlets in automation. The on-premises server is connected through Azure Arc but remains on-premises. Any attached monitoring or security service is assessed separately for prerequisites and cost.</p>
+<h3>Hands-on activity</h3>
+<p>This activity uses read-only commands until the optional template preview. Confirm the active tenant and subscription; do not run deployment commands in a production scope.</p>
+<ol>
+<li>In the portal, inspect an authorized resource group's subscription and location.</li>
+<li>In Cloud Shell Bash, run <code>az account show --output table</code> and <code>az group list --output table</code> to check context and list visible groups. In PowerShell, compare <code>Get-AzContext</code> and <code>Get-AzResourceGroup</code>.</li>
+<li>Read a small ARM template or Bicep sample and identify a resource, name, location, and configuration. Use <code>what-if</code> only in a lab after verifying the deployment context.</li>
+<li>From Azure Arc documentation, identify a supported non-Azure resource and its onboarding prerequisites.</li>
+</ol>
+<h3>Exam or practical application</h3>
+<p>If the question asks for a <strong>browser GUI</strong>, think Azure portal. If it asks for <strong>commands or scripts</strong>, Azure CLI or Azure PowerShell are both management tools; determine which syntax and shell the scenario specifies. If it asks for <strong>a browser terminal with Bash or PowerShell and preinstalled tools</strong>, think Cloud Shell. If it describes <strong>governing or managing supported servers or clusters outside Azure through Azure</strong>, think Azure Arc.</p>
+<p>If the requirement is to create consistent environments from source-controlled definitions, think IaC. ARM templates are JSON declarations, while Bicep offers a more concise language that deploys through ARM. ARM itself is the management and deployment service, not merely the JSON template file. Make sure you distinguish the platform, a template format, the command-line tool, and the environment in which a tool runs.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p><strong>Is Azure Cloud Shell another command language like Azure CLI, or an environment for running tools?</strong><br />
+<strong>Answer:</strong> It is an environment. It offers Bash or PowerShell and can run tools such as Azure CLI or Azure PowerShell.</p>
+</li>
+<li>
+<p><strong>What is one distinction between Azure CLI and Azure PowerShell?</strong><br />
+<strong>Answer:</strong> CLI uses <code>az</code> commands and commonly produces JSON output; Azure PowerShell uses Az cmdlets and structured PowerShell/.NET objects. Both can manage Azure resources.</p>
+</li>
+<li>
+<p><strong>Does Azure Arc move an on-premises server into an Azure datacenter?</strong><br />
+<strong>Answer:</strong> No. Arc can project supported non-Azure resources into Azure Resource Manager for selected management capabilities; the workload remains where it is hosted.</p>
+</li>
+<li>
+<p><strong>How do ARM templates and Bicep relate?</strong><br />
+<strong>Answer:</strong> Both are declarative IaC approaches for Azure Resource Manager. ARM templates use JSON; Bicep provides a more concise authoring language that is converted to an ARM template for deployment.</p>
+</li>
+<li>
+<p><strong>What should you check before running a deployment command?</strong><br />
+<strong>Answer:</strong> Confirm the tenant, subscription, scope, permissions, template contents, and proposed changes. Use an appropriate preview such as what-if when available, and avoid unreviewed deployments to production.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview">What is Azure Resource Manager?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/cloud-shell/overview">What is Azure Cloud Shell?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli">What is the Azure CLI?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell">What is Azure PowerShell?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-arc/overview">Azure Arc overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview">Infrastructure as code with Azure Resource Manager templates</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview">What is Bicep?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if">ARM template what-if operation</a></li>
+</ul>
+<h2 id="s18">Monitoring and advice</h2>
+<h3>Learning intent</h3>
+<p>Identify which Azure service helps answer a health, reliability, cost, performance, or application-diagnostics question. Distinguish Azure Advisor's recommendations from Azure Service Health's notices about Azure service issues and planned maintenance, Azure Monitor's telemetry-and-alerting platform, and Application Insights' application performance monitoring capabilities. Learn to choose signals and tools based on whether you are planning, investigating, or responding.</p>
+<h3>Core concepts</h3>
+<p><strong>Azure Advisor (<code>mg-advisor</code>).</strong> Azure Advisor analyzes resource configuration and usage telemetry to provide recommendations intended to help optimize Azure deployments. Recommendations are organized into areas such as cost, reliability, performance, security, and operational excellence. A recommendation identifies an opportunity and may suggest an action; Advisor does not automatically mean the action is safe for every workload or that implementing it is mandatory. Review context, dependencies, impact, and organizational requirements before applying a recommendation. Advisor is useful for proactive improvement—for example, spotting a cost-saving opportunity or a configuration that may affect reliability.</p>
+<p>Advisor is not the same as monitoring an active incident. Its recommendations are generally optimization guidance based on available analysis. It does not replace resource telemetry, service incident notices, or an organization's operational review. Recommendations may take time to reflect a change after a team acts, and supported resource types vary.</p>
+<p><strong>Azure Service Health (<code>mg-service-health</code>).</strong> Azure Service Health gives personalized information about Azure service issues, planned maintenance, and health advisories that may affect the Azure services and regions an organization uses. It is intended to help Azure customers understand relevant events and configure alerts for issues or changes that matter to their subscriptions. This is different from a general global status page: a global status view is broad, while Service Health is tailored to the services, regions, and subscriptions relevant to the customer.</p>
+<p>Microsoft's health experiences include related but distinct components. <strong>Azure Status</strong> presents global Azure service status. <strong>Service Health</strong> provides a personalized view of service-impacting communications and planned maintenance. <strong>Resource Health</strong> focuses on the health of an individual Azure resource, such as a particular virtual machine. Together, these views help answer different levels of “Is Azure healthy?” and “Is my resource affected?” questions.</p>
+<p><strong>Azure Monitor (<code>mg-azure-monitor</code>).</strong> Azure Monitor collects, analyzes, and acts on cloud and hybrid telemetry. Metrics are numerical measurements useful for trends and alerts; logs provide records and context; traces follow activity across components; events capture significant occurrences. Available signals depend on the source.</p>
+<p>Azure Monitor includes tools to visualize and investigate collected data and to create alerts that notify people or trigger configured actions when conditions are met. An alert rule evaluates a signal or query and can create an alert instance when its condition is satisfied. Notification or action behavior depends on the configured action group and permissions. Monitoring is most effective when the team chooses useful signals, thresholds, scope, and response procedures rather than collecting data without a question to answer.</p>
+<p>Log Analytics is an Azure Monitor experience for querying log and trace data in Log Analytics workspaces with Kusto Query Language (KQL). Azure Monitor also uses Azure Monitor workspaces for Prometheus and OpenTelemetry metrics, analyzed using Prometheus Query Language (PromQL). These are distinct workspace types and data stores. Do not assume that all telemetry uses the same workspace or query language. Azure Monitor provides the broad monitoring platform; Log Analytics is one component used to work with log data.</p>
+<p><strong>Application Insights (<code>mg-app-insights</code>).</strong> Azure Monitor Application Insights is an application performance monitoring feature of Azure Monitor. It helps developers and operators collect and analyze telemetry from applications so they can investigate availability, failures, performance bottlenecks, and behavior. Application Insights experiences include views such as application maps, live metrics, search, availability, failures, and performance. For supported scenarios, applications can use OpenTelemetry (OTel), a vendor-neutral observability framework, to instrument code and send telemetry for analysis. Setup depends on the language, hosting model, and supported instrumentation approach.</p>
+<p>Application Insights is application-focused, while Azure Monitor covers a broader range of infrastructure, platform, and application telemetry. They are not competing choices: Application Insights is a capability in the Azure Monitor ecosystem. Monitoring data may contain sensitive information; instrumentation and data collection should follow applicable privacy, security, retention, and access requirements.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Use the following guide to choose a tool. Some products overlap in the portal, but each starts from a different operational question.</p>
+<table>
+<thead>
+<tr>
+<th>Service or view</th>
+<th>Main focus</th>
+<th>Example question</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure Advisor</td>
+<td>Best-practice recommendations for optimization</td>
+<td>What changes might improve cost, reliability, performance, security, or operations?</td>
+<td>Review recommendations and decide which actions fit.</td>
+</tr>
+<tr>
+<td>Azure Status</td>
+<td>Broad public view of Azure service status</td>
+<td>Is there a widely reported Azure issue?</td>
+<td>Check global status context; it may not show customer-specific impact.</td>
+</tr>
+<tr>
+<td>Azure Service Health</td>
+<td>Personalized Azure service issues, maintenance, and advisories</td>
+<td>Is a service event or planned maintenance relevant to my subscriptions and regions?</td>
+<td>Review targeted communications and configure alerts.</td>
+</tr>
+<tr>
+<td>Resource Health</td>
+<td>Health of a particular Azure resource</td>
+<td>Is this specific VM or resource available, and what may have affected it?</td>
+<td>Investigate individual resource availability.</td>
+</tr>
+<tr>
+<td>Azure Monitor</td>
+<td>Telemetry collection, analysis, visualization, and alerts</td>
+<td>What does the measured behavior of my systems show, and should I be notified?</td>
+<td>Monitor metrics, logs, traces, and events across supported sources.</td>
+</tr>
+<tr>
+<td>Application Insights</td>
+<td>Application performance and runtime behavior</td>
+<td>Where are application failures or latency occurring?</td>
+<td>Diagnose application availability, failures, transactions, and performance.</td>
+</tr>
+</tbody>
+</table>
+<p>These tools complement one another. For example, correlate an Advisor resize recommendation with Azure Monitor metrics, a Service Health maintenance notice, and the Resource Health state of an affected resource.</p>
+<p>Azure Monitor is not automatically comprehensive: teams may need to enable diagnostic settings, instrumentation, destinations, and alert rules. Alerts depend on configured criteria and action groups; missing alerts do not prove there was no issue. Data can be delayed, sampled, or incomplete, so choose a suitable time range and query.</p>
+<p>Application Insights requires instrumentation or a supported automatic collection path and a configured resource. OTel support varies by language and scenario. Avoid sending secrets or sensitive personal data; use appropriate data minimization and access controls.</p>
+<blockquote>
+<p><strong>Verify:</strong> Monitoring capabilities, supported resource types, health views, instrumentation recommendations, data retention and ingestion behavior, and portal terminology can change. Validate current documentation for the language, service, region, and plan being used. Azure Monitor workspaces and Log Analytics workspaces are different workspace types; confirm which one is required by the data source.</p>
+</blockquote>
+<h3>Example or worked scenario</h3>
+<p>A web application slows down. The on-call engineer checks Service Health for relevant incidents or maintenance, Resource Health for affected resources, and Azure Monitor metrics, logs, and alerts for evidence during the incident.</p>
+<p>The developer uses Application Insights to investigate requests, failures, and dependencies, correlating telemetry with infrastructure evidence. After stabilization, the team reviews Advisor recommendations for longer-term improvements and assesses whether they fit the architecture.</p>
+<h3>Hands-on activity</h3>
+<p>Use an existing demo or lab subscription. Do not create costly resources or send sensitive application data to a monitoring service.</p>
+<ol>
+<li>In the portal, inspect Advisor recommendations for an authorized subscription and note why each should be evaluated before action.</li>
+<li>Compare personalized Service Health notices with Azure Status, then open a resource's Resource Health view if available.</li>
+<li>In Azure Monitor, locate metrics, logs, and alert rules. In a demo Application Insights resource, inspect availability, failures, or performance and identify the telemetry source.</li>
+<li>Write an operational question and specify the signal, time range, view, and alert that could answer it.</li>
+</ol>
+<h3>Exam or practical application</h3>
+<p>Match the noun in the requirement to the right tool. <strong>Advice or optimization recommendations</strong> points to Azure Advisor. <strong>Azure outages, planned maintenance, or service-impacting notices personalized to a subscription</strong> points to Azure Service Health. <strong>A single resource's health</strong> points to Resource Health. <strong>Metrics, logs, alerts, and broad telemetry analysis</strong> points to Azure Monitor. <strong>Application requests, performance, availability tests, failures, and dependency diagnostics</strong> points to Application Insights.</p>
+<p>A common practical mistake is to use a recommendation service as an incident dashboard or to expect service-health notices to reveal application code-level latency. Start with the source that matches the question, then correlate sources. For example, combine a Service Health event with Monitor metrics and Application Insights request traces to understand both platform context and the user's application impact.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p><strong>Which Azure service provides recommendations for cost, reliability, performance, security, and operational excellence?</strong><br />
+<strong>Answer:</strong> Azure Advisor. Review its recommendations and decide whether they are appropriate before applying them.</p>
+</li>
+<li>
+<p><strong>Which view is tailored to Azure service issues and maintenance that may affect the services and regions a subscription uses?</strong><br />
+<strong>Answer:</strong> Azure Service Health. Azure Status is the broad public view; Resource Health focuses on an individual resource.</p>
+</li>
+<li>
+<p><strong>What is the difference between Azure Monitor and Application Insights?</strong><br />
+<strong>Answer:</strong> Azure Monitor is the broader telemetry and observability service. Application Insights is an application performance monitoring feature within Azure Monitor.</p>
+</li>
+<li>
+<p><strong>Which data is typically queried with KQL in a Log Analytics workspace?</strong><br />
+<strong>Answer:</strong> Log and trace data collected in that workspace. Azure Monitor also has a distinct workspace type for Prometheus and OpenTelemetry metrics, which uses PromQL.</p>
+</li>
+<li>
+<p><strong>Does the absence of an Azure Monitor alert prove that an application is healthy?</strong><br />
+<strong>Answer:</strong> No. An alert only fires when configured conditions and data sources detect its criteria. Missing instrumentation, incomplete signals, unsuitable thresholds, or configuration issues can all leave problems unalerted.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/">Describe monitoring tools in Azure — AZ-900 Learn module</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/advisor/advisor-overview">Introduction to Azure Advisor</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/service-health/overview">What is Azure Service Health?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/service-health/azure-status-overview">Azure Status overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview">Resource Health overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/overview">Azure Monitor overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview">Log Analytics overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview">Application Insights OpenTelemetry observability overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview">Azure Monitor alerts overview</a></li>
+</ul>
+</section></body></html>

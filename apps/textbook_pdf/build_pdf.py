@@ -6,7 +6,7 @@ Usage:
   python3 apps/textbook_pdf/build_pdf.py <book> --html     # also keep the intermediate HTML
 
 <book> is a directory name under textbooks/ (for example az_900). Output defaults to
-textbooks/<book>/build/<book>.pdf (build/ is generated and gitignored).
+textbooks/<book>/build/<book>.pdf (build/ is generated and committed).
 
 Requires: python3 -m pip install markdown-it-py pygments weasyprint pyyaml
 On macOS, WeasyPrint also needs Pango: brew install pango
