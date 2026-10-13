@@ -1,0 +1,796 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>AZ-104 Microsoft Azure Administrator</title><style>@page { size: A4; margin: 22mm 18mm 22mm 18mm;
+  @bottom-right { content: counter(page); font: 9pt "Helvetica Neue", Arial, sans-serif; color: #666; }
+  @bottom-left { font: 9pt "Helvetica Neue", Arial, sans-serif; color: #666; } }
+@page :first { margin: 0; @bottom-right { content: none; } @bottom-left { content: none; } }
+
+html, body { margin: 0; }
+html { font: 10.5pt/1.5 Georgia, "Times New Roman", serif; color: #1c1c1c; }
+body { counter-reset: chapter; }
+h1, h2, h3, h4 { font-family: "Helvetica Neue", Arial, sans-serif; color: #0b3d6e; line-height: 1.25; break-after: avoid; }
+h1 { font-size: 24pt; margin: 0 0 8mm; border-bottom: 2px solid #0b3d6e; padding-bottom: 3mm; }
+h2 { font-size: 16pt; margin: 9mm 0 3mm; counter-increment: topic; }
+h3 { font-size: 12pt; margin: 6mm 0 2mm; color: #1d5a96; }
+h4 { font-size: 10.5pt; margin: 4mm 0 1mm; }
+
+section.chapter, section.front, section.toc { break-before: page; }
+section.chapter { counter-increment: chapter; counter-reset: topic; }
+section.chapter h1::before { content: "Chapter " counter(chapter); display: block; font-size: 11pt; letter-spacing: .08em; text-transform: uppercase; color: #6b7c8f; margin-bottom: 2mm; }
+section.chapter h2::before { content: counter(chapter) "." counter(topic) "  "; color: #6b7c8f; }
+
+section.cover { width: 210mm; height: 297mm; padding: 70mm 25mm 0; background: #0b3d6e; color: #fff; box-sizing: border-box; }
+section.cover .code { font: 600 14pt "Helvetica Neue", Arial, sans-serif; letter-spacing: .15em; color: #9fc5ea; margin: 0; }
+section.cover h1.cover-title { color: #fff; border: 0; font-size: 34pt; margin: 6mm 0; padding: 0; }
+section.cover .facts { font: 12pt "Helvetica Neue", Arial, sans-serif; color: #dbe9f6; }
+section.cover .small { font: 8.5pt "Helvetica Neue", Arial, sans-serif; color: #9fc5ea; margin: 2mm 0; word-break: break-all; }
+
+section.toc ul { list-style: none; padding: 0; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10pt; }
+section.toc li { margin: 1.2mm 0; }
+section.toc li.l1 { font-weight: 600; margin-top: 4mm; font-size: 11pt; }
+section.toc li.l2 { margin-left: 8mm; }
+section.toc a { color: inherit; text-decoration: none; }
+section.toc a::after { content: leader(".") target-counter(attr(href), page); color: #555; font-weight: 400; }
+
+p { margin: 0 0 3mm; orphans: 3; widows: 3; }
+a { color: #1d5a96; }
+ul, ol { padding-left: 6mm; margin: 0 0 3mm; }
+li { margin-bottom: 1.2mm; }
+
+table { border-collapse: collapse; width: 100%; margin: 3mm 0 5mm; font: 9pt/1.35 "Helvetica Neue", Arial, sans-serif; break-inside: avoid; }
+th, td { border: 1px solid #c3ccd6; padding: 1.6mm 2.2mm; vertical-align: top; text-align: left; }
+th { background: #e8f0f8; color: #0b3d6e; }
+tr:nth-child(even) td { background: #f8fafc; }
+
+code { font: 8.6pt Menlo, "Courier New", monospace; background: #eef1f4; padding: .2mm .5mm; border-radius: 1mm; overflow-wrap: anywhere; }
+pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.hl { margin: 3mm 0 5mm; padding: 3mm; background: #f4f6f8; border: 1px solid #d9e0e7; border-left: 3px solid #1d5a96; border-radius: 1mm; break-inside: avoid; }
+pre code, .hl code { background: none; padding: 0; }
+
+blockquote { margin: 3mm 0 5mm; padding: 2.5mm 4mm; background: #fff6e0; border-left: 3px solid #e0a100; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.5pt; break-inside: avoid; }
+blockquote p:last-child { margin-bottom: 0; }
+hr { border: 0; border-top: 1px solid #d0d7de; margin: 6mm 0; }
+pre { line-height: 125%; }
+td.linenos .normal { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.hl .hll { background-color: #ffffcc }
+.hl { background: #f0f0f0; }
+.hl .c { color: #60A0B0; font-style: italic } /* Comment */
+.hl .err { border: 1px solid #F00 } /* Error */
+.hl .k { color: #007020; font-weight: bold } /* Keyword */
+.hl .o { color: #666 } /* Operator */
+.hl .ch { color: #60A0B0; font-style: italic } /* Comment.Hashbang */
+.hl .cm { color: #60A0B0; font-style: italic } /* Comment.Multiline */
+.hl .cp { color: #007020 } /* Comment.Preproc */
+.hl .cpf { color: #60A0B0; font-style: italic } /* Comment.PreprocFile */
+.hl .c1 { color: #60A0B0; font-style: italic } /* Comment.Single */
+.hl .cs { color: #60A0B0; background-color: #FFF0F0 } /* Comment.Special */
+.hl .gd { color: #A00000 } /* Generic.Deleted */
+.hl .ge { font-style: italic } /* Generic.Emph */
+.hl .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.hl .gr { color: #F00 } /* Generic.Error */
+.hl .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.hl .gi { color: #00A000 } /* Generic.Inserted */
+.hl .go { color: #888 } /* Generic.Output */
+.hl .gp { color: #C65D09; font-weight: bold } /* Generic.Prompt */
+.hl .gs { font-weight: bold } /* Generic.Strong */
+.hl .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.hl .gt { color: #04D } /* Generic.Traceback */
+.hl .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.hl .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.hl .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.hl .kp { color: #007020 } /* Keyword.Pseudo */
+.hl .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.hl .kt { color: #902000 } /* Keyword.Type */
+.hl .m { color: #40A070 } /* Literal.Number */
+.hl .s { color: #4070A0 } /* Literal.String */
+.hl .na { color: #4070A0 } /* Name.Attribute */
+.hl .nb { color: #007020 } /* Name.Builtin */
+.hl .nc { color: #0E84B5; font-weight: bold } /* Name.Class */
+.hl .no { color: #60ADD5 } /* Name.Constant */
+.hl .nd { color: #555; font-weight: bold } /* Name.Decorator */
+.hl .ni { color: #D55537; font-weight: bold } /* Name.Entity */
+.hl .ne { color: #007020 } /* Name.Exception */
+.hl .nf { color: #06287E } /* Name.Function */
+.hl .nl { color: #002070; font-weight: bold } /* Name.Label */
+.hl .nn { color: #0E84B5; font-weight: bold } /* Name.Namespace */
+.hl .nt { color: #062873; font-weight: bold } /* Name.Tag */
+.hl .nv { color: #BB60D5 } /* Name.Variable */
+.hl .ow { color: #007020; font-weight: bold } /* Operator.Word */
+.hl .w { color: #BBB } /* Text.Whitespace */
+.hl .mb { color: #40A070 } /* Literal.Number.Bin */
+.hl .mf { color: #40A070 } /* Literal.Number.Float */
+.hl .mh { color: #40A070 } /* Literal.Number.Hex */
+.hl .mi { color: #40A070 } /* Literal.Number.Integer */
+.hl .mo { color: #40A070 } /* Literal.Number.Oct */
+.hl .sa { color: #4070A0 } /* Literal.String.Affix */
+.hl .sb { color: #4070A0 } /* Literal.String.Backtick */
+.hl .sc { color: #4070A0 } /* Literal.String.Char */
+.hl .dl { color: #4070A0 } /* Literal.String.Delimiter */
+.hl .sd { color: #4070A0; font-style: italic } /* Literal.String.Doc */
+.hl .s2 { color: #4070A0 } /* Literal.String.Double */
+.hl .se { color: #4070A0; font-weight: bold } /* Literal.String.Escape */
+.hl .sh { color: #4070A0 } /* Literal.String.Heredoc */
+.hl .si { color: #70A0D0; font-style: italic } /* Literal.String.Interpol */
+.hl .sx { color: #C65D09 } /* Literal.String.Other */
+.hl .sr { color: #235388 } /* Literal.String.Regex */
+.hl .s1 { color: #4070A0 } /* Literal.String.Single */
+.hl .ss { color: #517918 } /* Literal.String.Symbol */
+.hl .bp { color: #007020 } /* Name.Builtin.Pseudo */
+.hl .fm { color: #06287E } /* Name.Function.Magic */
+.hl .vc { color: #BB60D5 } /* Name.Variable.Class */
+.hl .vg { color: #BB60D5 } /* Name.Variable.Global */
+.hl .vi { color: #BB60D5 } /* Name.Variable.Instance */
+.hl .vm { color: #BB60D5 } /* Name.Variable.Magic */
+.hl .il { color: #40A070 } /* Literal.Number.Integer.Long */
+@page { @bottom-left { content: "AZ-104 Microsoft Azure Administrator"; } }</style></head><body><section class="cover"><p class="code">AZ-104</p><h1 class="cover-title">AZ-104 Microsoft Azure Administrator</h1><p class="facts">Edition 1 · Skills measured as of 2026-04-17</p><p class="small">Source: https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104</p><p class="small">Built 2026-10-13. An independent study aid, not Microsoft material.</p></section><section class="toc"><h1 class="plain">Contents</h1><ul><li class="l1"><a href="#s1">AZ-104: Microsoft Azure Administrator</a></li><li class="l2"><a href="#s2">Scope and weights</a></li><li class="l2"><a href="#s3">How to use this book</a></li><li class="l2"><a href="#s4">Edition</a></li><li class="l1"><a href="#s5">1. Identities and governance (20–25%)</a></li><li class="l2"><a href="#s6">1.1 Microsoft Entra users and groups</a></li><li class="l2"><a href="#s7">1.2 Access to Azure resources with RBAC</a></li><li class="l2"><a href="#s8">1.3 Subscriptions, governance, and cost control</a></li><li class="l1"><a href="#s9">2. Storage (15–20%)</a></li><li class="l2"><a href="#s10">2.1 Storage access and network controls</a></li><li class="l2"><a href="#s11">2.2 Storage accounts and data operations</a></li><li class="l2"><a href="#s12">2.3 Azure Files and Blob Storage</a></li><li class="l1"><a href="#s13">3. Compute (20–25%)</a></li><li class="l2"><a href="#s14">3.1 Resource deployment with ARM and Bicep</a></li><li class="l2"><a href="#s15">3.2 Virtual machines and scale sets</a></li><li class="l2"><a href="#s16">3.3 Azure container services</a></li><li class="l2"><a href="#s17">3.4 Azure App Service</a></li><li class="l1"><a href="#s18">4. Virtual networking (15–20%)</a></li><li class="l2"><a href="#s19">4.1 Virtual networks, subnets, and routing</a></li><li class="l2"><a href="#s20">4.2 Secure access and private connectivity</a></li><li class="l2"><a href="#s21">4.3 Name resolution and load balancing</a></li><li class="l1"><a href="#s22">5. Monitoring and recovery (10–15%)</a></li><li class="l2"><a href="#s23">5.1 Azure Monitor and Network Watcher</a></li><li class="l2"><a href="#s24">5.2 Backup and disaster recovery</a></li></ul></section><section class="front"><h1 id="s1">AZ-104: Microsoft Azure Administrator</h1>
+<p>An original study book for the AZ-104 certification exam. It follows the <a href="https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104">Microsoft AZ-104 study guide</a>, skills measured as of April 17, 2026. It is an independent study aid, not Microsoft material.</p>
+<h2 id="s2">Scope and weights</h2>
+<table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th style="text-align:right">Exam weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Identities and governance</td>
+<td style="text-align:right">20–25%</td>
+</tr>
+<tr>
+<td>2. Storage</td>
+<td style="text-align:right">15–20%</td>
+</tr>
+<tr>
+<td>3. Compute</td>
+<td style="text-align:right">20–25%</td>
+</tr>
+<tr>
+<td>4. Virtual networking</td>
+<td style="text-align:right">15–20%</td>
+</tr>
+<tr>
+<td>5. Monitoring and recovery</td>
+<td style="text-align:right">10–15%</td>
+</tr>
+</tbody>
+</table>
+<p>Source and interpretation notes: <a href="CURRICULUM.md">CURRICULUM.md</a>. Objective-to-section map: <a href="coverage.md">coverage.md</a>. The map supports review; it is not a guarantee of exhaustive coverage.</p>
+<h2 id="s3">How to use this book</h2>
+<p>Use the coverage map to locate a skill, then study the matching topic. Each topic explains the learning intent, core concepts, important distinctions and limits, a worked operational scenario, a practical activity, exam application, and self-check questions with answers. For hands-on activities, use a non-production subscription and check current pricing, permissions, quotas, and cleanup steps before creating resources.</p>
+<p>AZ-104 tests administration in context: identify the target resource and scope, choose a least-privilege control, account for dependencies and network boundaries, verify effective configuration, and confirm the result. Do not rely on a remembered portal layout alone; use the linked documentation to verify version-sensitive behavior.</p>
+<h2 id="s4">Edition</h2>
+<p>Edition 1 (2026-10-12), based on the April 17, 2026 skills outline. Content is drafted and has not yet been human-reviewed. See <a href="CHANGELOG.md">CHANGELOG.md</a>.</p>
+</section><section class="chapter"><h1 id="s5">Identities and governance (20–25%)</h1>
+<p>Azure administration begins with two questions: <strong>who is acting, and which resources may they change?</strong> Governance adds the rules that keep those changes within an organization's boundaries. These capabilities operate at different layers: Microsoft Entra ID holds directory identities, Azure role-based access control (Azure RBAC) authorizes actions on Azure resources, and Azure Policy evaluates resource configuration against rules.</p>
+<h2 id="s6">Microsoft Entra users and groups</h2>
+<h3>Learning intent</h3>
+<p>Create and manage directory users and groups, understand licenses and external identities, and configure self-service password reset (SSPR) with the required prerequisites.</p>
+<h3>Core concepts</h3>
+<p>A <strong>user</strong> is a directory identity. User properties such as display name, sign-in name, account state, and assigned directory roles have different purposes; changing a profile property does not by itself grant access to an Azure subscription. A <strong>group</strong> collects identities so membership and access can be managed consistently. Security groups are commonly used for access control; Microsoft 365 groups also support collaboration workloads. Membership can be assigned by an administrator or, where supported and licensed, evaluated dynamically from user attributes.</p>
+<p>Product licenses enable particular capabilities; they are not Azure resource permissions. Assign a license to the intended users or groups, and verify the current service-plan and licensing requirements before enabling a feature. An <strong>external user</strong> is an identity from outside the organization's workforce directory that is invited or otherwise brought into collaboration. External collaboration settings and resource authorization are separate controls: invitation does not automatically grant access to every resource.</p>
+<p><strong>SSPR</strong> lets eligible users reset their own password after the organization configures the feature, registration and authentication methods, and applicable scope. It is not a substitute for administrator recovery procedures or strong authentication. Requirements vary with directory configuration and licensing.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Treat the directory and the Azure resource hierarchy as related but distinct systems. A user can exist in Entra ID without being assigned an Azure role. Group-based administration can reduce repeated assignments, but membership lifecycle and nested-group behavior must be checked for the consuming service. Minimize standing privileged access and review group owners and members.</p>
+<h3>Example or worked scenario</h3>
+<p>A company hires 30 contractors for a migration. An administrator provisions named identities, places them in a contractor security group, grants that group a narrowly scoped role on the migration resource group, and configures the approved sign-in and external-collaboration requirements. The identity lifecycle team sets an end date and removes membership when the contract ends. The group assignment is easier to review than 30 independent resource grants.</p>
+<h3>Hands-on activity</h3>
+<p>In a test tenant, create a nonprivileged test user and security group, inspect their properties and membership, then assign and remove a test license if available. Review the Entra external collaboration and SSPR configuration pages without changing production settings. Record which steps concern identity, licensing, or resource authorization.</p>
+<h3>Exam or practical application</h3>
+<p>When a scenario asks who can sign in, look at identity and authentication configuration. When it asks whether a person can manage a resource, inspect Azure RBAC assignments. A guest invitation, group membership, license, and role assignment solve different problems.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>Does adding a user to the Entra directory grant Contributor access to a subscription?</p>
+<p><strong>Answer:</strong> No. An Azure role assignment at an applicable scope is needed.</p>
+</li>
+<li>
+<p>What is the administrative benefit of assigning a role to a group?</p>
+<p><strong>Answer:</strong> Permissions can be granted once and then managed through group membership, making access review and lifecycle changes more consistent.</p>
+</li>
+<li>
+<p>Does inviting an external user automatically authorize that user to manage Azure resources?</p>
+<p><strong>Answer:</strong> No. External identity access and Azure resource authorization are separate.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/">Microsoft Entra ID documentation</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users">Create or delete users in Microsoft Entra ID</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups">Manage groups in Microsoft Entra ID</a></li>
+<li><a href="https://learn.microsoft.com/en-us/microsoft-365/admin/manage/assign-licenses-to-users">Assign or unassign licenses for users in the Microsoft 365 admin center</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/external-id/external-identities-overview">What is Microsoft Entra External ID?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/authentication/concept-sspr-howitworks">Self-service password reset</a></li>
+</ul>
+<h2 id="s7">Access to Azure resources with RBAC</h2>
+<h3>Learning intent</h3>
+<p>Select appropriate built-in roles, assign them at a suitable scope, and interpret effective role assignments without confusing directory roles with Azure resource roles.</p>
+<h3>Core concepts</h3>
+<p>An Azure RBAC role definition is a set of allowed actions. A <strong>role assignment</strong> connects a security principal (user, group, service principal, or managed identity) to a role at a <strong>scope</strong>. The main scopes form an inheritance hierarchy: management group, subscription, resource group, and individual resource. An assignment at a parent scope normally applies to descendants unless the role definition or assignment conditions constrain it.</p>
+<p>Built-in roles represent common permission sets. <strong>Owner</strong> can manage resources and access; <strong>Contributor</strong> can manage resources but cannot grant access; <strong>Reader</strong> can view resources. Service-specific roles, such as Storage Blob Data Reader, target particular data-plane operations. These names are useful orientation, not a reason to grant broad access. Choose the least-privileged role that permits the required task, and check its current actions and data actions in the role definition.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Azure management-plane permissions control operations on resource configuration; data-plane permissions control operations on data stored in a service. A management role does not necessarily imply data access. Effective authorization can be affected by inherited assignments, deny assignments, conditions, resource-specific behavior, and directory or service configuration. A role assignment is therefore not always the whole access story.</p>
+<p>Scope is a security boundary and an operational choice. Subscription scope is convenient for cross-resource work but grants broad reach; a resource or resource-group scope limits blast radius. Role assignments can take time to propagate. Removing an assignment may not immediately terminate existing sessions or cached credentials.</p>
+<h3>Example or worked scenario</h3>
+<p>A support engineer must restart one virtual machine but must not change its network or grant access. First check whether an appropriate built-in VM operator role supplies the necessary actions. Assign it to a support group at the VM or tightly scoped resource-group level, then test the permitted operation and verify that unrelated actions remain denied.</p>
+<h3>Hands-on activity</h3>
+<p>In a disposable resource group, inspect <strong>Access control (IAM)</strong> and list role assignments inherited from the subscription and management group. Compare Reader and Contributor role definitions. If a test identity is available, assign the narrowest suitable role, verify an allowed action, then remove the assignment.</p>
+<h3>Exam or practical application</h3>
+<p>Read a scenario as a tuple: <strong>principal + required operation + target + duration</strong>. Match the operation to a role, then choose the lowest scope that includes the target resources. Do not mistake an Entra directory role for an Azure RBAC role.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>Which common role allows resource management but not the ability to grant other users access: Owner or Contributor?</p>
+<p><strong>Answer:</strong> Contributor.</p>
+</li>
+<li>
+<p>If a user has Reader on a subscription, does assigning Contributor on one resource group remove the inherited Reader access elsewhere?</p>
+<p><strong>Answer:</strong> No. The resource-group assignment adds permissions within its scope; the inherited subscription assignment still applies.</p>
+</li>
+<li>
+<p>Why might a management-plane role not allow reading a blob's contents?</p>
+<p><strong>Answer:</strong> Blob reads are data-plane operations and may require a data role or another service-specific authorization path.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/overview">What is Azure role-based access control (Azure RBAC)?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview">Understand scope for Azure RBAC</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles">Built-in Azure roles</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal">Assign Azure roles using the Azure portal</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/conditions-overview">Azure RBAC and Azure attribute-based access control (ABAC)</a></li>
+</ul>
+<h2 id="s8">Subscriptions, governance, and cost control</h2>
+<h3>Learning intent</h3>
+<p>Organize resources and subscriptions, apply governance consistently with policy and locks, use tags thoughtfully, and use budgets, alerts, and Azure Advisor to manage costs.</p>
+<h3>Core concepts</h3>
+<p>A <strong>resource group</strong> is a management container for resources that are commonly deployed, updated, and retired together. A resource belongs to one resource group at a time, and the group has a location for its metadata; contained resources can be in other regions. <strong>Subscriptions</strong> provide an administrative and billing boundary for Azure resources. <strong>Management groups</strong> let administrators organize subscriptions and apply governance across them. Together these scopes form a hierarchy; a policy or role assignment at a parent scope can affect descendants.</p>
+<p><strong>Azure Policy</strong> evaluates resources against definitions and assignments. Depending on its effect, a policy can audit, deny, append or modify configuration, or deploy related configuration when remediation is appropriate. An audit result reports noncompliance; it does not automatically correct a resource. Remediation tasks and permissions may be required for effects that modify existing resources. <strong>Resource locks</strong> provide an additional guard against deletion or changes: a Delete lock blocks deletion while allowing updates; a ReadOnly lock blocks writes. Locks do not replace access control and must be managed deliberately.</p>
+<p><strong>Tags</strong> are name/value metadata useful for ownership, environment, cost allocation, and automation. Tags do not automatically inherit from a resource group or subscription to its resources; policy can enforce or add tags. Cost Management supports analysis, budgets, and alerts. A budget is a monitoring and notification mechanism, not a hard spending cap. <strong>Azure Advisor</strong> provides recommendations across areas such as cost, reliability, security, operational excellence, and performance; recommendations need validation against the workload.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Use resource groups for lifecycle and administration, subscriptions for boundaries such as billing or environment separation, and management groups for cross-subscription governance. Moving resources between scopes can have service-specific restrictions and can affect dependencies or role assignments; inspect move guidance before proceeding.</p>
+<p>Policy and locks answer different questions. Policy evaluates whether configuration meets a rule; a lock restricts certain management operations. Neither makes a poor role assignment safe. Cost alerts signal a threshold or forecast; they should be paired with owners, review cadence, and response actions.</p>
+<h3>Example or worked scenario</h3>
+<p>A team operates development and production subscriptions. A management-group policy audits required cost-center tags, while production receives stricter location and SKU rules. Resource groups follow application lifecycles. Budgets alert each owner before expected monthly spend is exceeded; they do not stop deployment, so the team also reviews forecasts and Advisor recommendations.</p>
+<h3>Hands-on activity</h3>
+<p>In a sandbox, create a resource group with an owner/environment tag, inspect policy compliance, and compare Delete and ReadOnly locks on a disposable resource. If the subscription allows it, create a low-value budget alert with a test contact. Remove temporary resources and review current costs before leaving the sandbox.</p>
+<h3>Exam or practical application</h3>
+<p>For a governance scenario, identify the scope where a rule should apply and whether the requirement is to report, deny, modify, or protect. For a cost question, distinguish a budget alert from a spending limit, and treat Advisor as a recommendation source rather than an enforcement engine.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>Will a tag on a resource group automatically appear on every resource in that group?</p>
+<p><strong>Answer:</strong> No. Use policy or another management process to apply or maintain tags on resources.</p>
+</li>
+<li>
+<p>Which control is designed to report resources that violate a configuration rule: Azure Policy or a resource lock?</p>
+<p><strong>Answer:</strong> Azure Policy. A lock restricts certain management operations.</p>
+</li>
+<li>
+<p>Does reaching an Azure budget automatically prevent further charges?</p>
+<p><strong>Answer:</strong> No. Budgets provide monitoring and alerts; they do not hard-cap consumption.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview">Azure resource manager overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/governance/management-groups/overview">Management groups</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/governance/policy/overview">Azure Policy overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources">Remediate noncompliant resources with Azure Policy</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources">Lock your Azure resources to protect your infrastructure</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources">Use tags to organize your Azure resources</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets">Create and manage budgets</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/advisor/advisor-overview">Azure Advisor</a></li>
+</ul>
+</section><section class="chapter"><h1 id="s9">Storage (15–20%)</h1>
+<p>Azure Storage is a set of services with distinct data models, protocols, and availability options. Administration means matching the service to the workload, limiting who and where can access it, and planning for the failures that protection features can and cannot recover from.</p>
+<h2 id="s10">Storage access and network controls</h2>
+<h3>Learning intent</h3>
+<p>Configure network boundaries and authorization for storage, including shared access signatures (SAS), stored access policies, account keys, and identity-based access for Azure Files.</p>
+<h3>Core concepts</h3>
+<p>Azure Storage authorization can use Microsoft Entra identities, shared keys, SAS tokens, and service-specific mechanisms. Prefer identity-based authorization where it fits: assign a data role to a principal at the narrowest suitable scope, and use network rules as an additional boundary. <strong>Storage firewalls and virtual network rules</strong> restrict requests to approved network paths; a permitted identity does not automatically bypass those network restrictions.</p>
+<p>A <strong>SAS</strong> is a signed, time-limited delegation of specific permissions to storage resources. Scope, permissions, start/expiry times, and allowed protocols should be minimized. A service SAS can be associated with a <strong>stored access policy</strong> for supported services, allowing administrators to change or revoke the policy that governs its SAS tokens. Not all SAS types support stored access policies. An account SAS and a user delegation SAS have different authority and signing requirements; use a user delegation SAS for Blob Storage when identity-based delegation is appropriate.</p>
+<p><strong>Storage account keys</strong> grant broad access to the account. Keep them secret, avoid embedding them in source code, and rotate them using the account's two-key lifecycle where applications can be updated safely. For <strong>Azure Files</strong>, identity-based SMB authentication can integrate with supported directory services and permit share/file authorization through identities; support depends on protocol, client, directory configuration, and deployment scenario. A storage account key is not equivalent to per-user identity authorization.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Authorization and network access are separate checks. A caller may have a valid role or SAS and still be blocked by firewall, routing, private endpoint, or public-network settings. Conversely, a reachable endpoint does not authorize data operations. SAS expiration policy, key rotation, logging, and secret handling should be part of operations rather than afterthoughts.</p>
+<p>Private endpoints provide a private IP path to a storage service through a virtual network, but require correct DNS and routing. Service endpoints keep access on the Azure backbone and let a storage firewall allow selected subnets; they do not provide a private IP address for the service. Verify supported endpoint types and current data-exfiltration controls for the specific storage service.</p>
+<h3>Example or worked scenario</h3>
+<p>A reporting job needs read-only access to one container for several hours. Prefer a managed identity with a container-scoped data role if the job runs in Azure and its service supports identity authorization. If a temporary external process requires a SAS, restrict it to the needed resource and read permission, use HTTPS, set a short expiry, and protect the token as a credential. Restricting the network path adds another layer.</p>
+<h3>Hands-on activity</h3>
+<p>In a sandbox storage account, compare a role-based data assignment with a short-lived, read-only SAS. Test each from an allowed and disallowed network path, then revoke the assignment or token and review access configuration. Never paste live keys or SAS values into notes or source control.</p>
+<h3>Exam or practical application</h3>
+<p>Determine whether a scenario needs resource access (role), a delegated temporary capability (SAS), broad account-level access (key), or SMB identity authorization (Azure Files). Then separately evaluate network restrictions, expiry, and revocation.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>Does allowing a subnet through a storage firewall grant that subnet's users permission to read blobs?</p>
+<p><strong>Answer:</strong> No. The firewall controls network reachability; authorization is still required.</p>
+</li>
+<li>
+<p>Which credential generally has broader authority: an account key or a narrowly scoped SAS?</p>
+<p><strong>Answer:</strong> An account key generally grants broad account-level authority; a SAS can be restricted by resource, permission, and time.</p>
+</li>
+<li>
+<p>Are stored access policies available for every type of SAS?</p>
+<p><strong>Answer:</strong> No. They apply only to supported service SAS scenarios; check the current service documentation.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory">Authorize access to blobs using Microsoft Entra ID</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview">Grant limited access to Azure Storage resources using SAS</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#define-a-stored-access-policy">Define a stored access policy</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage">Manage storage account access keys</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security">Configure Azure Storage firewalls and virtual networks</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview">Azure Files identity-based authentication</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-active-directory-enable">Choose an Azure Files identity-based authentication option</a></li>
+</ul>
+<h2 id="s11">Storage accounts and data operations</h2>
+<h3>Learning intent</h3>
+<p>Create and configure storage accounts, select redundancy and replication options, understand encryption choices, and move or manage data with Storage Explorer and AzCopy.</p>
+<h3>Core concepts</h3>
+<p>A <strong>storage account</strong> is the namespace and configuration boundary for supported Azure Storage services. Account configuration includes performance and redundancy choices, networking, security, and data-protection settings. Choose the account kind and performance tier that fit the required services and workload; options, features, and constraints vary by region and service.</p>
+<p><strong>Redundancy</strong> controls how copies are maintained. Locally redundant storage (LRS) keeps replicas within one datacenter in a region. Zone-redundant storage (ZRS) distributes copies across availability zones where supported. Geo-redundant options asynchronously replicate data to a paired secondary region; read-access variants provide a read endpoint for the secondary copy. These choices address different failure domains and recovery objectives. Replication is not the same as backup: deletion or corruption can be replicated.</p>
+<p><strong>Object replication</strong> asynchronously copies eligible blobs between source and destination accounts according to configured rules. It supports distribution or recovery scenarios but is not instantaneous and does not replace versioning, soft delete, or a backup plan. Storage encrypts data at rest by default; accounts can use Microsoft-managed keys or customer-managed keys where supported. Encryption at rest does not replace access control or secure transport.</p>
+<p><strong>Azure Storage Explorer</strong> provides a graphical way to inspect and manage supported storage resources. <strong>AzCopy</strong> is a command-line utility for data transfer and synchronization scenarios. Both still require authorization, correct endpoint/network access, and a transfer plan that accounts for scale, retries, and verification.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Select redundancy by failure domain and recovery requirement, not by label alone. Geographic replication is asynchronous, so a regional failure can involve a recovery point other than the latest write. Not every account type or service supports every redundancy option, and changing redundancy can involve service or cost constraints. Check the current feature matrix.</p>
+<p>Encryption protects stored data from unauthorized disclosure if underlying media are accessed; a principal with valid service authorization can still read data. Customer-managed keys add key-management responsibilities and dependencies. Treat transfer utilities as clients, not as authorization systems.</p>
+<h3>Example or worked scenario</h3>
+<p>A media team stores source images in a Blob account and needs copies in another region for downstream processing. It compares ZRS availability and geo-redundancy requirements, checks object-replication support and expected delay, and separately configures soft delete/versioning to recover from accidental overwrites. AzCopy handles an initial bulk transfer; a managed identity limits ongoing access.</p>
+<h3>Hands-on activity</h3>
+<p>Create a low-cost test account only after checking current pricing. Compare available redundancy, encryption, and network settings in the portal. Upload a small test file with Storage Explorer, then transfer it with AzCopy using an identity-based sign-in. Verify the destination and remove the test account when finished.</p>
+<h3>Exam or practical application</h3>
+<p>For account configuration, map each requirement to a setting: failure-domain coverage, key ownership, access method, network boundary, and data movement. If recovery from deletion is required, do not assume replication alone is sufficient.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>What is the key difference between ZRS and geo-redundant storage?</p>
+<p><strong>Answer:</strong> ZRS replicates across availability zones in a region; geo-redundancy asynchronously maintains a copy in a secondary region.</p>
+</li>
+<li>
+<p>Does object replication necessarily copy a newly written blob immediately?</p>
+<p><strong>Answer:</strong> No. It is asynchronous and replication time can vary.</p>
+</li>
+<li>
+<p>Does encryption at rest prevent an authorized identity from reading a blob?</p>
+<p><strong>Answer:</strong> No. Encryption at rest does not replace authorization controls.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview">Storage account overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy">Azure Storage redundancy</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview">Object replication for block blobs</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption">Azure Storage encryption for data at rest</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer">Azure Storage Explorer</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10">Get started with AzCopy</a></li>
+</ul>
+<h2 id="s12">Azure Files and Blob Storage</h2>
+<h3>Learning intent</h3>
+<p>Create file shares and blob containers, select storage tiers, and configure protection and lifecycle features for Azure Files and Blob Storage.</p>
+<h3>Core concepts</h3>
+<p><strong>Azure Files</strong> provides managed file shares accessible over supported protocols, commonly SMB and NFS depending on configuration. Create a share with a suitable quota and performance option, then configure identity, network, and client access. Share snapshots provide point-in-time views useful for recovery; soft delete retains deleted shares for a configured period. Neither feature guarantees recovery from every failure or replaces a separately designed backup.</p>
+<p><strong>Azure Blob Storage</strong> stores object data in containers. A container is an organizational and access-control boundary; blobs carry the data. Access tiers such as hot, cool, cold, and archive (where supported) trade access cost, storage cost, and retrieval behavior. Archive data must be rehydrated before normal reads; tier availability and minimum retention or early-deletion charges vary by account and tier. Do not move data to a colder tier solely on access frequency without considering retrieval needs.</p>
+<p>Blob <strong>soft delete</strong> retains deleted blobs or containers for a configured retention period. <strong>Versioning</strong> keeps previous blob versions as writes occur. <strong>Lifecycle management</strong> applies rule-based tiering or deletion based on age and other supported conditions. Azure Files has its own snapshots and soft-delete capabilities; do not assume Blob protection settings apply to file shares. Protection settings can interact, and lifecycle rules may delete older versions if configured to do so.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Soft delete provides a recovery window; versioning provides prior object states; snapshots provide point-in-time views. These are operational protections but may share account-level failure or administrative boundaries. Review retention, capacity, and recovery workflows. Test restoring representative content before relying on a feature.</p>
+<p>Lifecycle management is asynchronous and conditions are evaluated over time, not necessarily at the exact moment a threshold is crossed. Some operations, tiers, account configurations, and protection features have mutual constraints. Verify current support and cost implications.</p>
+<h3>Example or worked scenario</h3>
+<p>A design team collaborates through an Azure file share, while a publishing system stores product images as blobs. The file share uses identity-based SMB access and snapshots for convenient file recovery. The Blob account enables versioning and soft delete for accidental edits, and lifecycle rules move older, rarely accessed images to a lower-cost tier. Legal retention requirements are handled separately from these operational settings.</p>
+<h3>Hands-on activity</h3>
+<p>In a sandbox, create a file share and a blob container, upload non-sensitive test data, and enable an available protection feature. Delete a test item and restore it using the documented workflow. Inspect tier and lifecycle options, then clean up the test data and resources.</p>
+<h3>Exam or practical application</h3>
+<p>Map requirements to the right service and recovery mechanism: shared file-system access suggests Azure Files; object data suggests Blob Storage. Distinguish a share snapshot, blob version, soft-delete retention, and lifecycle action; each solves a different problem.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>Which service is designed for a managed file share: Azure Files or Blob Storage?</p>
+<p><strong>Answer:</strong> Azure Files.</p>
+</li>
+<li>
+<p>What is one important difference between blob versioning and lifecycle management?</p>
+<p><strong>Answer:</strong> Versioning preserves prior blob states; lifecycle management applies rules that can tier or delete eligible data.</p>
+</li>
+<li>
+<p>Can archived blob data always be read immediately like hot-tier data?</p>
+<p><strong>Answer:</strong> No. Archive data must generally be rehydrated, and access behavior and costs differ.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction">Introduction to Azure Files</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-create-file-share">Create an Azure file share</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-snapshots-files">Overview of Azure Files share snapshots</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-enable-soft-delete">Azure Files soft delete</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction">Introduction to Azure Blob Storage</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview">Access tiers for blob data</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview">Soft delete for blobs</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview">Blob versioning</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview">Optimize costs by automating Azure Blob Storage access tiers</a></li>
+</ul>
+</section><section class="chapter"><h1 id="s13">Compute (20–25%)</h1>
+<p>Compute administration ranges from declarative resource deployment to maintaining individual virtual machines and managed application platforms. The operational choice is a balance among control, responsibility, scaling model, and service limits.</p>
+<h2 id="s14">Resource deployment with ARM and Bicep</h2>
+<h3>Learning intent</h3>
+<p>Read, modify, and deploy Azure Resource Manager (ARM) templates and Bicep files; understand parameters, dependencies, outputs, and how to export or convert deployments.</p>
+<h3>Core concepts</h3>
+<p><strong>Azure Resource Manager (ARM)</strong> is the management plane for deploying and managing Azure resources. An ARM JSON template declares the target resource types, API versions, properties, parameters, variables, dependencies, and outputs. <strong>Bicep</strong> is a declarative language that compiles to ARM JSON and offers a more concise syntax while retaining ARM deployment behavior.</p>
+<p>Templates make deployments repeatable. Parameters vary values between environments; variables hold reusable expressions; outputs expose selected deployment results. Dependencies express ordering when ARM cannot infer it from resource references. A deployment's target scope matters: templates can deploy at resource-group, subscription, management-group, or tenant scope when supported by the deployment type and permissions.</p>
+<p>An exported template can help document or reproduce an existing deployment, but it may omit operational intent, secrets, or configuration not represented by the export. Converting an ARM template to Bicep is supported by tooling, but generated output should be reviewed and tested. Use source control and parameter files carefully; never commit secrets.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Declarative deployment describes the desired resource state, not an imperative sequence for every action. A template deployment does not guarantee that all application-level setup is complete or that the resulting service is secure. Resource providers, API versions, permissions, quotas, and region availability affect success.</p>
+<p>Review changes before deployment, especially replacements, destructive property changes, role assignments, and network exposure. Use incremental deployments where appropriate and understand the selected deployment mode and scope. Keep secrets in a managed secret store or secure deployment mechanism rather than template literals.</p>
+<h3>Example or worked scenario</h3>
+<p>A team needs identical test and production network foundations. It creates a Bicep template for a virtual network and subnets, parameterizes address ranges and environment tags, and uses separate parameter values for each environment. A deployment preview and code review catch an unintended subnet change before it reaches production.</p>
+<h3>Hands-on activity</h3>
+<p>In a test subscription, use the Azure portal or Azure CLI to validate and deploy a small Bicep template containing a resource group-scoped resource. Inspect deployment operations and outputs, then remove the test resource. Export a deployment and compare it with the original source; note any missing intent.</p>
+<h3>Exam or practical application</h3>
+<p>When interpreting a template, identify its scope, parameters, resource type/API version, dependencies, and outputs. When asked to modify it, change the declarative property or parameter that represents the requirement, then validate the deployment and its permissions.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>What is the relationship between Bicep and ARM templates?</p>
+<p><strong>Answer:</strong> Bicep is a declarative language that compiles to ARM JSON templates and uses ARM for deployment.</p>
+</li>
+<li>
+<p>Why might a resource need an explicit dependency?</p>
+<p><strong>Answer:</strong> To ensure deployment ordering when a dependency is not already implied by a resource reference.</p>
+</li>
+<li>
+<p>Is an exported template always a complete and safe source of truth for redeployment?</p>
+<p><strong>Answer:</strong> No. It may omit intent or configuration, can require review, and should not be assumed to include secrets or all operational details.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview">Azure Resource Manager templates overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview">Bicep overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax">ARM template structure and syntax</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli">Deploy resources with Bicep and Azure CLI</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-portal">Export template in the Azure portal</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile">Decompile an ARM template to Bicep</a></li>
+</ul>
+<h2 id="s15">Virtual machines and scale sets</h2>
+<h3>Learning intent</h3>
+<p>Create and configure virtual machines (VMs), select sizes and disks, protect host data, move VMs between supported scopes, and plan availability with zones, availability sets, and scale sets.</p>
+<h3>Core concepts</h3>
+<p>An Azure VM is a compute resource with dependencies such as a virtual network interface, operating-system disk, optional data disks, and public or private IP configuration. Select an image, size, OS, authentication method, region, and availability design based on workload requirements. A VM <strong>size</strong> determines available CPU, memory, storage, and network characteristics; available sizes vary by region and quota. A managed disk abstracts the underlying storage account and offers selectable performance and redundancy characteristics.</p>
+<p><strong>Encryption at host</strong> encrypts VM-host caches and temporary disks in addition to managed disks where supported. It is a host-level protection option, not a replacement for disk encryption, key management, or access controls. Review supported VM sizes, regions, and dependencies before enabling it.</p>
+<p><strong>Availability zones</strong> place resources in separate physical locations within a supported region. <strong>Availability sets</strong> distribute VMs across fault and update domains within a datacenter. They are different placement approaches; neither makes an application highly available if its dependencies remain a single point of failure. <strong>Virtual Machine Scale Sets (VMSS)</strong> manage a group of VMs with coordinated deployment and scaling capabilities. Flexible and uniform orchestration modes have different behaviors; check the current design guidance.</p>
+<p>Moving a VM across resource groups, subscriptions, or regions is subject to resource-specific move support and dependency constraints. A region move is often a redeployment or replication workflow rather than a simple metadata change. Check the move matrix and plan downtime, IP/DNS changes, quotas, and dependent resources.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Disk performance and VM network throughput can be constrained by both the VM size and the disk tier. Changing a VM size can require deallocation and is limited by regional capacity. A VM's availability model must match application architecture: stateless replicas may scale horizontally, while stateful workloads need data replication and recovery planning.</p>
+<p>Availability sets distribute placement within one datacenter; zones distribute across zone locations in a region. A scale set can support scale-out but does not automatically make an application resilient. Backup, patching, identity, and network security remain operational responsibilities.</p>
+<h3>Example or worked scenario</h3>
+<p>A line-of-business service requires OS-level control and must tolerate planned maintenance. The team selects a VM size after measuring memory and network needs, places redundant instances across zones where the region and application allow it, and stores state in a separately resilient service. It checks quotas and capacity, configures backup, and tests application failover instead of assuming VM placement alone provides availability.</p>
+<h3>Hands-on activity</h3>
+<p>In a sandbox, review VM sizes and disk SKUs without deploying. If authorized, deploy a small test VM with a managed identity and no unnecessary public endpoint; inspect its disk and availability configuration. Use a move validation operation before any cross-scope move, and delete the VM and disks after testing.</p>
+<h3>Exam or practical application</h3>
+<p>Start with the requirement: capacity points to size, persistent storage to managed disks, physical-location failure to zones, planned maintenance within a datacenter to availability sets, and group lifecycle or autoscaling to VMSS. Verify that the region, SKU, quota, and dependencies support the requested design.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>How do availability zones differ from availability sets?</p>
+<p><strong>Answer:</strong> Zones are separate physical locations in a region; availability sets distribute VMs across fault and update domains within a datacenter.</p>
+</li>
+<li>
+<p>Does a larger VM size guarantee better performance for every workload?</p>
+<p><strong>Answer:</strong> No. The selected size must fit the workload, and storage, network, application, quota, and regional capacity can also constrain performance.</p>
+</li>
+<li>
+<p>Is moving a VM to another region always a direct resource move?</p>
+<p><strong>Answer:</strong> No. Regional moves often require a supported migration or redeployment approach and planning for dependencies and downtime.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview">Sizes for virtual machines in Azure</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview">Managed disks overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption">Encryption at host</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/availability">Availability options for virtual machines in Azure</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview">Availability sets overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview">Availability zones overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview">Virtual Machine Scale Sets overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-support-resources">Move operation support for resources</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-migrate">Move Azure VMs to another region</a></li>
+</ul>
+<h2 id="s16">Azure container services</h2>
+<h3>Learning intent</h3>
+<p>Create and manage an Azure Container Registry (ACR), choose between Azure Container Instances (ACI) and Azure Container Apps for container workloads, and configure sizing and scaling appropriate to each.</p>
+<h3>Core concepts</h3>
+<p>A <strong>container image</strong> packages an application and its dependencies. <strong>Azure Container Registry</strong> stores and distributes images. Configure registry access through appropriate identities and role assignments, use private networking where needed, and protect image supply chains with controlled builds and updates. An image registry stores artifacts; it does not run the container.</p>
+<p><strong>Azure Container Instances</strong> runs container groups without requiring VM or orchestrator administration. It fits simple, short-lived, or isolated container workloads. <strong>Azure Container Apps</strong> is a managed application platform for containerized services, with features for revisions, ingress, and event-driven scaling. Neither should be confused with managing a full Kubernetes cluster; choose a more orchestration-focused platform only when its capabilities are actually needed.</p>
+<p>Container sizing concerns CPU and memory requests/limits and the workload's scale model. ACI container groups have resource and lifecycle characteristics that differ from Container Apps. Container Apps can scale based on supported triggers and configuration, but scale-to-zero behavior, replicas, concurrency, and minimum/maximum replicas depend on the app and rule settings.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Registry authentication, image pull permissions, ingress, secrets, and egress must all be configured intentionally. A container image can include vulnerabilities or secrets; scanning and controlled build pipelines are part of administration. Scaling compute does not necessarily scale a backing database or external dependency.</p>
+<p>ACI is not a general-purpose orchestration layer; Container Apps supplies more application-level management. Service quotas, supported regions, networking features, and billing dimensions change, so check current service limits before sizing a production workload.</p>
+<h3>Example or worked scenario</h3>
+<p>A scheduled conversion job runs for a few minutes and exits; ACI may suit its simple lifecycle. A customer-facing API needs revisions, ingress, and event-driven horizontal scaling; Container Apps may better match. Both pull images from a controlled registry, use managed identity where supported, and receive only required network access.</p>
+<h3>Hands-on activity</h3>
+<p>Inspect an existing ACR's repositories, access configuration, and image tags. In a sandbox, deploy a simple non-sensitive test image to ACI or Container Apps, review logs, ingress, resource sizing, and scaling configuration, then delete the workload and any unused image.</p>
+<h3>Exam or practical application</h3>
+<p>First identify the registry requirement separately from runtime. Then compare the requested lifecycle and operational features: simple container execution suggests ACI; managed app revisions and configurable scale/ingress suggest Container Apps. Always include the image pull identity and network path.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>Does ACR execute a container image?</p>
+<p><strong>Answer:</strong> No. It stores and distributes images; a runtime such as ACI or Container Apps executes them.</p>
+</li>
+<li>
+<p>Which service is more aligned with a simple isolated container group: ACI or Azure Container Apps?</p>
+<p><strong>Answer:</strong> ACI.</p>
+</li>
+<li>
+<p>If a Container App scales out, is its database guaranteed to scale with it?</p>
+<p><strong>Answer:</strong> No. The database is a separate dependency with its own limits and scaling configuration.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/container-registry/container-registry-intro">Azure Container Registry overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview">Azure Container Instances overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/container-apps/overview">Azure Container Apps overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/container-apps/scale-app">Set scaling rules in Azure Container Apps</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/container-apps/revisions">Azure Container Apps revisions</a></li>
+</ul>
+<h2 id="s17">Azure App Service</h2>
+<h3>Learning intent</h3>
+<p>Provision an App Service plan and web app; configure scaling, certificates and TLS, custom domains, backups, networking, and deployment slots.</p>
+<h3>Core concepts</h3>
+<p><strong>Azure App Service</strong> hosts web applications and APIs on a managed platform. An <strong>App Service plan</strong> defines the compute resources, operating system, region, pricing tier, and scale capacity for one or more apps. Apps in the same plan share the plan's compute resources; scaling the plan affects its apps. Choose a tier based on required features, capacity, availability, and cost.</p>
+<p><strong>Scale up</strong> changes the plan's pricing tier or instance size; <strong>scale out</strong> changes the number of instances. Autoscale options and supported behavior depend on the plan tier and configuration. A custom domain requires domain ownership verification and appropriate DNS records. Configure TLS binding and certificates for HTTPS; certificate availability and renewal method depend on the chosen certificate and domain.</p>
+<p><strong>Deployment slots</strong> provide separate live app environments, commonly used to validate a release before swapping into production. Slot settings and app configuration must be reviewed because selected settings can remain bound to a slot while others move during a swap. <strong>App Service backups</strong> are configured with supported storage and schedule/retention options depending on plan and app configuration. Backups should be tested, monitored, and protected from unauthorized access.</p>
+<p>Networking features include inbound access restrictions, virtual network integration for supported outbound connectivity, and private endpoints for private inbound access. These features have different directions and DNS requirements: an outbound integration path is not the same as a private endpoint to the app.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>The plan is the compute boundary; the app is the workload configuration boundary. Apps sharing a plan can contend for resources and share cost. Scaling an app's plan may affect other apps on it. TLS protects transport only when the hostname, certificate, and binding are correct. DNS changes can take time to propagate.</p>
+<p>Slots reduce deployment risk but do not replace application testing, database migration strategy, or rollback planning. Backup availability and content can depend on plan tier, app type, linked storage, and current platform behavior; verify requirements before relying on it.</p>
+<h3>Example or worked scenario</h3>
+<p>A team operates an API with a custom hostname. It provisions a plan sized for expected traffic, binds a verified domain and TLS certificate, and uses a staging slot to validate releases. Inbound restrictions limit access, while VNet integration provides a path to a private backend. Before swapping, the team confirms slot-specific settings and verifies that backup recovery covers the app's configuration and content needs.</p>
+<h3>Hands-on activity</h3>
+<p>In a test subscription, compare App Service plan tiers and inspect scale settings. Deploy a sample app, create a staging slot if supported, and review domain, TLS, networking, and backup blades without exposing a production app. Delete the plan and test resources afterward.</p>
+<h3>Exam or practical application</h3>
+<p>Separate plan-level requirements (compute, tier, scale) from app-level settings (domain, TLS, deployment slot, backup, access). For private connectivity, identify whether the requirement is inbound to the app or outbound from the app to a backend.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>What happens when several apps use the same App Service plan?</p>
+<p><strong>Answer:</strong> They share the plan's compute resources; scaling the plan affects the apps hosted on it.</p>
+</li>
+<li>
+<p>Is VNet integration primarily an inbound private endpoint to the app?</p>
+<p><strong>Answer:</strong> No. It provides supported outbound connectivity from the app into a virtual network; a private endpoint addresses private inbound access.</p>
+</li>
+<li>
+<p>What should be checked before swapping a staging slot into production?</p>
+<p><strong>Answer:</strong> Validate the application and review slot-specific settings, dependencies, and any state or database changes that are not safely reversed by a slot swap.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/overview">App Service overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans">App Service plans</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up">Scale up an app in Azure App Service</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up">Scale instance count manually or automatically</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain">Configure a custom domain name</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings">Secure a custom DNS name with a TLS/SSL binding</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/manage-backup">Back up an app in Azure</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/networking-features">App Service networking features</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots">Set up staging environments in Azure App Service</a></li>
+</ul>
+</section><section class="chapter"><h1 id="s18">Virtual networking (15–20%)</h1>
+<p>Virtual network troubleshooting is a process of following the packet path and checking each control in order: address plan, route, security rule, name resolution, service endpoint or private link, and destination health. A correct setting at one layer cannot compensate for a failure at another.</p>
+<h2 id="s19">Virtual networks, subnets, and routing</h2>
+<h3>Learning intent</h3>
+<p>Create and configure virtual networks and subnets, peer networks, configure public IP addresses and user-defined routes, and troubleshoot connectivity.</p>
+<h3>Core concepts</h3>
+<p>An <strong>Azure virtual network (VNet)</strong> is a private network boundary with one or more nonoverlapping IP address spaces. <strong>Subnets</strong> divide that address space for workload placement and policy. Reserve adequate ranges for expected growth and required platform use; Azure reserves addresses in each subnet, so do not plan to consume every address. A subnet is regional and belongs to one VNet.</p>
+<p><strong>VNet peering</strong> connects VNets using Microsoft's backbone, allowing private IP connectivity subject to routing, security, and address-space requirements. Peering is not automatically transitive: if VNet A peers with B and B peers with C, A does not thereby gain direct connectivity to C. Gateway transit or network appliances can support hub-and-spoke patterns, but must be configured intentionally.</p>
+<p>A <strong>public IP address</strong> associates a public endpoint with an Azure resource, subject to the service's configuration and security controls. It is not inherently required for all outbound connectivity and does not replace a firewall. A <strong>route table</strong> contains system routes and optional user-defined routes (UDRs). A UDR can direct traffic to a virtual appliance, virtual network gateway, or another supported next hop. Effective routes show the route selected for a network interface.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>When troubleshooting, verify that source and destination ranges do not overlap, the resource is in the intended subnet, peering is connected on both sides, and a route exists in both directions. A more specific route can win over a broader route; service routes and platform behavior should be checked in effective routes. NSGs and firewalls may still block permitted routes.</p>
+<p>Peering does not itself configure DNS, security rules, or network virtual appliances. A public IP can expose a service to the internet if the attached resource listens and security allows it; prefer private connectivity when public exposure is unnecessary.</p>
+<h3>Example or worked scenario</h3>
+<p>A VM in a spoke VNet cannot reach a database in a hub VNet. The administrator verifies address-space overlap, both peering states, gateway or appliance transit design, effective routes on the VM NIC, and NSG rules at the NIC and subnet. A successful ping is not assumed because the service may block ICMP; the actual application port and destination health are tested.</p>
+<h3>Hands-on activity</h3>
+<p>In a sandbox, inspect a VNet address plan, subnet ranges, peering status, public IP associations, and effective routes for a network interface. If creating test VNets, choose nonoverlapping ranges and remove them after reviewing connectivity.</p>
+<h3>Exam or practical application</h3>
+<p>Trace connectivity from source to destination and back. Identify the selected route, next hop, and every applicable security boundary. Treat public IP assignment, routing, peering, and authorization as separate parts of the design.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>Does peering from A to B and B to C automatically provide transitive connectivity between A and C?</p>
+<p><strong>Answer:</strong> No. Peering is not automatically transitive.</p>
+</li>
+<li>
+<p>What does an effective route help an administrator determine?</p>
+<p><strong>Answer:</strong> Which route is selected for traffic from a network interface and the associated next hop.</p>
+</li>
+<li>
+<p>If a route permits a packet, is successful application connectivity guaranteed?</p>
+<p><strong>Answer:</strong> No. Security rules, DNS, service health, and return routing can still prevent communication.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview">Virtual network overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/manage-virtual-network">Create, change, or delete a virtual network</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview">Virtual network peering</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses">Public IP addresses</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview">Virtual network traffic routing</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-routing-problem">Diagnose a virtual machine routing problem</a></li>
+</ul>
+<h2 id="s20">Secure access and private connectivity</h2>
+<h3>Learning intent</h3>
+<p>Create and interpret network security groups (NSGs) and application security groups (ASGs), evaluate effective rules, provide administrative access with Azure Bastion, and select service endpoints or private endpoints for PaaS connectivity.</p>
+<h3>Core concepts</h3>
+<p>An <strong>NSG</strong> contains inbound and outbound allow/deny rules evaluated by priority. Rules can use address prefixes, ports, protocol, and service or application security groups. NSGs can be associated with subnets and network interfaces. <strong>Application security groups</strong> let rules refer to workload groups rather than repeatedly listing IP addresses; they are used within supported network designs and do not replace an NSG.</p>
+<p>To investigate effective security, inspect rules applied at each association point, rule priority, default rules, and effective security rules on the NIC. A higher-priority matching rule can determine the outcome before a lower-priority rule. NSGs are stateful for established flows, but a new flow still needs a permitted direction and return path.</p>
+<p><strong>Azure Bastion</strong> provides managed remote connectivity to VMs over TLS through the Azure portal or supported clients, avoiding a public IP on each VM. Bastion itself requires a suitable deployment, subnet, SKU, and network configuration. It reduces exposed management endpoints but does not remove the need to secure identities and VM accounts.</p>
+<p>A <strong>service endpoint</strong> extends a VNet subnet's identity to supported Azure services, so a service firewall can allow selected subnets while traffic reaches the service's public endpoint over the Azure backbone. A <strong>private endpoint</strong> assigns a private IP in a VNet to a specific service resource using Azure Private Link. Private endpoints usually require correct private DNS configuration. They are not interchangeable: the endpoint, DNS behavior, supported services, and security requirements differ.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>If a rule appears correct but traffic fails, check for another NSG association, a higher-priority rule, a route or firewall issue, source address translation, and the destination's own access policy. Network Watcher tools can help identify effective rules and paths.</p>
+<p>Service endpoints do not make a service private or remove its public endpoint; firewall configuration controls which networks can access it. Private endpoints do not automatically disable public network access on the service. Disable or restrict the public path separately when required, and confirm name resolution returns the intended private address from the client network.</p>
+<h3>Example or worked scenario</h3>
+<p>A VM needs administrative access and must read a storage account without exposing either service broadly. The team uses Bastion for VM management, gives the VM a managed identity with a least-privileged storage data role, and chooses a private endpoint with private DNS when private IP-based service access is required. It separately restricts public network access and validates DNS and effective NSG rules.</p>
+<h3>Hands-on activity</h3>
+<p>In a sandbox, inspect a VM's effective security rules and trace why a test port is allowed or denied. Compare the network path and DNS result for a service endpoint and a private endpoint in a test configuration. Verify that a private endpoint has correct DNS records and remove test resources afterward.</p>
+<h3>Exam or practical application</h3>
+<p>Match the requirement: rule-based network filtering suggests NSG/ASG; browser-based VM administration without per-VM public IPs suggests Bastion; subnet-based service firewall access suggests service endpoints; a private IP for a specific PaaS resource suggests a private endpoint plus DNS planning.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>Does a service endpoint assign a private IP address to the PaaS resource in the VNet?</p>
+<p><strong>Answer:</strong> No. A private endpoint provides a private IP in the VNet; a service endpoint extends subnet identity to a supported service.</p>
+</li>
+<li>
+<p>Does adding an NSG allow rule guarantee that traffic can reach the destination?</p>
+<p><strong>Answer:</strong> No. Other NSGs, routes, firewalls, DNS, and destination configuration can still block the flow.</p>
+</li>
+<li>
+<p>What additional configuration is commonly needed for private endpoint name resolution?</p>
+<p><strong>Answer:</strong> Private DNS configuration that resolves the service name to the private endpoint address from the relevant clients.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview">Network security groups</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups">Application security groups</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem">View effective security rules</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/bastion/bastion-overview">What is Azure Bastion?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview">Azure virtual network service endpoints</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/private-link/private-link-overview">What is Azure Private Link?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns">Azure private endpoint DNS values</a></li>
+</ul>
+<h2 id="s21">Name resolution and load balancing</h2>
+<h3>Learning intent</h3>
+<p>Configure Azure DNS, select internal or public load-balancing designs, and troubleshoot name resolution and load distribution.</p>
+<h3>Core concepts</h3>
+<p><strong>Azure DNS</strong> hosts DNS domains and records. A public DNS zone serves internet-visible records after its name servers are delegated at the domain registrar. A <strong>private DNS zone</strong> resolves names for linked VNets and supports private service resolution when configured with appropriate records and links. DNS records map names to addresses or other names; TTL controls caching duration, not the time required for every client to observe a change.</p>
+<p>An <strong>Azure Load Balancer</strong> distributes TCP/UDP flows at layer 4 across healthy backend instances using a rule and health probe. A public load balancer has a public frontend; an internal load balancer uses a private frontend address. Backend pool membership, probe status, rules, NSGs, and return paths all affect results. A probe can mark a backend unavailable even when the VM is running if the application does not respond on the expected port or path.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>DNS maps a name to an endpoint; it does not ensure the endpoint is reachable or healthy. Verify the resolver used by the client, zone links or delegation, record values, and cache/TTL behavior. Private DNS zone links and private endpoint records must be designed for the client VNets that need resolution.</p>
+<p>A load-balancing rule defines frontend/backend ports and protocol; a health probe controls which backends receive new flows. Troubleshoot from the client inward: resolve the name, test the frontend, inspect the rule and backend pool, check probe health, then verify NSGs, routes, and application listeners. Load balancing is not the same as application-layer routing or global disaster recovery.</p>
+<h3>Example or worked scenario</h3>
+<p>A two-VM application is reachable by private IP but not by its DNS name. The administrator checks the client resolver, private zone link, record, and TTL before changing the load balancer. Once name resolution works, an internal load-balancer probe remains unhealthy; checking the configured probe port reveals that the service listens on a different port.</p>
+<h3>Hands-on activity</h3>
+<p>In a sandbox, inspect a public or private DNS zone, an internal load balancer frontend, backend pool, rule, and probe. Use name lookup from a VM in the intended VNet and compare it with lookup from an unlinked network. Avoid exposing a test backend publicly.</p>
+<h3>Exam or practical application</h3>
+<p>Distinguish DNS failure from network or application failure. For load balancing, validate the frontend type, port mapping, backend health, probe, and path to each instance before changing unrelated NSGs.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>What does a load-balancer health probe control?</p>
+<p><strong>Answer:</strong> It determines whether a backend is considered healthy and eligible to receive new traffic under the associated rule.</p>
+</li>
+<li>
+<p>Will creating a private DNS zone automatically make it resolvable from every VNet?</p>
+<p><strong>Answer:</strong> No. The relevant VNets and DNS clients must be linked or otherwise configured to use the zone.</p>
+</li>
+<li>
+<p>If DNS resolves to the expected load-balancer address, does that prove an application is healthy?</p>
+<p><strong>Answer:</strong> No. Routing, security, load-balancer rules and probes, backend health, and application behavior still need verification.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/dns/dns-overview">Azure DNS documentation</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/dns/private-dns-overview">Azure DNS private zones</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview">Azure Load Balancer overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview">Azure Load Balancer health probes</a></li>
+<li><a href="https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/load-balancer-troubleshoot">Troubleshoot Azure Load Balancer</a></li>
+</ul>
+</section><section class="chapter"><h1 id="s22">Monitoring and recovery (10–15%)</h1>
+<p>Monitoring helps administrators detect conditions; recovery services help restore operations after data loss or a larger outage. Neither works well without a defined target: what must be observed, what threshold matters, who responds, and how quickly the workload must recover.</p>
+<h2 id="s23">Azure Monitor and Network Watcher</h2>
+<h3>Learning intent</h3>
+<p>Interpret Azure Monitor metrics, configure diagnostic logs, query and analyze logs, create alerts and action groups, use Azure Monitor Insights, and diagnose network paths with Network Watcher and Connection Monitor.</p>
+<h3>Core concepts</h3>
+<p><strong>Azure Monitor</strong> collects and analyzes telemetry. <strong>Metrics</strong> are numeric time-series measurements with dimensions, such as CPU percentage or request count. They are useful for trends and near-real-time alerting. <strong>Logs</strong> are records stored in a Log Analytics workspace or another supported destination; they support querying and correlation but require appropriate diagnostic settings and retention configuration. Resource diagnostic settings route selected logs and metrics to destinations; they do not enable every resource log automatically.</p>
+<p>Log queries use <strong>Kusto Query Language (KQL)</strong> to filter, aggregate, join, and summarize records. Start with a time range, identify the correct table, filter early, and validate the units and dimensions before drawing conclusions. <strong>Alert rules</strong> evaluate metrics, logs, or activity conditions. An <strong>action group</strong> describes notification or automation actions; an <strong>alert processing rule</strong> can alter or suppress alert handling under specified conditions, such as a maintenance period. Separate detection logic from notification and response ownership.</p>
+<p><strong>Azure Monitor Insights</strong> provides curated monitoring views for supported resources such as VMs, storage accounts, and networks. It can surface relevant metrics and dependencies but does not eliminate the need to configure data collection, permissions, or alerting. <strong>Network Watcher</strong> offers diagnostics such as IP flow verify, next hop, connection troubleshoot, packet capture, and topology. <strong>Connection Monitor</strong> tests connectivity over time between sources and destinations and can alert on loss or latency.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Metrics and logs answer different questions; availability, granularity, retention, and cost vary by metric, log category, resource, and destination. Confirm that collection is enabled before relying on a chart. A metric anomaly is evidence to investigate, not proof of a root cause.</p>
+<p>Alerts require more than a threshold: scope, condition, evaluation frequency, severity, action group, and operational ownership all matter. Avoid noisy thresholds and verify that an action group reaches a monitored contact. Network diagnostics should follow the actual source, destination, protocol, port, DNS, and route.</p>
+<h3>Example or worked scenario</h3>
+<p>Users report intermittent slow responses from a web app. The operator checks request and server metrics, queries relevant logs over the incident window, and correlates a latency increase with a dependent service. An alert rule detects sustained latency and invokes an action group. Connection Monitor then identifies loss on a path to a private backend; Network Watcher tools help inspect route and filtering state.</p>
+<h3>Hands-on activity</h3>
+<p>In a test resource group, inspect available metrics and diagnostic categories for a VM or storage account. Route a small set of logs to a test workspace, run a time-bounded KQL query, and create a test metric or log alert with a nonproduction action group. In a sandbox VNet, inspect Network Watcher connectivity tools and remove test settings after review.</p>
+<h3>Exam or practical application</h3>
+<p>For each symptom, choose the telemetry that can observe it: metrics for numeric trends, logs for event/detail analysis, and network tools for reachability and path behavior. Trace alert evaluation through condition, scope, action group, and response procedure.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>What is a common distinction between an Azure Monitor metric and a log?</p>
+<p><strong>Answer:</strong> Metrics are numeric time-series measurements; logs are records that can be queried and correlated for detailed analysis.</p>
+</li>
+<li>
+<p>Does creating an alert rule automatically notify an administrator?</p>
+<p><strong>Answer:</strong> No. The rule must be configured with an action group or another response mechanism.</p>
+</li>
+<li>
+<p>Which tool is suited to monitoring connectivity and latency between endpoints over time?</p>
+<p><strong>Answer:</strong> Connection Monitor.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/overview">Azure Monitor overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-platform-metrics">Metrics in Azure Monitor</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings">Azure Monitor diagnostic settings</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview">Log Analytics overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/kusto/query/">Kusto Query Language (KQL) overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview">Azure Monitor alerts overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups">Create and manage action groups</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules">Alert processing rules</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/insights/insights-overview">Azure Monitor Insights overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-overview">What is Azure Network Watcher?</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview">Monitor network connectivity with Connection Monitor</a></li>
+</ul>
+<h2 id="s24">Backup and disaster recovery</h2>
+<h3>Learning intent</h3>
+<p>Create the appropriate vault, configure and operate Azure Backup policies, restore protected data, configure Azure Site Recovery (ASR), perform a failover, and interpret backup reports and alerts.</p>
+<h3>Core concepts</h3>
+<p><strong>Azure Backup</strong> protects supported workloads using a backup policy that defines when recovery points are created and how long they are retained. A <strong>Recovery Services vault</strong> stores backup and Site Recovery configuration for supported workloads; an <strong>Azure Backup vault</strong> supports backup for other supported data sources and newer scenarios. Select the vault type from the workload's current support matrix rather than assuming the two are interchangeable.</p>
+<p>A backup policy describes schedule and retention, subject to workload and vault capabilities. After enabling backup, monitor job status, retention, and alerts. A successful backup is not proven recoverable until a restore is tested. Restore choices can include restoring files, disks, or a VM, depending on the protected workload. Plan for identity, networking, keys, permissions, and application consistency during recovery.</p>
+<p><strong>Azure Site Recovery</strong> replicates supported workloads to another location or region and orchestrates recovery during a disruption. Replication and failover are distinct from backup: replication can reproduce unwanted changes or corruption, while backup provides retained recovery points. A <strong>test failover</strong> validates a recovery plan in an isolated network; a planned or unplanned failover changes the serving location. Commit and reprotect steps depend on the scenario and should be understood before production use.</p>
+<p>Backup reports and alerts expose job health, protected-item coverage, and issues requiring attention. Configure reporting and notification paths, review failures, and assign an owner for remediation. Retention, data residency, network access, and costs are part of the protection design.</p>
+<h3>How it works, distinctions, limits, and defaults</h3>
+<p>Recovery objectives should be explicit: <strong>recovery point objective (RPO)</strong> is the acceptable data-loss window; <strong>recovery time objective (RTO)</strong> is the acceptable restoration time. Backup frequency and replication behavior affect RPO; restore throughput, dependencies, and tested automation affect RTO. Service defaults do not automatically meet business objectives.</p>
+<p>Vault redundancy, soft delete, immutability, encryption, private connectivity, and role separation can strengthen protection, but feature availability differs by workload and configuration. Prevent backup operators from having unnecessary delete or production privileges. Validate the actual restore or failover path and record the result.</p>
+<h3>Example or worked scenario</h3>
+<p>A VM must recover from accidental deletion and from a regional outage. The team protects it with Azure Backup in a supported vault and tests restoring a VM or disks. It separately configures Site Recovery for regional continuity, defines a recovery plan and isolated test network, and performs a test failover. A quarterly review confirms backup alerts reach the on-call team and measured recovery times meet objectives.</p>
+<h3>Hands-on activity</h3>
+<p>In a nonproduction subscription, inspect supported vault types for a test workload, create a short-retention backup policy, and enable protection. Monitor the first job and perform a documented test restore where possible. Separately review ASR prerequisites and perform only a test failover in an isolated environment. Clean up test replicas and vault resources according to product guidance.</p>
+<h3>Exam or practical application</h3>
+<p>Use backup when the requirement is retained point-in-time recovery; use Site Recovery when the requirement is orchestrated continuity at a secondary location. Identify workload support, vault type, policy, recovery objective, and verification/reporting need. A failover plan should include dependencies and post-failover steps, not just the compute resource.</p>
+<h3>Self-check questions</h3>
+<ol>
+<li>
+<p>What is the main difference between Azure Backup and Site Recovery?</p>
+<p><strong>Answer:</strong> Backup retains recovery points for restore; Site Recovery replicates workloads and orchestrates failover to support continuity.</p>
+</li>
+<li>
+<p>How do RPO and RTO differ?</p>
+<p><strong>Answer:</strong> RPO describes acceptable data loss measured as time; RTO describes acceptable time to restore service.</p>
+</li>
+<li>
+<p>Does a successful backup job prove that the application can be recovered within its RTO?</p>
+<p><strong>Answer:</strong> No. Recovery must be tested, including application dependencies and measured restoration time.</p>
+</li>
+</ol>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/backup/">Azure Backup documentation</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/backup/backup-vault-overview">Azure Backup vault overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview">Recovery Services vault overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/backup/backup-support-matrix">Azure Backup support matrix</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-first-look-arm">Back up an Azure VM</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms">Restore an Azure VM</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/backup/configure-reports">Azure Backup reports</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview">Azure Site Recovery overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-test-failover-to-azure">Run a test failover in Azure Site Recovery</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-failover">Fail over and fail back virtual machines</a></li>
+</ul>
+</section></body></html>
