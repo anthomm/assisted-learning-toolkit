@@ -24,7 +24,7 @@ textbooks/<book>/
   EXAM-FORMAT.md      # exam-day guide (see below), for certification exams
   LABS.md             # index of linked labs and workshops (see below)
   CHANGELOG.md        # one entry per edition
-  build/              # generated PDF/HTML from apps/textbook_pdf, gitignored, never hand-edited
+  build/              # generated PDF/HTML from apps/textbook_pdf, tracked in git, never hand-edited; includes EXAM-FORMAT.md and LABS.md
 ```
 
 ## `metadata.yaml`
