@@ -21,6 +21,8 @@ textbooks/<book>/
   00-intro.md         # scope, audience, weights, how to use, edition
   01-<chapter>.md ... # chapters with topics
   coverage.md         # traceability map (see below)
+  EXAM-FORMAT.md      # exam-day guide (see below), for certification exams
+  LABS.md             # index of linked labs and workshops (see below)
   CHANGELOG.md        # one entry per edition
   build/              # generated PDF/HTML from apps/textbook_pdf, gitignored, never hand-edited
 ```
@@ -65,6 +67,14 @@ One table per topic, preceded by `Source locator: <where in the source>`. Column
 - Statuses: `todo`/`drafted`/`reviewed`. `reviewed` means a human checked the mapped material against the source and references; it never claims the source was exhaustive.
 - Record known gaps in a closing section.
 
+## `EXAM-FORMAT.md` (certification exams)
+
+How the exam is delivered, from the official exam page, skills-measured document, and Microsoft's exam sandbox / practice assessment. Cover: question types (multiple choice, multiple response, ordering, matching, yes/no series, hotspot/dropdown, case studies, command or performance-based labs if present), number of questions and time, passing score, whether questions can be revisited (case studies and some sections lock), retake policy, and per question type an approach tip with a short original example. State only what the sources state; mark anything unconfirmed with `> **Verify:**` and record the retrieval date. Skip for non-exam books.
+
+## `LABS.md` (linked hands-on resources)
+
+An index of official external labs and workshops (Microsoft Learn modules with sandboxes, Learn challenge projects, Applied Skills, MS Learn/GitHub workshop repos). Do not copy lab content; link and describe. Table columns: Resource, Type (`sandbox` / `lab` / `workshop` / `applied-skill`), Link, Needs own subscription (yes/no), Chapter/topic, Outcome IDs (from `coverage.md`), Link checked (date). Only list resources that were actually opened and verified; mark cost or subscription needs.
+
 ## Teaching pattern for each topic
 
-Learning intent, core concepts, how it works / distinctions / limits, example or worked scenario, hands-on activity (when applicable), exam or practical application (when applicable), self-check questions with answers, sources. Omit parts that do not fit. Mark uncertain or version-sensitive facts with `> **Verify:**`.
+Learning intent, core concepts, how it works / distinctions / limits, example or worked scenario, hands-on activity (when applicable), official labs (linked, when available), exam or practical application (when applicable), self-check questions with answers, sources. Omit parts that do not fit. Mark uncertain or version-sensitive facts with `> **Verify:**`.

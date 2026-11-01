@@ -62,6 +62,10 @@ Use an authorized sandbox; no deployment is required.
 3. Inspect budgets and alerts, if permitted, without creating one for production. Identify a sensible threshold and recipients for a test subscription.
 4. Review resource tags and verify child resources actually have them; do not assume inheritance.
 
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe Azure management and governance](https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
+
 ### Exam or practical application
 
 When a question asks which option helps **estimate future Azure use**, choose the pricing calculator. When it asks how to **analyze spending, track trends, or set threshold notifications**, think Microsoft Cost Management. When the goal is to **classify resources or group supported cost information**, think tags. If the scenario says spending must stop at a precise cap, do not assume a budget alert is an enforcement mechanism; distinguish an alert from an action that actually changes or stops a workload.
@@ -148,6 +152,10 @@ Use a lab subscription or read-only browsing. Do not assign a deny policy or app
 1. In the portal, inspect built-in Azure Policy definitions for allowed locations or required tags. Read the effect and distinguish a definition, assignment, and initiative.
 2. On a disposable lab resource, inspect the **CanNotDelete** and **ReadOnly** locks and their scope. Do not apply a lock to shared infrastructure.
 3. Review the current Microsoft Purview overview and identify its data-governance, data-security, and data-compliance solution areas; confirm tenant availability before planning deployment.
+
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe Azure management and governance](https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
 
 ### Exam or practical application
 
@@ -248,6 +256,10 @@ This activity uses read-only commands until the optional template preview. Confi
 3. Read a small ARM template or Bicep sample and identify a resource, name, location, and configuration. Use `what-if` only in a lab after verifying the deployment context.
 4. From Azure Arc documentation, identify a supported non-Azure resource and its onboarding prerequisites.
 
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe Azure management and governance](https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
+
 ### Exam or practical application
 
 If the question asks for a **browser GUI**, think Azure portal. If it asks for **commands or scripts**, Azure CLI or Azure PowerShell are both management tools; determine which syntax and shell the scenario specifies. If it asks for **a browser terminal with Bash or PowerShell and preinstalled tools**, think Cloud Shell. If it describes **governing or managing supported servers or clusters outside Azure through Azure**, think Azure Arc.
@@ -343,6 +355,10 @@ Use an existing demo or lab subscription. Do not create costly resources or send
 2. Compare personalized Service Health notices with Azure Status, then open a resource's Resource Health view if available.
 3. In Azure Monitor, locate metrics, logs, and alert rules. In a demo Application Insights resource, inspect availability, failures, or performance and identify the telemetry source.
 4. Write an operational question and specify the signal, time range, view, and alert that could answer it.
+
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe Azure management and governance](https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
 
 ### Exam or practical application
 

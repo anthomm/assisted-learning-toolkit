@@ -30,6 +30,14 @@ A VM in a spoke VNet cannot reach a database in a hub VNet. The administrator ve
 
 In a sandbox, inspect a VNet address plan, subnet ranges, peering status, public IP associations, and effective routes for a network interface. If creating test VNets, choose nonoverlapping ranges and remove them after reviewing connectivity.
 
+### Official labs
+
+- [Lab 04 – Implement virtual networking](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_04-Implement_Virtual_Networking.html)
+- [Lab 05 – Implement intersite connectivity](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_05-Implement_Intersite_Connectivity.html)
+- Learning path: [AZ-104: Configure and manage virtual networks for Azure administrators](https://learn.microsoft.com/en-us/training/paths/az-104-manage-virtual-networks/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
+
 ### Exam or practical application
 
 Trace connectivity from source to destination and back. Identify the selected route, next hop, and every applicable security boundary. Treat public IP assignment, routing, peering, and authorization as separate parts of the design.
@@ -87,6 +95,13 @@ A VM needs administrative access and must read a storage account without exposin
 
 In a sandbox, inspect a VM's effective security rules and trace why a test port is allowed or denied. Compare the network path and DNS result for a service endpoint and a private endpoint in a test configuration. Verify that a private endpoint has correct DNS records and remove test resources afterward.
 
+### Official labs
+
+- [Lab 04 – Implement virtual networking](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_04-Implement_Virtual_Networking.html)
+- Learning path: [AZ-104: Configure and manage virtual networks for Azure administrators](https://learn.microsoft.com/en-us/training/paths/az-104-manage-virtual-networks/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
+
 ### Exam or practical application
 
 Match the requirement: rule-based network filtering suggests NSG/ASG; browser-based VM administration without per-VM public IPs suggests Bastion; subnet-based service firewall access suggests service endpoints; a private IP for a specific PaaS resource suggests a private endpoint plus DNS planning.
@@ -140,6 +155,14 @@ A two-VM application is reachable by private IP but not by its DNS name. The adm
 ### Hands-on activity
 
 In a sandbox, inspect a public or private DNS zone, an internal load balancer frontend, backend pool, rule, and probe. Use name lookup from a VM in the intended VNet and compare it with lookup from an unlinked network. Avoid exposing a test backend publicly.
+
+### Official labs
+
+- [Lab 04 – Implement virtual networking](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_04-Implement_Virtual_Networking.html)
+- [Lab 06 – Implement network traffic management](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_06-Implement_Network_Traffic_Management.html)
+- Learning path: [AZ-104: Configure and manage virtual networks for Azure administrators](https://learn.microsoft.com/en-us/training/paths/az-104-manage-virtual-networks/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
 
 ### Exam or practical application
 

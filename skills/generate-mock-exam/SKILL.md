@@ -52,7 +52,7 @@ questions:
 - id: 1                        # unique integer
   domain: core-concepts        # domains[].id
   topic: pods                  # optional, topics[].id of that domain
-  type: single                 # single (default) | multiple
+  type: single                 # single (default) | multiple | ordering | matching | yesno-series | hotspot | command
   text: Which object ...?
   options:                     # 2-8 options, ids A-H
   - {id: A, text: ..., explanation: why wrong}
@@ -63,6 +63,57 @@ questions:
   tags: [optional]
   references: [https://...]    # optional
 ```
+
+## Non-multiple-choice question types
+
+`single` and `multiple` use `options` + `correct`. The other types replace them (they are not allowed to be mixed in, except that `text`, `explanation`, `tags`, etc. always apply). Match the formats described in the book's `EXAM-FORMAT.md`.
+
+```yaml
+# ordering: list items shuffled; correct_order is the right sequence
+- id: 101
+  domain: ...
+  type: ordering
+  text: Arrange the steps to ...
+  items: [{id: A, text: ...}, {id: B, text: ...}, {id: C, text: ...}]
+  correct_order: [B, C, A]
+
+# matching: one correct choice per prompt; a choice may be reused
+- id: 102
+  type: matching
+  text: Match each service to its description.
+  prompts: [{id: "1", text: Azure Policy}, {id: "2", text: Azure RBAC}]
+  choices: [{id: A, text: Controls who can act}, {id: B, text: Enforces resource rules}]
+  correct_pairs: [{prompt: "1", choice: B}, {prompt: "2", choice: A}]
+
+# yesno-series: each statement is true/false (include both)
+- id: 103
+  type: yesno-series
+  text: For each statement, select Yes or No.
+  statements: [{id: S1, text: ..., answer: true, explanation: ...}, {id: S2, text: ..., answer: false}]
+
+# hotspot: one dropdown (slot) per blank, one correct option each
+- id: 104
+  type: hotspot
+  text: Complete the command.
+  slots:
+  - id: H1
+    text: "az ___ create"
+    options: [{id: A, text: group}, {id: B, text: vm}]
+    correct: A
+
+# command: free text graded against accepted variants
+- id: 105
+  type: command
+  text: Type the command that lists all resource groups.
+  command:
+    shell: azure-cli             # azure-cli | powershell | bash | cmd
+    accepted: ["az group list"]  # list every valid variant, including short flags
+    ignore_flag_order: true      # default
+    case_sensitive: false        # default
+    hint: optional
+```
+
+Rules: ordering items must not be listed in the correct order; ids for matching prompts are `1`-`8`, statements `S1`-`S8`, slots `H1`-`H6`; every question still needs an `explanation` and `references`. `command` answers should only cover what the exam expects (do not accept commands that fail or change different resources). The quiz app renders and grades all of these types.
 
 ## Quality rules
 - Exactly one correct answer for `single`; 2+ for `multiple`, and the question text should say "Choose N".

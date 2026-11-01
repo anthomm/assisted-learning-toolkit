@@ -23,7 +23,7 @@ Source locator: study guide, "Manage Azure identities and governance" > "Manage 
 | Outcome ID | Learning outcome (interpreted) | Confidence / note | Book section | Exam questions | Textbook | Exam |
 |---|---|---|---|---|---|---|
 | `rbac-built-in-roles` | Select and manage suitable built-in Azure roles | direct | 01-identities-and-governance.md > Access to Azure resources with RBAC | 9, 10, 14, 15 | drafted | drafted |
-| `rbac-scope-assignments` | Assign roles at an appropriate Azure scope | direct | 01-identities-and-governance.md > Access to Azure resources with RBAC | 9, 10, 11, 12, 13 | drafted | drafted |
+| `rbac-scope-assignments` | Assign roles at an appropriate Azure scope | direct | 01-identities-and-governance.md > Access to Azure resources with RBAC | 9, 10, 11, 12, 13, 103 | drafted | drafted |
 | `rbac-interpret-access` | Interpret effective Azure role assignments | direct | 01-identities-and-governance.md > Access to Azure resources with RBAC | 12, 13, 14, 15, 22 | drafted | drafted |
 
 ### Subscriptions, governance, and cost control
@@ -35,7 +35,7 @@ Source locator: study guide, "Manage Azure identities and governance" > "Manage 
 | `gov-azure-policy` | Implement and manage Azure Policy assignments and compliance | direct | 01-identities-and-governance.md > Subscriptions, governance, and cost control | 16, 17, 18 | drafted | drafted |
 | `gov-resource-locks` | Configure resource locks to prevent selected management actions | direct | 01-identities-and-governance.md > Subscriptions, governance, and cost control | 19 | drafted | drafted |
 | `gov-resource-tags` | Apply and manage resource tags for organization and reporting | direct | 01-identities-and-governance.md > Subscriptions, governance, and cost control | 16, 17, 20 | drafted | drafted |
-| `gov-resource-groups` | Create and manage resource groups for resource lifecycle | direct | 01-identities-and-governance.md > Subscriptions, governance, and cost control | 21 | drafted | drafted |
+| `gov-resource-groups` | Create and manage resource groups for resource lifecycle | direct | 01-identities-and-governance.md > Subscriptions, governance, and cost control | 21, 105 | drafted | drafted |
 | `gov-subscriptions` | Manage Azure subscriptions as administrative and billing boundaries | direct | 01-identities-and-governance.md > Subscriptions, governance, and cost control | 22, 25 | drafted | drafted |
 | `gov-cost-controls` | Use alerts, budgets, and Advisor recommendations to manage costs | direct | 01-identities-and-governance.md > Subscriptions, governance, and cost control | 20, 23, 24 | drafted | drafted |
 | `gov-management-groups` | Organize subscriptions with management groups | direct | 01-identities-and-governance.md > Subscriptions, governance, and cost control | 18, 25 | drafted | drafted |
@@ -143,9 +143,9 @@ Source locator: study guide, "Implement and manage virtual networking" > "Config
 | Outcome ID | Learning outcome (interpreted) | Confidence / note | Book section | Exam questions | Textbook | Exam |
 |---|---|---|---|---|---|---|
 | `network-vnets-subnets` | Create and configure virtual networks and subnets | direct | 04-virtual-networking.md > Virtual networks, subnets, and routing | 69 | drafted | drafted |
-| `network-peering` | Configure VNet peering and understand its routing behavior | direct | 04-virtual-networking.md > Virtual networks, subnets, and routing | 70, 71 | drafted | drafted |
+| `network-peering` | Configure VNet peering and understand its routing behavior | direct | 04-virtual-networking.md > Virtual networks, subnets, and routing | 70, 71, 102, 104 | drafted | drafted |
 | `network-public-ips` | Configure public IP addresses for supported Azure resources | direct | 04-virtual-networking.md > Virtual networks, subnets, and routing | 72 | drafted | drafted |
-| `network-udr` | Configure user-defined routes and next hops | direct | 04-virtual-networking.md > Virtual networks, subnets, and routing | 70, 73, 74 | drafted | drafted |
+| `network-udr` | Configure user-defined routes and next hops | direct | 04-virtual-networking.md > Virtual networks, subnets, and routing | 70, 73, 74, 102 | drafted | drafted |
 | `network-connectivity-troubleshoot` | Troubleshoot virtual network connectivity and routing | direct | 04-virtual-networking.md > Virtual networks, subnets, and routing | 73, 75 | drafted | drafted |
 
 ### Secure access and private connectivity
@@ -154,7 +154,7 @@ Source locator: study guide, "Implement and manage virtual networking" > "Config
 
 | Outcome ID | Learning outcome (interpreted) | Confidence / note | Book section | Exam questions | Textbook | Exam |
 |---|---|---|---|---|---|---|
-| `network-nsg-asg` | Create and configure NSGs and application security groups | direct | 04-virtual-networking.md > Secure access and private connectivity | 76, 77, 78 | drafted | drafted |
+| `network-nsg-asg` | Create and configure NSGs and application security groups | direct | 04-virtual-networking.md > Secure access and private connectivity | 76, 77, 78, 102 | drafted | drafted |
 | `network-effective-rules` | Evaluate effective NSG security rules for a network interface | direct | 04-virtual-networking.md > Secure access and private connectivity | 75, 77 | drafted | drafted |
 | `network-bastion` | Implement Azure Bastion for VM administration | direct | 04-virtual-networking.md > Secure access and private connectivity | 79, 80 | drafted | drafted |
 | `network-service-endpoints` | Configure service endpoints for supported Azure PaaS services | direct | 04-virtual-networking.md > Secure access and private connectivity | 81 | drafted | drafted |
@@ -191,9 +191,9 @@ Source locator: study guide, "Monitor and maintain Azure resources" > "Implement
 
 | Outcome ID | Learning outcome (interpreted) | Confidence / note | Book section | Exam questions | Textbook | Exam |
 |---|---|---|---|---|---|---|
-| `recovery-services-vault` | Create a Recovery Services vault for a supported workload | direct | 05-monitoring-and-recovery.md > Backup and disaster recovery | 97 | drafted | drafted |
+| `recovery-services-vault` | Create a Recovery Services vault for a supported workload | direct | 05-monitoring-and-recovery.md > Backup and disaster recovery | 97, 101 | drafted | drafted |
 | `recovery-backup-vault` | Create an Azure Backup vault for a supported workload | direct | 05-monitoring-and-recovery.md > Backup and disaster recovery | 96 | drafted | drafted |
-| `recovery-backup-policy` | Create and configure a backup policy | direct | 05-monitoring-and-recovery.md > Backup and disaster recovery | 98 | drafted | drafted |
+| `recovery-backup-policy` | Create and configure a backup policy | direct | 05-monitoring-and-recovery.md > Backup and disaster recovery | 98, 101 | drafted | drafted |
 | `recovery-backup-restore` | Perform backup and restore operations with Azure Backup | direct | 05-monitoring-and-recovery.md > Backup and disaster recovery | 99 | drafted | drafted |
 | `recovery-site-recovery` | Configure Azure Site Recovery for supported resources | direct | 05-monitoring-and-recovery.md > Backup and disaster recovery | 100 | drafted | drafted |
 | `recovery-failover` | Perform or test a failover to a secondary region | direct | 05-monitoring-and-recovery.md > Backup and disaster recovery | 100 | drafted | drafted |

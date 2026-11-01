@@ -41,6 +41,9 @@ table { width:100%; border-collapse:collapse; } td,th { padding:6px 8px; border-
 .pill { padding:2px 8px; border-radius:99px; font-size:.8rem; }
 .pill.ok { background:var(--okbg); color:var(--ok); } .pill.bad { background:var(--badbg); color:var(--bad); }
 .err { color:var(--bad); white-space:pre-wrap; }
+input.cmd { width:100%; font:inherit; font-family:ui-monospace,monospace; padding:8px; border:1px solid var(--line); border-radius:8px; background:var(--card); color:var(--fg); }
+input.cmd.right { border-color:var(--ok); } input.cmd.wrong { border-color:var(--bad); }
+select { font:inherit; padding:6px; max-width:100%; background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; }
 input[type=number] { width:80px; font:inherit; padding:6px; }
 </style>
 </head>
@@ -61,13 +64,92 @@ function h(tag, attrs, ...kids) {
     else if (v === true) el.setAttribute(k, "");
     else if (v !== false && v != null) el.setAttribute(k, v);
   }
-  for (const k of kids.flat()) if (k != null && k !== false) el.append(k.nodeType ? k : document.createTextNode(String(k)));
+  for (const k of kids.flat(Infinity)) if (k != null && k !== false) el.append(k.nodeType ? k : document.createTextNode(String(k)));
   return el;
 }
 function render(...nodes) { $app.replaceChildren(...nodes.flat().filter(n => n && n.nodeType)); window.scrollTo(0, 0); }
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const pct = (n, d) => d ? Math.round(100 * n / d) : 0;
 const sameSet = (a, b) => a.length === b.length && a.every(x => b.includes(x));
+
+/* ---------- question types, answers & grading ---------- */
+const TYPES = ["single", "multiple", "ordering", "matching", "yesno-series", "hotspot", "command"];
+const qtype = q => q.type || "single";
+const isMulti = q => qtype(q) === "multiple";
+const isChoice = q => qtype(q) === "single" || qtype(q) === "multiple";
+const answered = (q, a) => a == null ? false : typeof a === "string" ? a.trim().length > 0 : Array.isArray(a) ? a.length > 0 : Object.keys(a).length > 0;
+
+// Tokenise a command, honour quotes, and group "--flag value" units so flag order can be ignored.
+function normCommand(s, c) {
+  let toks = (s.match(/"[^"]*"|'[^']*'|\S+/g) || []).map(t => t.replace(/^(["'])(.*)\1$/, "$2"));
+  if (!c.case_sensitive) toks = toks.map(t => t.toLowerCase());
+  if (c.ignore_flag_order === false) return toks.join(" ");
+  const head = [], units = [];
+  for (const t of toks) {
+    if (t.startsWith("-") && !/^-\d/.test(t)) units.push([t]);
+    else (units.length ? units[units.length - 1] : head).push(t);
+  }
+  return head.join(" ") + " | " + units.map(u => u.join(" ")).sort().join(" | ");
+}
+function grade(q, a) {
+  if (!answered(q, a)) return false;
+  switch (qtype(q)) {
+    case "ordering": return a.length === q.correct_order.length && a.every((x, i) => x === q.correct_order[i]);
+    case "matching": return q.correct_pairs.every(p => a[p.prompt] === p.choice);
+    case "yesno-series": return q.statements.every(s => a[s.id] === s.answer);
+    case "hotspot": return q.slots.every(s => a[s.id] === s.correct);
+    case "command": { const c = q.command, n = normCommand(a, c); return c.accepted.some(x => normCommand(x, c) === n); }
+    default: return sameSet(a, q.correct);
+  }
+}
+const mark = (ok) => ok ? " right" : " wrong";
+
+// Answer UI for non-choice types. `reveal` shows correctness; otherwise inputs are editable.
+function typedUI(q, entry, mine, reveal, set) {
+  const t = qtype(q), dis = reveal;
+  if (t === "ordering") {
+    const order = Array.isArray(mine) && mine.length ? mine : entry.items.map(i => i.id);
+    const byId = Object.fromEntries(q.items.map(i => [i.id, i]));
+    const mv = (i, d) => { const o = order.slice(); [o[i], o[i + d]] = [o[i + d], o[i]]; set(o); };
+    return [h("div", { class: "muted" }, reveal ? "Your order:" : "Arrange in the correct order (top = first)."),
+      order.map((id, i) => h("div", { class: "opt" + (reveal ? mark(id === q.correct_order[i]) : ""), style: "cursor:default" },
+        h("span", { class: "letter" }, (i + 1) + "."), h("span", { style: "flex:1" }, byId[id].text),
+        !reveal && h("button", { disabled: i === 0, onclick: () => mv(i, -1), "aria-label": "Move up" }, "↑"),
+        !reveal && h("button", { disabled: i === order.length - 1, onclick: () => mv(i, 1), "aria-label": "Move down" }, "↓"))),
+      reveal && h("div", { class: "muted" }, "Correct order:"),
+      reveal && q.correct_order.map((id, i) => h("div", { class: "opt right", style: "cursor:default" }, h("span", { class: "letter" }, (i + 1) + "."), h("span", {}, byId[id].text)))];
+  }
+  const sel = (key, options, cur) => h("select", { disabled: dis, onchange: e => set({ ...(mine || {}), [key]: e.target.value }) },
+    h("option", { value: "" }, "— select —"), options.map(o => h("option", { value: o.id, selected: cur === o.id }, o.text)));
+  if (t === "matching") {
+    const choice = id => (q.choices.find(c => c.id === id) || {}).text;
+    return q.prompts.map(p => {
+      const pair = q.correct_pairs.find(x => x.prompt === p.id), cur = (mine || {})[p.id], ok = cur === pair.choice;
+      return h("div", { class: "opt" + (reveal ? mark(ok) : ""), style: "cursor:default" }, h("span", { style: "flex:1" }, p.text),
+        sel(p.id, q.choices, cur), reveal && !ok && h("div", { class: "why" }, "Correct: " + choice(pair.choice)), reveal && p.explanation && h("div", { class: "why" }, p.explanation));
+    });
+  }
+  if (t === "hotspot") {
+    return q.slots.map(s => {
+      const cur = (mine || {})[s.id], ok = cur === s.correct, right = s.options.find(o => o.id === s.correct);
+      return h("div", { class: "opt" + (reveal ? mark(ok) : ""), style: "cursor:default" }, h("span", { style: "flex:1" }, s.text),
+        sel(s.id, s.options, cur), reveal && !ok && h("div", { class: "why" }, "Correct: " + right.text), reveal && s.explanation && h("div", { class: "why" }, s.explanation));
+    });
+  }
+  if (t === "yesno-series") {
+    return q.statements.map(s => {
+      const cur = (mine || {})[s.id], ok = cur === s.answer;
+      const btn = (val, label) => h("button", { class: cur === val ? "primary" : "", disabled: dis, onclick: () => set({ ...(mine || {}), [s.id]: val }) }, label);
+      return h("div", { class: "opt" + (reveal ? mark(ok) : ""), style: "cursor:default" }, h("span", { style: "flex:1" }, s.text), btn(true, "Yes"), btn(false, "No"),
+        reveal && h("div", { class: "why" }, (ok ? "✔ " : "✘ ") + "Answer: " + (s.answer ? "Yes" : "No") + (s.explanation ? ". " + s.explanation : "")));
+    });
+  }
+  const c = q.command, ok = reveal && grade(q, mine);
+  return [h("div", { class: "muted" }, `Type the ${c.shell || "shell"} command.` + (c.hint ? " Hint: " + c.hint : "")),
+    h("input", { type: "text", class: "cmd" + (reveal ? mark(ok) : ""), value: mine || "", disabled: dis, autocomplete: "off", spellcheck: "false", "aria-label": "Command",
+      oninput: e => set(e.target.value, true) }),
+    reveal && h("div", { class: "why" }, "Accepted: ", c.accepted.map(x => h("code", { style: "display:block" }, x)))];
+}
 
 /* ---------- loading & validation ---------- */
 function validate(d) {
@@ -85,9 +167,23 @@ function validate(d) {
     if (!q.text) errs.push(n + ": missing text");
     if (!(q.domain in doms)) errs.push(n + ": unknown domain " + q.domain);
     else if (q.topic && !doms[q.domain].has(q.topic)) errs.push(n + ": unknown topic " + q.topic);
+    const t = q.type || "single";
+    if (!TYPES.includes(t)) return errs.push(n + ": unsupported type " + t);
     const ids = (q.options || []).map(o => o.id);
-    if (ids.length < 2) errs.push(n + ": needs at least 2 options");
-    if (!Array.isArray(q.correct) || !q.correct.length || !q.correct.every(c => ids.includes(c))) errs.push(n + ": invalid correct list");
+    if (t === "single" || t === "multiple") {
+      if (ids.length < 2) errs.push(n + ": needs at least 2 options");
+      if (!Array.isArray(q.correct) || !q.correct.length || !q.correct.every(c => ids.includes(c))) errs.push(n + ": invalid correct list");
+    } else if (t === "ordering") {
+      if (!Array.isArray(q.items) || !Array.isArray(q.correct_order) || q.correct_order.length !== q.items.length) errs.push(n + ": invalid items/correct_order");
+    } else if (t === "matching") {
+      if (!Array.isArray(q.prompts) || !Array.isArray(q.choices) || !Array.isArray(q.correct_pairs)) errs.push(n + ": invalid prompts/choices/correct_pairs");
+    } else if (t === "yesno-series") {
+      if (!Array.isArray(q.statements) || !q.statements.length) errs.push(n + ": missing statements");
+    } else if (t === "hotspot") {
+      if (!Array.isArray(q.slots) || !q.slots.length) errs.push(n + ": missing slots");
+    } else if (t === "command") {
+      if (!q.command || !Array.isArray(q.command.accepted) || !q.command.accepted.length) errs.push(n + ": missing command.accepted");
+    }
   });
   return errs;
 }
@@ -163,18 +259,16 @@ function showSetup() {
 /* ---------- quiz ---------- */
 function startRun(pool) {
   const secs = cfg.mode === "exam" && exam.time_limit_minutes ? Math.round(exam.time_limit_minutes * 60 * pool.length / exam.questions.length) : 0;
-  run = { qs: pool.map(q => ({ q, opts: cfg.shuffleOptions ? shuffle(q.options) : q.options.slice() })), idx: 0, answers: {}, checked: {}, left: secs, started: Date.now() };
+  run = { qs: pool.map(q => ({ q, opts: cfg.shuffleOptions ? shuffle(q.options || []) : (q.options || []).slice(), items: cfg.shuffleOptions && q.items ? shuffle(q.items) : (q.items || []) })), idx: 0, answers: {}, checked: {}, left: secs, started: Date.now() };
   clearInterval(timer);
   if (secs) timer = setInterval(() => { run.left--; const el = document.getElementById("timer"); if (el) el.textContent = fmt(run.left); if (run.left <= 0) finish(); }, 1000);
   showQ();
 }
 const fmt = s => `${Math.floor(Math.max(s, 0) / 60)}:${String(Math.max(s, 0) % 60).padStart(2, "0")}`;
-const isMulti = q => (q.type || "single") === "multiple";
-
 function showQ() {
-  const { q, opts } = run.qs[run.idx];
+  const entry = run.qs[run.idx], { q, opts } = entry;
   const total = run.qs.length, locked = !!run.checked[q.id];
-  const cur = run.answers[q.id] || [];
+  const cur = run.answers[q.id] || (isChoice(q) ? [] : null);
   const practice = cfg.mode === "practice";
   const toggle = id => {
     if (locked) return;
@@ -182,8 +276,9 @@ function showQ() {
     if (practice && !isMulti(q)) run.checked[q.id] = true;
     showQ();
   };
+  const setAns = (v, quiet) => { if (locked) return; run.answers[q.id] = v; if (!quiet) showQ(); };
   const move = delta => {
-    if (practice && isMulti(q) && cur.length && !locked) {
+    if (practice && !(qtype(q) === "single") && answered(q, run.answers[q.id]) && !locked && delta > 0) {
       run.checked[q.id] = true;
       showQ();
       return;
@@ -198,36 +293,36 @@ function showQ() {
       confirmFinish();
     }
   };
-  const optEls = opts.map((o, i) => {
+  const optEls = !isChoice(q) ? [] : opts.map((o, i) => {
     const sel = cur.includes(o.id), right = q.correct.includes(o.id);
     const cls = "opt" + (locked ? (right ? " right" : sel ? " wrong" : "") : sel ? " sel" : "");
     return h("button", { class: cls, onclick: () => toggle(o.id) }, h("span", { class: "letter" }, String.fromCharCode(65 + i) + "."),
       h("span", {}, o.text, locked && (o.explanation || right) && h("div", { class: "why" }, (right ? "✔ Correct. " : "") + (o.explanation || ""))));
   });
-  const ok = sameSet(cur, q.correct);
+  const ok = grade(q, cur);
   const nav = h("div", { class: "row spread" },
     h("button", { disabled: run.idx === 0, onclick: () => move(-1) }, "← Previous"),
     h("div", { class: "row" },
       h("button", { class: "primary", onclick: () => move(1) },
-        practice && isMulti(q) && !locked && cur.length ? "Check answer" : run.idx < total - 1 ? "Next →" : "Finish")));
+        practice && qtype(q) !== "single" && !locked && (answered(q, cur) || qtype(q) === "command") ? "Check answer" : run.idx < total - 1 ? "Next →" : "Finish")));
   const dom = exam.domains.find(d => d.id === q.domain), top = dom && (dom.topics || []).find(t => t.id === q.topic);
   render(h("div", { class: "row spread" }, h("span", { class: "muted" }, `Question ${run.idx + 1} of ${total}`), run.left ? h("strong", { id: "timer" }, fmt(run.left)) : null,
       h("button", { onclick: () => confirm("Quit this quiz?") && showSetup() }, "Quit")),
     h("div", { class: "bar progress" }, h("i", { style: `width:${pct(run.idx + 1, total)}%` })),
     h("div", { class: "card" }, h("div", { class: "muted" }, [dom && dom.title, top && top.title].filter(Boolean).join(" › ")),
-      h("div", { class: "qtext" }, q.text), isMulti(q) && h("div", { class: "muted" }, "Select all that apply."), optEls,
+      h("div", { class: "qtext" }, q.text), isMulti(q) && h("div", { class: "muted" }, "Select all that apply."), isChoice(q) ? optEls : typedUI(q, entry, cur, locked, setAns),
       locked && h("div", { class: "answer " + (ok ? "ok" : "bad") }, h("div", { class: "head" }, ok ? "✔ Correct" : "✘ Incorrect"), h("div", {}, q.explanation || ""))),
     nav);
 }
 function confirmFinish() {
-  const un = run.qs.filter(x => !(run.answers[x.q.id] || []).length).length;
+  const un = run.qs.filter(x => !answered(x.q, run.answers[x.q.id])).length;
   if (!un || confirm(`${un} unanswered question(s). Finish anyway?`)) finish();
 }
 
 /* ---------- results ---------- */
 function finish() {
   clearInterval(timer);
-  const results = run.qs.map(({ q }) => ({ q, ok: sameSet(run.answers[q.id] || [], q.correct) }));
+  const results = run.qs.map(({ q }) => ({ q, ok: grade(q, run.answers[q.id]) }));
   const correct = results.filter(r => r.ok).length, total = results.length, percent = pct(correct, total);
   const hist = history(); hist.push({ date: Date.now(), mode: cfg.mode, correct, total, percent });
   try { localStorage.setItem(LS + exam.id, JSON.stringify(hist.slice(-50))); } catch {}
@@ -247,11 +342,11 @@ function finish() {
       missed.length ? h("button", { class: "primary", onclick: () => { run.qs = null; startRun(shuffle(missed)); } }, `Retry ${missed.length} missed`) : null,
       h("button", { onclick: showSetup }, "Back to setup")),
     h("h2", { style: "margin-top:24px" }, "Review"),
-    run.qs.map(({ q, opts }, i) => {
-      const mine = run.answers[q.id] || [];
+    run.qs.map((entry, i) => {
+      const { q, opts } = entry, mine = run.answers[q.id] || (isChoice(q) ? [] : null);
       return h("details", { class: "card" }, h("summary", {}, h("span", { class: "pill " + (results[i].ok ? "ok" : "bad") }, results[i].ok ? "✔" : "✘"), ` Q${i + 1}. ${q.text.split("\n")[0]}`),
         h("div", { class: "qtext" }, q.text),
-        opts.map((o, j) => h("div", { class: "opt " + (q.correct.includes(o.id) ? "right" : mine.includes(o.id) ? "wrong" : ""), style: "cursor:default" }, h("span", { class: "letter" }, String.fromCharCode(65 + j) + "."),
+        !isChoice(q) ? typedUI(q, entry, mine, true, () => {}) : opts.map((o, j) => h("div", { class: "opt " + (q.correct.includes(o.id) ? "right" : mine.includes(o.id) ? "wrong" : ""), style: "cursor:default" }, h("span", { class: "letter" }, String.fromCharCode(65 + j) + "."),
           h("span", {}, o.text, mine.includes(o.id) && h("em", {}, " (your answer)"), o.explanation && h("div", { class: "why" }, o.explanation)))),
         q.explanation && h("div", { class: "answer " + (results[i].ok ? "ok" : "bad") }, h("div", { class: "head" }, "Explanation"), h("div", {}, q.explanation)));
     }));

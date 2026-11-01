@@ -28,6 +28,13 @@ A company hires 30 contractors for a migration. An administrator provisions name
 
 In a test tenant, create a nonprivileged test user and security group, inspect their properties and membership, then assign and remove a test license if available. Review the Entra external collaboration and SSPR configuration pages without changing production settings. Record which steps concern identity, licensing, or resource authorization.
 
+### Official labs
+
+- [Lab 01 – Manage Microsoft Entra ID identities](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_01-Manage_Entra_ID_Identities.html)
+- Learning path: [AZ-104: Manage identities and governance in Azure](https://learn.microsoft.com/en-us/training/paths/az-104-manage-identities-governance/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
+
 ### Exam or practical application
 
 When a scenario asks who can sign in, look at identity and authentication configuration. When it asks whether a person can manage a resource, inspect Azure RBAC assignments. A guest invitation, group membership, license, and role assignment solve different problems.
@@ -80,6 +87,13 @@ A support engineer must restart one virtual machine but must not change its netw
 ### Hands-on activity
 
 In a disposable resource group, inspect **Access control (IAM)** and list role assignments inherited from the subscription and management group. Compare Reader and Contributor role definitions. If a test identity is available, assign the narrowest suitable role, verify an allowed action, then remove the assignment.
+
+### Official labs
+
+- [Lab 02a – Manage subscriptions and RBAC](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_02a_Manage_Subscriptions_and_RBAC_Entra.html)
+- Learning path: [AZ-104: Manage identities and governance in Azure](https://learn.microsoft.com/en-us/training/paths/az-104-manage-identities-governance/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
 
 ### Exam or practical application
 
@@ -134,6 +148,14 @@ A team operates development and production subscriptions. A management-group pol
 ### Hands-on activity
 
 In a sandbox, create a resource group with an owner/environment tag, inspect policy compliance, and compare Delete and ReadOnly locks on a disposable resource. If the subscription allows it, create a low-value budget alert with a test contact. Remove temporary resources and review current costs before leaving the sandbox.
+
+### Official labs
+
+- [Lab 02a – Manage subscriptions and RBAC](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_02a_Manage_Subscriptions_and_RBAC_Entra.html)
+- [Lab 02b – Manage governance via Azure Policy](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_02b-Manage_Governance_via_Azure_Policy.html)
+- Learning path: [AZ-104: Manage identities and governance in Azure](https://learn.microsoft.com/en-us/training/paths/az-104-manage-identities-governance/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
 
 ### Exam or practical application
 

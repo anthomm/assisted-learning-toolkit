@@ -14,7 +14,9 @@ Source record and extraction notes: [CURRICULUM.md](CURRICULUM.md). Outcome-to-s
 
 ## How to use this book
 
-Read each topic in order or jump to a gap via the coverage map. Every topic follows the same pattern: learning intent, core concepts, distinctions and limits, a worked scenario, hands-on steps where relevant, exam application, and self-check questions. Then take the matching 100-question mock exam (`mock_exams/az_900/`) and revisit weak topics, using the `objective:` tags to find them.
+Before you start, read [EXAM-FORMAT.md](EXAM-FORMAT.md) for how the AZ-900 exam is delivered and how to approach each question type, and use [LABS.md](LABS.md) for official hands-on labs and learning paths.
+
+Read each topic in order or jump to a gap via the coverage map. Every topic follows the same pattern: learning intent, core concepts, distinctions and limits, a worked scenario, hands-on steps where relevant, exam application, and self-check questions. Then take the matching 105-question mock exam (`mock_exams/az_900/`) and revisit weak topics, using the `objective:` tags to find them.
 
 Azure changes often. Items marked **Verify** are version-sensitive; check the linked Microsoft documentation before relying on them. The guide scopes the exam; it is not a complete course, and enrichment beyond it is noted in the text.
 

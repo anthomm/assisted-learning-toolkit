@@ -16,6 +16,8 @@ Source and interpretation notes: [CURRICULUM.md](CURRICULUM.md). Objective-to-se
 
 ## How to use this book
 
+Before you start, read [EXAM-FORMAT.md](EXAM-FORMAT.md) for how the AZ-104 exam is delivered and how to approach each question type, and use [LABS.md](LABS.md) for official hands-on labs and learning paths.
+
 Use the coverage map to locate a skill, then study the matching topic. Each topic explains the learning intent, core concepts, important distinctions and limits, a worked operational scenario, a practical activity, exam application, and self-check questions with answers. For hands-on activities, use a non-production subscription and check current pricing, permissions, quotas, and cleanup steps before creating resources.
 
 AZ-104 tests administration in context: identify the target resource and scope, choose a least-privilege control, account for dependencies and network boundaries, verify effective configuration, and confirm the result. Do not rely on a remembered portal layout alone; use the linked documentation to verify version-sensitive behavior.
