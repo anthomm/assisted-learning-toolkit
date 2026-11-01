@@ -57,9 +57,15 @@ def book_files(book_dir, meta):
     intro = book_dir / "00-intro.md"
     if intro.exists():
         files.append(("front", intro))
+    exam_format = book_dir / "EXAM-FORMAT.md"
+    if exam_format.exists():
+        files.append(("front", exam_format))
     listed = [book_dir / c["file"] for c in meta.get("chapters", []) if c.get("file")]
     chapters = listed or sorted(p for p in book_dir.glob("[0-9][0-9]-*.md") if p.name != "00-intro.md")
     files += [("chapter", p) for p in chapters if p.exists()]
+    labs = book_dir / "LABS.md"
+    if labs.exists():
+        files.append(("front", labs))
     return files
 
 
