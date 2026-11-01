@@ -28,12 +28,19 @@ Create an editable textbook from the intent in a source curriculum. The source c
 ### How it works, distinctions, limits, and defaults
 ### Example or worked scenario
 ### Hands-on activity (when applicable)
+### Official labs (linked, when available)
 ### Exam or practical application (when applicable)
 ### Self-check questions (3–5, with answers)
 ### Sources
 ```
 
 Group related outcomes when it improves understanding; split a broad area when it needs separate explanations. Use `> **Verify:**` for uncertain or version-sensitive facts.
+
+## Hands-on and exam-format material
+
+- **Official labs.** For each topic, look up matching official labs, sandboxes, Applied Skills, or workshops (for Microsoft: Learn modules with sandboxes, challenge projects, MS Learn GitHub workshops). Verify each link opens and matches the topic, then add a short pointer under `### Official labs` and a row in `LABS.md`. Do not copy lab steps and do not list unverified links. Note when a resource needs the learner's own subscription.
+- **Exam format.** For certification exams, write `EXAM-FORMAT.md` from official exam pages, the skills-measured document, and the public exam sandbox/practice assessment. Include per-question-type approach tips (ordering, matching, yes/no series, hotspot, case studies, command/lab tasks) and the retake policy. Mark anything unconfirmed with `> **Verify:**`.
+- Ask the user if the sources disagree on exam format or which labs are in scope.
 
 ## Coverage map
 

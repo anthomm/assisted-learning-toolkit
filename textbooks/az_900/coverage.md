@@ -35,9 +35,9 @@ Source locator: study guide, "Describe cloud concepts" > "Describe cloud service
 
 | Outcome ID | Learning outcome (interpreted) | Confidence / note | Book section | Exam questions | Textbook | Exam |
 |---|---|---|---|---|---|---|
-| `cc-iaas` | Describe infrastructure as a service | direct | 01-cloud-concepts.md > Cloud service types: IaaS, PaaS, SaaS | 21, 24, 25 | todo | drafted |
-| `cc-paas` | Describe platform as a service | direct | 01-cloud-concepts.md > Cloud service types: IaaS, PaaS, SaaS | 22, 24, 26 | todo | drafted |
-| `cc-saas` | Describe software as a service | direct | 01-cloud-concepts.md > Cloud service types: IaaS, PaaS, SaaS | 23, 24, 27 | todo | drafted |
+| `cc-iaas` | Describe infrastructure as a service | direct | 01-cloud-concepts.md > Cloud service types: IaaS, PaaS, SaaS | 21, 24, 25, 102 | todo | drafted |
+| `cc-paas` | Describe platform as a service | direct | 01-cloud-concepts.md > Cloud service types: IaaS, PaaS, SaaS | 22, 24, 26, 102 | todo | drafted |
+| `cc-saas` | Describe software as a service | direct | 01-cloud-concepts.md > Cloud service types: IaaS, PaaS, SaaS | 23, 24, 27, 102 | todo | drafted |
 | `cc-service-type-use-cases` | Match IaaS, PaaS, and SaaS to use cases | direct | 01-cloud-concepts.md > Cloud service types: IaaS, PaaS, SaaS | 21, 22, 27, 28 | todo | drafted |
 
 ## Azure architecture and services (35-40%)
@@ -54,7 +54,7 @@ Source locator: study guide, "Describe Azure architecture and services" > "Descr
 | `as-resources-rgs` | Describe resources and resource groups | direct | 02-azure-architecture-and-services.md > Azure's physical and organizational structure | 32, 36 | todo | drafted |
 | `as-subscriptions` | Describe subscriptions and their role | direct | 02-azure-architecture-and-services.md > Azure's physical and organizational structure | 33 | todo | drafted |
 | `as-management-groups` | Describe management groups | direct | 02-azure-architecture-and-services.md > Azure's physical and organizational structure | 34 | todo | drafted |
-| `as-resource-hierarchy` | Explain how management groups, subscriptions, and resource groups nest | direct | 02-azure-architecture-and-services.md > Azure's physical and organizational structure | 35 | todo | drafted |
+| `as-resource-hierarchy` | Explain how management groups, subscriptions, and resource groups nest | direct | 02-azure-architecture-and-services.md > Azure's physical and organizational structure | 35, 101 | todo | drafted |
 
 ### Compute and networking
 
@@ -78,7 +78,7 @@ Source locator: study guide, "Describe Azure architecture and services" > "Descr
 |---|---|---|---|---|---|---|
 | `as-storage-services` | Compare Azure Storage services (Blobs, Files, Queues, Tables, Disks) | direct | 02-azure-architecture-and-services.md > Storage and data movement | 48 | todo | drafted |
 | `as-storage-tiers` | Describe access tiers | direct | 02-azure-architecture-and-services.md > Storage and data movement | 49 | todo | drafted |
-| `as-storage-redundancy` | Describe redundancy options (LRS, ZRS, GRS, GZRS) | direct | 02-azure-architecture-and-services.md > Storage and data movement | 50, 55, 56 | todo | drafted |
+| `as-storage-redundancy` | Describe redundancy options (LRS, ZRS, GRS, GZRS) | direct | 02-azure-architecture-and-services.md > Storage and data movement | 50, 55, 56, 103 | todo | drafted |
 | `as-storage-account-types` | Describe storage account options and types | direct | 02-azure-architecture-and-services.md > Storage and data movement | 51 | todo | drafted |
 | `as-file-movement` | Identify tools for moving files (AzCopy, Storage Explorer, File Sync) | direct | 02-azure-architecture-and-services.md > Storage and data movement | 52, 53 | todo | drafted |
 | `as-migration-options` | Describe migration options (Azure Migrate, Data Box) | direct | 02-azure-architecture-and-services.md > Storage and data movement | 54 | todo | drafted |
@@ -128,8 +128,8 @@ Source locator: study guide, "Describe Azure management and governance" > "Descr
 | Outcome ID | Learning outcome (interpreted) | Confidence / note | Book section | Exam questions | Textbook | Exam |
 |---|---|---|---|---|---|---|
 | `mg-portal` | Describe the Azure portal | direct | 03-azure-management-and-governance.md > Managing and deploying resources | 82 | todo | drafted |
-| `mg-shell-cli-powershell` | Describe Cloud Shell, Azure CLI, and Azure PowerShell | direct | 03-azure-management-and-governance.md > Managing and deploying resources | 83, 89 | todo | drafted |
-| `mg-arc` | Describe the purpose of Azure Arc | direct | 03-azure-management-and-governance.md > Managing and deploying resources | 84, 90 | todo | drafted |
+| `mg-shell-cli-powershell` | Describe Cloud Shell, Azure CLI, and Azure PowerShell | direct | 03-azure-management-and-governance.md > Managing and deploying resources | 83, 89, 104, 105 | todo | drafted |
+| `mg-arc` | Describe the purpose of Azure Arc | direct | 03-azure-management-and-governance.md > Managing and deploying resources | 84, 90, 104 | todo | drafted |
 | `mg-iac` | Describe infrastructure as code | direct | 03-azure-management-and-governance.md > Managing and deploying resources | 85, 86, 88 | todo | drafted |
 | `mg-arm` | Describe Azure Resource Manager and ARM templates | direct | 03-azure-management-and-governance.md > Managing and deploying resources | 87, 88, 91 | todo | drafted |
 

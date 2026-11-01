@@ -30,6 +30,14 @@ Users report intermittent slow responses from a web app. The operator checks req
 
 In a test resource group, inspect available metrics and diagnostic categories for a VM or storage account. Route a small set of logs to a test workspace, run a time-bounded KQL query, and create a test metric or log alert with a nonproduction action group. In a sandbox VNet, inspect Network Watcher connectivity tools and remove test settings after review.
 
+### Official labs
+
+- [Lab 11 – Implement monitoring](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_11-Implement_Monitoring.html)
+- [Lab 05 – Implement intersite connectivity](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_05-Implement_Intersite_Connectivity.html)
+- Learning path: [AZ-104: Monitor and back up Azure resources](https://learn.microsoft.com/en-us/training/paths/az-104-monitor-backup-resources/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
+
 ### Exam or practical application
 
 For each symptom, choose the telemetry that can observe it: metrics for numeric trends, logs for event/detail analysis, and network tools for reachability and path behavior. Trace alert evaluation through condition, scope, action group, and response procedure.
@@ -91,6 +99,13 @@ A VM must recover from accidental deletion and from a regional outage. The team 
 ### Hands-on activity
 
 In a nonproduction subscription, inspect supported vault types for a test workload, create a short-retention backup policy, and enable protection. Monitor the first job and perform a documented test restore where possible. Separately review ASR prerequisites and perform only a test failover in an isolated environment. Clean up test replicas and vault resources according to product guidance.
+
+### Official labs
+
+- [Lab 10 – Implement data protection](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_10-Implement_Data_Protection.html)
+- Learning path: [AZ-104: Monitor and back up Azure resources](https://learn.microsoft.com/en-us/training/paths/az-104-monitor-backup-resources/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
 
 ### Exam or practical application
 

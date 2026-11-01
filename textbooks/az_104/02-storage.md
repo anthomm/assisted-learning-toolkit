@@ -30,6 +30,13 @@ A reporting job needs read-only access to one container for several hours. Prefe
 
 In a sandbox storage account, compare a role-based data assignment with a short-lived, read-only SAS. Test each from an allowed and disallowed network path, then revoke the assignment or token and review access configuration. Never paste live keys or SAS values into notes or source control.
 
+### Official labs
+
+- [Lab 07 – Manage Azure Storage](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_07-Manage_Azure_Storage.html)
+- Learning path: [AZ-104: Implement and manage storage in Azure](https://learn.microsoft.com/en-us/training/paths/az-104-manage-storage/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
+
 ### Exam or practical application
 
 Determine whether a scenario needs resource access (role), a delegated temporary capability (SAS), broad account-level access (key), or SMB identity authorization (Azure Files). Then separately evaluate network restrictions, expiry, and revocation.
@@ -88,6 +95,13 @@ A media team stores source images in a Blob account and needs copies in another 
 
 Create a low-cost test account only after checking current pricing. Compare available redundancy, encryption, and network settings in the portal. Upload a small test file with Storage Explorer, then transfer it with AzCopy using an identity-based sign-in. Verify the destination and remove the test account when finished.
 
+### Official labs
+
+- [Lab 07 – Manage Azure Storage](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_07-Manage_Azure_Storage.html)
+- Learning path: [AZ-104: Implement and manage storage in Azure](https://learn.microsoft.com/en-us/training/paths/az-104-manage-storage/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
+
 ### Exam or practical application
 
 For account configuration, map each requirement to a setting: failure-domain coverage, key ownership, access method, network boundary, and data movement. If recovery from deletion is required, do not assume replication alone is sufficient.
@@ -142,6 +156,13 @@ A design team collaborates through an Azure file share, while a publishing syste
 ### Hands-on activity
 
 In a sandbox, create a file share and a blob container, upload non-sensitive test data, and enable an available protection feature. Delete a test item and restore it using the documented workflow. Inspect tier and lifecycle options, then clean up the test data and resources.
+
+### Official labs
+
+- [Lab 07 – Manage Azure Storage](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_07-Manage_Azure_Storage.html)
+- Learning path: [AZ-104: Implement and manage storage in Azure](https://learn.microsoft.com/en-us/training/paths/az-104-manage-storage/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
 
 ### Exam or practical application
 

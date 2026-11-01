@@ -12,6 +12,59 @@ from jsonschema import Draft202012Validator
 
 SCHEMA = json.loads((Path(__file__).parent / "exam.schema.json").read_text(encoding="utf-8"))
 
+def dup_ids(n, label, ids):
+    return [f"{n}: duplicate {label} ids"] if len(set(ids)) != len(ids) else []
+
+
+def check_question(q, n):
+    errors = []
+    t = q.get("type", "single")
+    if t in ("single", "multiple"):
+        ids = [o["id"] for o in q["options"]]
+        errors += dup_ids(n, "option", ids)
+        if not set(q["correct"]) <= set(ids):
+            errors.append(f"{n}: correct {q['correct']} not in options {ids}")
+        if t == "single" and len(q["correct"]) != 1:
+            errors.append(f"{n}: type 'single' needs exactly one correct answer")
+        if t == "multiple" and len(q["correct"]) < 2:
+            errors.append(f"{n}: type 'multiple' needs 2+ correct answers")
+        texts = [o["text"].strip().lower() for o in q["options"]]
+        if len(set(texts)) != len(texts):
+            errors.append(f"{n}: duplicate option text")
+    elif t == "ordering":
+        ids = [i["id"] for i in q["items"]]
+        errors += dup_ids(n, "item", ids)
+        if sorted(q["correct_order"]) != sorted(ids):
+            errors.append(f"{n}: correct_order must use every item id exactly once")
+        elif q["correct_order"] == ids:
+            errors.append(f"{n}: items are listed already in the correct order; shuffle them")
+    elif t == "matching":
+        pids = [p["id"] for p in q["prompts"]]
+        cids = [c["id"] for c in q["choices"]]
+        errors += dup_ids(n, "prompt", pids) + dup_ids(n, "choice", cids)
+        paired = [p["prompt"] for p in q["correct_pairs"]]
+        if sorted(paired) != sorted(pids):
+            errors.append(f"{n}: correct_pairs needs exactly one pair per prompt")
+        if not {p["choice"] for p in q["correct_pairs"]} <= set(cids):
+            errors.append(f"{n}: correct_pairs references unknown choice")
+    elif t == "yesno-series":
+        errors += dup_ids(n, "statement", [s["id"] for s in q["statements"]])
+        if len({s["answer"] for s in q["statements"]}) < 2:
+            errors.append(f"{n}: statements should include both true and false answers")
+    elif t == "hotspot":
+        errors += dup_ids(n, "slot", [s["id"] for s in q["slots"]])
+        for s in q["slots"]:
+            oids = [o["id"] for o in s["options"]]
+            errors += dup_ids(f"{n}/{s['id']}", "option", oids)
+            if s["correct"] not in oids:
+                errors.append(f"{n}/{s['id']}: correct '{s['correct']}' not in options")
+    elif t == "command":
+        c = q["command"]
+        norm = [" ".join(x.split()).lower() for x in c["accepted"]]
+        if len(set(norm)) != len(norm):
+            errors.append(f"{n}: duplicate accepted commands")
+    return errors
+
 
 def check(path):
     errors = []
@@ -32,18 +85,7 @@ def check(path):
             errors.append(f"{n}: unknown domain '{q['domain']}'")
         elif q.get("topic") and q["topic"] not in domains[q["domain"]]:
             errors.append(f"{n}: unknown topic '{q['topic']}' in domain '{q['domain']}'")
-        ids = [o["id"] for o in q["options"]]
-        if len(set(ids)) != len(ids):
-            errors.append(f"{n}: duplicate option ids")
-        if not set(q["correct"]) <= set(ids):
-            errors.append(f"{n}: correct {q['correct']} not in options {ids}")
-        if q.get("type", "single") == "single" and len(q["correct"]) != 1:
-            errors.append(f"{n}: type 'single' needs exactly one correct answer")
-        if q.get("type") == "multiple" and len(q["correct"]) < 2:
-            errors.append(f"{n}: type 'multiple' needs 2+ correct answers")
-        texts = [o["text"].strip().lower() for o in q["options"]]
-        if len(set(texts)) != len(texts):
-            errors.append(f"{n}: duplicate option text")
+        errors += check_question(q, n)
     return errors
 
 

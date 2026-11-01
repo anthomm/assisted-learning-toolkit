@@ -57,6 +57,10 @@ A small retailer is preparing a one-week online promotion. It needs additional c
 
 The retailer could host the campaign site in public cloud, scale it back afterward, and retain the finance workload privately in a hybrid design. PaaS suits developers who want to avoid OS patching; a legacy application requiring OS-level changes may call for IaaS. Consumption-based charges can follow campaign usage, while reservations are better evaluated for steady eligible demand than a short uncertain peak. In each case, the retailer manages its data, identities, and applicable controls.
 
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe cloud concepts](https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
+
 ### Exam or practical application
 
 For a scenario, identify the key requirement: OS control points to IaaS, infrastructure upkeep in a dedicated environment to private cloud, and connected private/public resources to hybrid. For costs, distinguish owned infrastructure from metered services and reservations from pay-as-you-go. For security, identify the service model and specific control.
@@ -120,6 +124,10 @@ Cloud security is shared: the provider operates underlying facilities and offers
 ### Example or worked scenario
 
 A ticketing company can add application instances horizontally during a popular sale and scale them back afterward. Monitoring and load balancing help the team observe and distribute demand, but it must test startup times, database capacity, and failure recovery. Finance and engineering can compare estimates with usage, standardize deployments with templates, and alert operators to health problems. These practices improve visibility and control but do not eliminate outages or cost surprises.
+
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe cloud concepts](https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
 
 ### Exam or practical application
 
@@ -190,6 +198,10 @@ IaaS differs from on-premises hosting because the provider operates the physical
 A nonprofit wants to launch a public-facing donation website. Its developers are comfortable maintaining application code but do not want to patch a web server operating system. A PaaS web-hosting service is a plausible fit: the provider operates the underlying platform, while the nonprofit focuses on its application and data. The nonprofit still configures access, protects donor information, and monitors the application.
 
 An older finance application needing a custom OS component may fit IaaS, while staff email and document collaboration may fit SaaS. The nonprofit can use different service types for different workloads rather than choosing a single label for the organization.
+
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe cloud concepts](https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
 
 ### Exam or practical application
 

@@ -1,7 +1,7 @@
 schema_version: 1
 id: az-900
 title: 'AZ-900 Mock Exam: Microsoft Azure Fundamentals'
-description: 100 original questions across the three AZ-900 skill domains, generated from textbooks/az_900
+description: 105 original questions (including five in the ordering, matching, yes/no, hotspot, and command formats) across the three AZ-900 skill domains, generated from textbooks/az_900
   (edition 2).
 source_note: Based on the AZ-900 skills measured as of July 20, 2026. Questions are original, drafted
   from the book and official Microsoft Learn docs; not yet human-reviewed.
@@ -2928,3 +2928,111 @@ questions:
   references:
   - https://learn.microsoft.com/en-us/azure/azure-monitor/overview
   - https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
+- id: 101
+  domain: azure-architecture-services
+  topic: core-architecture
+  type: ordering
+  text: Arrange these Azure scopes from the broadest to the narrowest.
+  items:
+  - {id: A, text: Resource group}
+  - {id: B, text: Resource}
+  - {id: C, text: Management group}
+  - {id: D, text: Subscription}
+  correct_order: [C, D, A, B]
+  explanation: Management groups contain subscriptions, subscriptions contain resource groups, and resource
+    groups contain resources.
+  difficulty: easy
+  tags:
+  - objective:as-resource-hierarchy
+  references:
+  - https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/organize-resources
+- id: 102
+  domain: cloud-concepts
+  topic: service-types
+  type: matching
+  text: Match each offering to its cloud service type. A type can be used more than once.
+  prompts:
+  - {id: '1', text: Azure Virtual Machines}
+  - {id: '2', text: Azure App Service}
+  - {id: '3', text: Microsoft 365}
+  choices:
+  - {id: A, text: Infrastructure as a service (IaaS)}
+  - {id: B, text: Platform as a service (PaaS)}
+  - {id: C, text: Software as a service (SaaS)}
+  correct_pairs:
+  - {prompt: '1', choice: A}
+  - {prompt: '2', choice: B}
+  - {prompt: '3', choice: C}
+  explanation: With a VM you manage the guest operating system (IaaS), App Service hosts your web app on a
+    managed platform (PaaS), and Microsoft 365 is a finished application you consume (SaaS).
+  difficulty: easy
+  tags:
+  - objective:cc-iaas
+  - objective:cc-paas
+  - objective:cc-saas
+  references:
+  - https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas
+  - https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-paas
+  - https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-saas
+- id: 103
+  domain: azure-architecture-services
+  topic: storage
+  type: yesno-series
+  text: For each statement about Azure Storage redundancy, select Yes if it is true or No if it is false.
+  statements:
+  - {id: S1, text: Zone-redundant storage (ZRS) copies data across availability zones in the primary region., answer: true, explanation: ZRS replicates synchronously across zones in one region.}
+  - {id: S2, text: Locally redundant storage (LRS) copies your data to a second Azure region., answer: false, explanation: LRS keeps copies within a single datacenter in the primary region.}
+  - {id: S3, text: Geo-redundant storage (GRS) keeps a copy of your data in a secondary region., answer: true, explanation: GRS adds asynchronous replication to a paired secondary region.}
+  explanation: LRS stays in one datacenter, ZRS spans zones in one region, and GRS adds a secondary region.
+  difficulty: medium
+  tags:
+  - objective:as-storage-redundancy
+  references:
+  - https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+- id: 104
+  domain: management-governance
+  topic: manage-deploy
+  type: hotspot
+  text: Complete each statement by selecting the correct option.
+  slots:
+  - id: H1
+    text: 'A browser-based, authenticated shell available from the Azure portal is called:'
+    options:
+    - {id: A, text: Azure Cloud Shell}
+    - {id: B, text: Azure Arc}
+    - {id: C, text: Azure Advisor}
+    correct: A
+    explanation: Cloud Shell provides Azure CLI and Azure PowerShell in the browser.
+  - id: H2
+    text: 'A service that extends Azure management to servers and Kubernetes clusters running outside Azure is:'
+    options:
+    - {id: A, text: Azure Cloud Shell}
+    - {id: B, text: Azure Arc}
+    - {id: C, text: Azure Advisor}
+    correct: B
+    explanation: Azure Arc projects non-Azure resources into Azure for management.
+  explanation: Cloud Shell is a management tool, Arc extends management to other environments, and Advisor
+    gives recommendations.
+  difficulty: easy
+  tags:
+  - objective:mg-shell-cli-powershell
+  - objective:mg-arc
+  references:
+  - https://learn.microsoft.com/en-us/azure/cloud-shell/overview
+  - https://learn.microsoft.com/en-us/azure/azure-arc/overview
+- id: 105
+  domain: management-governance
+  topic: manage-deploy
+  type: command
+  text: Type the Azure CLI command that lists the resource groups in the current subscription (no extra options).
+  command:
+    shell: azure-cli
+    accepted:
+    - az group list
+    hint: Azure CLI commands start with az.
+  explanation: The az group list command lists resource groups in the current subscription.
+  difficulty: easy
+  tags:
+  - objective:mg-shell-cli-powershell
+  references:
+  - https://learn.microsoft.com/en-us/cli/azure/group

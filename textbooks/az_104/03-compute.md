@@ -30,6 +30,13 @@ A team needs identical test and production network foundations. It creates a Bic
 
 In a test subscription, use the Azure portal or Azure CLI to validate and deploy a small Bicep template containing a resource group-scoped resource. Inspect deployment operations and outputs, then remove the test resource. Export a deployment and compare it with the original source; note any missing intent.
 
+### Official labs
+
+- [Lab 03 – Manage Azure resources by using ARM templates](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_03b-Manage_Azure_Resources_by_Using_ARM_Templates.html)
+- Learning path: [AZ-104: Deploy and manage Azure compute resources](https://learn.microsoft.com/en-us/training/paths/az-104-manage-compute-resources/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
+
 ### Exam or practical application
 
 When interpreting a template, identify its scope, parameters, resource type/API version, dependencies, and outputs. When asked to modify it, change the declarative property or parameter that represents the requirement, then validate the deployment and its permissions.
@@ -86,6 +93,13 @@ A line-of-business service requires OS-level control and must tolerate planned m
 ### Hands-on activity
 
 In a sandbox, review VM sizes and disk SKUs without deploying. If authorized, deploy a small test VM with a managed identity and no unnecessary public endpoint; inspect its disk and availability configuration. Use a move validation operation before any cross-scope move, and delete the VM and disks after testing.
+
+### Official labs
+
+- [Lab 08 – Manage virtual machines](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_08-Manage_Virtual_Machines.html)
+- Learning path: [AZ-104: Deploy and manage Azure compute resources](https://learn.microsoft.com/en-us/training/paths/az-104-manage-compute-resources/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
 
 ### Exam or practical application
 
@@ -145,6 +159,14 @@ A scheduled conversion job runs for a few minutes and exits; ACI may suit its si
 
 Inspect an existing ACR's repositories, access configuration, and image tags. In a sandbox, deploy a simple non-sensitive test image to ACI or Container Apps, review logs, ingress, resource sizing, and scaling configuration, then delete the workload and any unused image.
 
+### Official labs
+
+- [Lab 09b – Implement Azure Container Instances](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_09b-Implement_Azure_Container_Instances.html)
+- [Lab 09c – Implement Azure Container Apps](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_09c-Implement-Azure-Container-Apps.html)
+- Learning path: [AZ-104: Deploy and manage Azure compute resources](https://learn.microsoft.com/en-us/training/paths/az-104-manage-compute-resources/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
+
 ### Exam or practical application
 
 First identify the registry requirement separately from runtime. Then compare the requested lifecycle and operational features: simple container execution suggests ACI; managed app revisions and configurable scale/ingress suggest Container Apps. Always include the image pull identity and network path.
@@ -200,6 +222,13 @@ A team operates an API with a custom hostname. It provisions a plan sized for ex
 ### Hands-on activity
 
 In a test subscription, compare App Service plan tiers and inspect scale settings. Deploy a sample app, create a staging slot if supported, and review domain, TLS, networking, and backup blades without exposing a production app. Delete the plan and test resources afterward.
+
+### Official labs
+
+- [Lab 09a – Implement web apps](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_09a-Implement_Web_Apps.html)
+- Learning path: [AZ-104: Deploy and manage Azure compute resources](https://learn.microsoft.com/en-us/training/paths/az-104-manage-compute-resources/)
+
+Labs run in your own Azure subscription and may create billable resources; see [LABS.md](LABS.md) and delete resources when finished.
 
 ### Exam or practical application
 

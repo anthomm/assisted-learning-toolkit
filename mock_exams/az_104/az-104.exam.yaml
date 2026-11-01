@@ -1,7 +1,7 @@
 schema_version: 1
 id: az-104
 title: 'AZ-104 Mock Exam: Microsoft Azure Administrator'
-description: 100 original questions across the five AZ-104 skill domains, generated from textbooks/az_104.
+description: 105 original questions (including five in the ordering, matching, yes/no, hotspot, and command formats) across the five AZ-104 skill domains, generated from textbooks/az_104.
 source_note: Based on the AZ-104 skills measured as of April 17, 2026. Questions are original, drafted
   from the book and official Microsoft Learn docs; not yet human-reviewed.
 language: en
@@ -3290,3 +3290,113 @@ questions:
   references:
   - https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-test-failover-to-azure
   - https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview
+- id: 101
+  domain: monitor-maintain
+  topic: backup-and-recovery
+  type: ordering
+  text: Arrange the steps to protect an Azure virtual machine with Azure Backup.
+  items:
+  - {id: A, text: Enable backup for the VM and associate the policy}
+  - {id: B, text: Create a Recovery Services vault}
+  - {id: C, text: Run or wait for the first backup}
+  - {id: D, text: Define or select a backup policy}
+  correct_order: [B, D, A, C]
+  explanation: The vault must exist first, a policy defines schedule and retention, enabling backup applies
+    the policy to the VM, and the first backup then runs.
+  difficulty: medium
+  tags:
+  - objective:recovery-services-vault
+  - objective:recovery-backup-policy
+  references:
+  - https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-first-look-arm
+- id: 102
+  domain: virtual-networking
+  topic: vnets-and-subnets
+  type: matching
+  text: Match each feature to what it does.
+  prompts:
+  - {id: '1', text: Network security group}
+  - {id: '2', text: User-defined route}
+  - {id: '3', text: Virtual network peering}
+  choices:
+  - {id: A, text: Connects two virtual networks over the Microsoft backbone network}
+  - {id: B, text: Overrides default system routes by specifying a next hop}
+  - {id: C, text: Allows or denies traffic with prioritized rules}
+  - {id: D, text: Resolves names to private IP addresses inside a virtual network}
+  correct_pairs:
+  - {prompt: '1', choice: C}
+  - {prompt: '2', choice: B}
+  - {prompt: '3', choice: A}
+  explanation: NSGs filter traffic, user-defined routes change the next hop, and peering connects virtual
+    networks. D describes private DNS, which none of these features do.
+  difficulty: medium
+  tags:
+  - objective:network-nsg-asg
+  - objective:network-udr
+  - objective:network-peering
+  references:
+  - https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview
+  - https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview
+  - https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview
+- id: 103
+  domain: identities-governance
+  topic: azure-rbac
+  type: yesno-series
+  text: For each statement about Azure role assignments, select Yes if it is true or No if it is false.
+  statements:
+  - {id: S1, text: A role assigned at a management group scope is inherited by the subscriptions under it., answer: true, explanation: Role assignments are inherited by child scopes.}
+  - {id: S2, text: A role assigned on one resource group applies to resources in other resource groups., answer: false, explanation: The assignment applies only to that resource group and the resources in it.}
+  - {id: S3, text: A role assigned at subscription scope applies to the resource groups in that subscription., answer: true, explanation: Child resource groups and resources inherit it.}
+  explanation: Role assignments flow down the scope hierarchy and never sideways.
+  difficulty: medium
+  tags:
+  - objective:rbac-scope-assignments
+  references:
+  - https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview
+- id: 104
+  domain: virtual-networking
+  topic: vnets-and-subnets
+  type: hotspot
+  text: Complete the Azure CLI command so VNet1 can receive traffic forwarded by a network virtual appliance in VNet2.
+  slots:
+  - id: H1
+    text: 'az network vnet peering ___ --name peer1 --resource-group rg1 --vnet-name vnet1 --remote-vnet vnet2 --allow-vnet-access'
+    options:
+    - {id: A, text: create}
+    - {id: B, text: show}
+    - {id: C, text: delete}
+    correct: A
+    explanation: Create adds the peering.
+  - id: H2
+    text: 'Add the flag: --allow-___'
+    options:
+    - {id: A, text: gateway-transit}
+    - {id: B, text: forwarded-traffic}
+    - {id: C, text: vnet-access}
+    correct: B
+    explanation: Forwarded traffic permits traffic that did not originate in the peered network, as when it comes from an NVA. Gateway transit shares a VPN gateway.
+  explanation: Create the peering and allow forwarded traffic for NVA scenarios.
+  difficulty: hard
+  tags:
+  - objective:network-peering
+  references:
+  - https://learn.microsoft.com/en-us/cli/azure/network/vnet/peering
+- id: 105
+  domain: identities-governance
+  topic: subscriptions-governance
+  type: command
+  text: Type the Azure CLI command that creates a resource group named rg1 in the westeurope region.
+  command:
+    shell: azure-cli
+    accepted:
+    - az group create --name rg1 --location westeurope
+    - az group create -n rg1 -l westeurope
+    - az group create --name rg1 -l westeurope
+    - az group create -n rg1 --location westeurope
+    hint: Use az group create.
+  explanation: az group create takes the group name and location; flag order does not matter.
+  difficulty: easy
+  tags:
+  - objective:gov-resource-groups
+  references:
+  - https://learn.microsoft.com/en-us/cli/azure/group

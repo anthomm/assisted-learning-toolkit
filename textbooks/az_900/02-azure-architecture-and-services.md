@@ -61,6 +61,10 @@ A retailer separates production and nonproduction into subscriptions. A manageme
 
 In the portal, inspect **Subscriptions**, **Resource groups**, and—if permitted—**Management groups**. Compare a group's location with the regions of its resources; avoid making changes. Use the current Microsoft Learn region list to confirm service and zone availability. Optional read-only CLI: `az account show --output table` shows the active subscription; `az group list --output table` lists visible groups.
 
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe Azure architecture and services](https://learn.microsoft.com/en-us/training/paths/azure-fundamentals-describe-azure-architecture-services/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
+
 ### Exam or practical application
 
 For location scenarios, identify the requirement: latency, residency, a zone failure, or regional disaster recovery. For governance scenarios, select a scope that applies to the intended subscriptions or resources. Common traps are assuming a region pair automatically deploys a replica, treating a resource-group location as the location of all its resources, or confusing a management group with a physical location.
@@ -163,6 +167,10 @@ A retailer initially moves a legacy Windows app to VMs because it needs OS contr
 ### Hands-on activity
 
 In the portal, inspect a VNet's address space, subnets, peerings, and DNS settings, then inspect a VM's size, NIC, disks, and IP configuration (read-only). Optional CLI: `az network vnet list --output table` and `az vm list-sizes --location <region> --output table` list visible VNets and available VM sizes. For a lab, use a disposable subscription and remove resources when finished.
+
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe Azure architecture and services](https://learn.microsoft.com/en-us/training/paths/azure-fundamentals-describe-azure-architecture-services/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
 
 ### Exam or practical application
 
@@ -287,6 +295,10 @@ A media company stores video objects in Blob Storage, shared production folders 
 
 Inspect a test or authorized storage account in the portal. Record its account type, region, redundancy, and network controls; then inspect the access tier of a test blob. Do not modify production settings. Optional read-only CLI: `az storage account list --output table` and `az storage account show --name <account-name> --resource-group <resource-group> --output json`. Use a test container and approved identity for any transfer.
 
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe Azure architecture and services](https://learn.microsoft.com/en-us/training/paths/azure-fundamentals-describe-azure-architecture-services/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
+
 ### Exam or practical application
 
 Select by data model: shared folder → Azure Files; unstructured object → Blob; asynchronous message → Queue; NoSQL key/attribute data → Table; VM volume → managed disk. Frequent blob access suggests Hot; immediate but infrequent access suggests Cool or Cold; offline flexible-latency data may suit Archive. LRS stays in one datacenter, ZRS spans zones, GRS/GZRS add a secondary region, and RA variants add secondary read access. Distinguish replication from backup.
@@ -398,6 +410,10 @@ A company gives supplier guests access to one project through Entra External ID 
 ### Hands-on activity
 
 In an authorized test tenant, inspect Entra **Users**, **Groups**, **Authentication methods**, and **External identities**. In the Azure portal, review a resource group's **Access control (IAM)** assignments and identify principal, role, and scope without changing them. Inspect Conditional Access policies in report-only mode where available, then review Defender for Cloud recommendations. Do not invite users, assign roles, or enable production policies as practice.
+
+### Official labs
+
+- Learning path: [Microsoft Azure Fundamentals: Describe Azure architecture and services](https://learn.microsoft.com/en-us/training/paths/azure-fundamentals-describe-azure-architecture-services/). Some modules include a free Learn sandbox or an optional exercise; check each module. See [LABS.md](LABS.md).
 
 ### Exam or practical application
 
